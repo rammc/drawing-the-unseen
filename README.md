@@ -4,7 +4,7 @@ A hands-on Architect Dreamin workshop on diagramming AI in a Salesforce architec
 
 ## Live site
 
-The whole kit is published as a single self-contained page: https://USERNAME.github.io/drawing-the-unseen/
+The whole kit is published as a single self-contained page: https://rammc.github.io/drawing-the-unseen/
 
 ## What's inside
 
