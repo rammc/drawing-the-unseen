@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drawing the Unseen - Workshop Kit</title>
+<meta name="description" content="Drawing the Unseen: how to diagram AI in your Salesforce architecture. The complete Architect Dreamin workshop kit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F6F4EE;--ink:#1C1C1A;--accent:#1E55C0;--accent-fill:#EEF3FC;--amber:#C2871A;--amber-fill:#F6ECD6;--amber-ink:#9A6A14;--soft:#6B6960;--faint:#9A958A;--hair:#D9D5CB;--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--serif:'Newsreader',Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background-color:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.62;
+background-image:linear-gradient(rgba(28,28,26,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(28,28,26,.025) 1px,transparent 1px);background-size:30px 30px}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+.hero{position:relative;padding:78px 0 44px;border-bottom:1px solid var(--hair);overflow:hidden}
+.hero h1{font-family:var(--mono);font-weight:700;font-size:clamp(38px,7vw,74px);line-height:1.0;letter-spacing:-1.5px;margin:0}
+.hero h1 .dim{color:var(--faint)}
+.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.4vw,25px);color:var(--soft);margin-top:16px;max-width:46ch}
+.hero .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-top:24px}
+.hero .ghost{position:absolute;top:46px;right:0;width:190px;height:120px;border:1.6px dashed var(--accent);border-radius:14px;background:var(--accent-fill);opacity:.5;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:46px;color:var(--accent)}
+.hero .ghost small{position:absolute;bottom:8px;right:12px;font-size:10px;font-weight:500;letter-spacing:1px;color:var(--soft)}
+@media(max-width:740px){.hero .ghost{display:none}}
+.layout{display:grid;grid-template-columns:222px 1fr;gap:52px;align-items:start;padding-top:8px}
+.toc{position:sticky;top:22px;padding-top:34px}
+.toc .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);display:block;margin:0 0 10px 12px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{font-family:var(--mono);font-size:13px;color:var(--soft);text-decoration:none;display:block;padding:7px 0 7px 12px;border-left:2px solid transparent;transition:color .2s,border-color .2s}
+.toc a:hover,.toc a.active{color:var(--accent);border-left-color:var(--accent)}
+.toc .num{color:var(--faint);margin-right:9px}
+.section{padding:54px 0;border-bottom:1px solid var(--hair)}
+.section:last-child{border-bottom:none}
+.section-title{font-family:var(--mono);font-weight:700;font-size:clamp(21px,3vw,30px);letter-spacing:-.6px;margin:0 0 6px}
+.section-title .n{color:var(--accent);font-size:.62em;margin-right:14px;vertical-align:3px}
+.section-lead{font-family:var(--serif);font-style:italic;color:var(--soft);font-size:17px;margin:0 0 26px;max-width:60ch}
+.prose{max-width:72ch}
+.prose>*:first-child{margin-top:0}
+.prose h1{font-family:var(--mono);font-size:23px;font-weight:700;letter-spacing:-.4px;margin:36px 0 12px}
+.prose h2{font-family:var(--mono);font-size:18px;font-weight:700;margin:30px 0 10px;padding-top:10px;border-top:1px solid var(--hair)}
+.prose h3{font-family:var(--mono);font-size:14.5px;font-weight:600;letter-spacing:.2px;margin:22px 0 8px}
+.prose h4{font-family:var(--mono);font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--soft);margin:18px 0 6px}
+.prose p,.prose li{font-family:var(--serif);font-size:17px;line-height:1.62}
+.prose ul,.prose ol{padding-left:22px}
+.prose li{margin:4px 0}
+.prose strong{font-weight:600}
+.prose blockquote{margin:14px 0;padding:11px 18px;border-left:3px solid var(--accent);background:var(--accent-fill);border-radius:0 7px 7px 0}
+.prose blockquote p{font-family:var(--mono);font-size:13.5px;line-height:1.55;color:var(--ink);margin:5px 0}
+.prose code{font-family:var(--mono);font-size:.84em;background:#ECE9E1;padding:1px 5px;border-radius:4px}
+.prose pre{background:#1C1C1A;color:#F2EFE7;padding:18px 20px;border-radius:9px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.55}
+.prose pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.table-wrap{overflow-x:auto;margin:16px 0}
+.prose table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12.5px}
+.prose th{background:var(--accent-fill);color:var(--accent);text-align:left;padding:8px 11px;border:1px solid var(--hair);font-weight:600;white-space:nowrap}
+.prose td{padding:8px 11px;border:1px solid var(--hair);vertical-align:top}
+.prose hr{border:none;border-top:1px solid var(--hair);margin:30px 0}
+details.doc{border:1px solid var(--hair);border-radius:11px;background:#FBFAF6;margin-top:10px;overflow:hidden}
+details.doc>summary{font-family:var(--mono);font-size:13.5px;font-weight:600;padding:15px 18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.doc>summary::-webkit-details-marker{display:none}
+details.doc>summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-size:18px;line-height:1}
+details.doc[open]>summary::after{content:"\2212"}
+details.doc>summary .hint{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--faint);font-size:13px;margin-left:auto;margin-right:6px}
+details.doc[open]>summary{border-bottom:1px solid var(--hair)}
+.doc .prose{padding:10px 22px 24px;max-width:none}
+.promptwrap{position:relative;padding:14px 18px 18px}
+.copy{position:absolute;top:24px;right:30px;font-family:var(--mono);font-size:11px;letter-spacing:.5px;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:5px 11px;cursor:pointer}
+.copy.done{background:var(--amber)}
+.gallery{display:flex;flex-direction:column;gap:34px}
+.plate{background:#FBFAF6;border:1px solid var(--hair);border-radius:13px;padding:20px 20px 16px;box-shadow:0 18px 44px -30px rgba(28,28,26,.32)}
+.plate .head{display:flex;align-items:baseline;gap:12px}
+.plate .pn{font-family:var(--mono);font-size:11.5px;color:#fff;background:var(--accent);padding:2px 9px;border-radius:20px;letter-spacing:.5px}
+.plate .pt{font-family:var(--mono);font-weight:700;font-size:16px}
+.plate .pc{font-family:var(--serif);font-style:italic;color:var(--soft);font-size:15px;margin:4px 0 14px}
+.plate .svgwrap{overflow-x:auto;background:var(--paper);border:1px solid var(--hair);border-radius:9px;padding:10px}
+.plate svg{width:100%;height:auto;max-width:100%;display:block}
+.foot{padding:42px 0 70px;font-family:var(--mono);font-size:12px;color:var(--faint);line-height:1.8}
+.foot .rule{height:1px;background:var(--hair);margin-bottom:20px}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.hero h1,.hero .sub,.hero .meta{opacity:0;animation:rise .7s ease forwards}
+.hero .sub{animation-delay:.1s}.hero .meta{animation-delay:.2s}
+@keyframes rise{to{opacity:1;transform:none}from{transform:translateY(14px)}}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0}.toc{position:static;padding-top:18px;margin-bottom:8px}.toc .lab{display:none}.toc ol{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px}.toc a{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;padding:8px 10px}.toc a:hover,.toc a.active{border-left:none;border-bottom-color:var(--accent)}}
+@media(prefers-reduced-motion:reduce){.reveal,.hero h1,.hero .sub,.hero .meta{opacity:1;transform:none;animation:none;transition:none}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<div class="ghost">~<small>AI?</small></div>
+<h1>Drawing the <span class="dim">Unseen</span></h1>
+<p class="sub">How to diagram AI in your Salesforce architecture. The complete workshop kit, in one page.</p>
+<p class="meta">Architect Dreamin &#183; hands-on &#183; 90 min &#183; ~15 architects &#183; fictional scenario: Meridian Mobility Group</p>
+</div></header>
+
+<div class="wrap"><div class="layout">
+<nav class="toc"><span class="lab">Contents</span><ol>
+<li><a href="#overview"><span class="num">00</span>Overview</a></li>
+<li><a href="#scenario"><span class="num">01</span>The Scenario</a></li>
+<li><a href="#kit"><span class="num">02</span>The Notation Kit</a></li>
+<li><a href="#cards"><span class="num">03</span>Technology Cards</a></li>
+<li><a href="#diagrams"><span class="num">04</span>The Diagrams</a></li>
+<li><a href="#playbook"><span class="num">05</span>Facilitator Playbook</a></li>
+<li><a href="#slides"><span class="num">06</span>Slide Prompt</a></li>
+</ol></nav>
+<main>
+<section id="overview" class="section reveal"><h2 class="section-title"><span class="n">00</span>Overview</h2><p class="section-lead">What this is, in one screen.</p><div class="prose"><p>A complete kit for a 90-minute hands-on session at Architect Dreamin. The premise: a deliberately
+incomplete notation kit covers the easy seventy percent of an AI architecture, and engineered curveballs hit exactly
+the thirty percent it cannot express. Good AI notation is not decoration. It is risk management you can see.</p>
+<p>Everything below is the working material: the fictional scenario, the notation kit, the technology card deck,
+eight worked diagrams, the facilitator playbook (now with live judging), and the opening-slides prompt.</p></div></section>
+<section id="scenario" class="section reveal"><h2 class="section-title"><span class="n">01</span>The Scenario</h2><p class="section-lead">Meridian Mobility Group, written as a review-board brief.</p><details class="doc" open><summary>mmg-scenario.md <span class="hint">the problem statement, no solutions</span></summary><div class="prose"><p>Workshop Scenario · Drawing the Unseen: How to Diagram AI in Your Salesforce Architecture
+Architect Dreamin · 90 minutes · groups of 5</p>
+<hr />
+<h2>Using this scenario</h2>
+<p>Your group has a realistic Salesforce landscape and a vague instruction from the top: put more AI into it. Over the session you will decide which AI technologies fit, draw the solution so a board can actually understand it, and defend that solution when reality intervenes.</p>
+<p>This is a workshop, not an exam. Where a requirement is not stated, make a reasonable assumption and note it. You cannot ask the fictional stakeholders clarifying questions. You will not be judged on the tool you draw with, only on whether your diagrams represent the AI honestly and whether your approach survives the executive board.</p>
+<hr />
+<h2>Project Overview</h2>
+<p>Meridian Mobility Group (MMG) is one of Europe's larger automotive retail and service groups. It sells and services vehicles across eight countries in Western, Central, and Northern Europe through roughly 600 dealership and service locations. MMG is a multi-marque group: it retails and services around eight vehicle brands on behalf of their manufacturers, but it does not manufacture vehicles itself. It is the retail and service layer between the carmakers and the customer.</p>
+<p>In numbers, MMG has about 4 million active customers, sells close to 900,000 new and used vehicles per year, completes about 3 million service and repair visits per year, and handles roughly 8 million inbound customer contacts per year across phone, chat, email, and its customer portal.</p>
+<p>Two years ago MMG consolidated a patchwork of regional CRM systems onto Salesforce Automotive Cloud (Sales and Service), which is now the operational core. There is no AI in production today. MMG has a strong Salesforce platform team but no in-house machine learning or data science function. The board has been clear that it intends to use platform-native AI and external model providers rather than build and train models itself.</p>
+<p>The pressure to act is real. The manufacturers MMG represents are increasingly selling directly to customers through their own digital channels and agency models, which threatens the group's traditional position as the owner of the customer relationship. At the same time, customers now expect the same instant, self-service experience from a car group that they get from any consumer app. The board sees AI as the way to defend the customer relationship and to make the cost of serving it sustainable. That is the growth and the efficiency the shareholders are asking for, even if they have not put it in those words.</p>
+<p>Two facts shape what is possible. The customer experience today is fragmented and slow. A customer who calls, then chats, then visits a location usually has to repeat themselves, and advisors spend much of their day on the same routine questions rather than selling or resolving complex cases. The consolidation, however, left MMG with something valuable: a single unified customer and vehicle profile in the enterprise data platform, bringing together contact details, ownership, service history, and telematics. The raw material for a better experience already exists. It has simply never been put to work in the moment a customer is waiting.</p>
+<hr />
+<h2>The System Landscape</h2>
+<p>Salesforce Automotive Cloud sits at the centre. Eight systems surround it and will be retained. Your worksheet shows them already.</p>
+<ol>
+<li>Dealer Management System (DMS): the transactional system of record for vehicle inventory, deals, service orders, and parts.</li>
+<li>OEM connected-vehicle and telematics platforms: live vehicle data from the manufacturers, including location, mileage, diagnostic trouble codes, and driving behaviour.</li>
+<li>ERP (SAP): finance, parts procurement, and invoicing.</li>
+<li>Marketing automation: campaigns and customer consent.</li>
+<li>Contact-centre telephony (CTI): inbound and outbound voice across the contact centres.</li>
+<li>Service scheduling: bay and technician availability and booking.</li>
+<li>Data Cloud and enterprise data platform: the unified customer and vehicle profile, and analytics.</li>
+<li>Customer portal and identity provider: customer self-service and the single sign-on identity used across all of the above.</li>
+</ol>
+<hr />
+<h2>The Mandate</h2>
+<p>The shareholders have given the board one instruction:</p>
+<blockquote>
+<p>"Embed AI more deeply into the product to drive growth and efficiency."</p>
+</blockquote>
+<p>That is the whole brief. The board expects AI to play a central, visible role in how MMG serves and sells to customers. Beyond that, it has not said what to build, on which channels, or with what guardrails. Three executives are sponsoring the work, and each reads the instruction differently.</p>
+<hr />
+<h2>The Stakeholders</h2>
+<p>You must satisfy all three. Not one. All three.</p>
+<p>Dr. Helena Vance, Chief Executive Officer. She reads the mandate as a growth story: a customer-facing assistant that answers questions, books service, and sells, available everywhere, around the clock. She wants it live and she wants it in the announcement.</p>
+<blockquote>
+<p>"I want customers talking to our AI by Q3, and I want it in the announcement."
+Red line: a timeline she can commit to publicly, and a capability customers will notice.</p>
+</blockquote>
+<p>Marcus Reinhardt, Chief Information Security and Data Officer. He sees customer personal data, vehicle location and driving data, recall and safety information, and the reputational and regulatory exposure of an assistant that gets any of it wrong. He would rather move slowly and provably.</p>
+<blockquote>
+<p>"Where does the customer's data go the second it touches a model, and who can prove it?"
+Red line: he must be able to show, on a diagram, what happens to personal data and where a human stays in control.</p>
+</blockquote>
+<p>Priya Anand, Chief Information Officer. She owns delivery, run cost, and operations. She is sceptical of anything that sounds like magic and wants to know what it costs at full volume, how fast it responds, and who keeps it running.</p>
+<blockquote>
+<p>"Show me the cost at 10,000 conversations a day, and who operates this at 2 a.m."
+Red line: the cost and latency have to work at scale, and the design must be operable and not locked to a single supplier.</p>
+</blockquote>
+<hr />
+<h2>Business Process Requirements</h2>
+<p>The mandate touches three areas of how MMG works today. AI is expected to help across all three. How, and how much, is your decision.</p>
+<h3>A. Customer service and engagement</h3>
+<p>Customers contact MMG with questions about their vehicle, their service, billing and financing, and open recall or safety campaigns. Today this runs through contact-centre agents and service advisors and is the single largest cost in the customer operation. The board sees this as the primary place for AI to create both growth and efficiency.</p>
+<ul>
+<li>Customers reach MMG by phone, web chat, the portal, and email.</li>
+<li>A customer interaction often requires looking up the vehicle, its service history, its current telematics state, and any open recalls, then giving the customer an accurate answer or taking an action on their behalf.</li>
+<li>Some questions concern vehicle safety, including whether a vehicle is affected by a recall and whether it is safe to keep driving. Today a trained advisor handles these.</li>
+<li>Volume is high and seasonal, and response time is visible to the customer, especially on voice.</li>
+</ul>
+<h3>B. Sales and ordering</h3>
+<p>Customers configure and order new and used vehicles, arrange financing, and trade in their existing vehicle. Sales representatives assist them in person and remotely.</p>
+<ul>
+<li>A customer or representative configures a vehicle, checks availability against the DMS, and prepares a quote.</li>
+<li>Financing options and eligibility questions are common and currently require a representative.</li>
+<li>Trade-in valuations depend on the customer's vehicle data and current market conditions.</li>
+</ul>
+<h3>C. Service operations and post-service</h3>
+<p>MMG schedules and delivers service and repair work and runs the manufacturers' recall campaigns.</p>
+<ul>
+<li>A customer books a service. The booking must respect bay and technician availability in the scheduling system and create a service order in the DMS.</li>
+<li>Telematics data can indicate that a vehicle is due for service or shows a fault, creating an opportunity to reach the customer proactively.</li>
+<li>When a manufacturer issues a recall, MMG must identify affected customers, contact them, and book the corrective work. Accuracy here is a safety and legal matter.</li>
+</ul>
+<hr />
+<h2>Data Requirements</h2>
+<p>The AI will need access to customer and vehicle data, and some of that data is sensitive.</p>
+<ul>
+<li>Customer profile: contact details, home address, and marketing and data-use consent.</li>
+<li>Vehicle: identification number, ownership, full service history, and live telematics including location, mileage, and diagnostics.</li>
+<li>Financial: financing arrangements and payment information.</li>
+<li>Interaction history: records of calls, chats, and emails, including transcripts.</li>
+</ul>
+<p>Under European data protection law, customer personal data and vehicle location and driving data are personal and in places sensitive. For legal and regulatory reasons, MMG must retain records of customer interactions and must be able to account for how customer-facing decisions were reached. Recall and safety information must be accurate and current, and much of it originates from the manufacturers rather than from MMG.</p>
+<hr />
+<h2>Identity and Data Access Requirements</h2>
+<ul>
+<li>Single sign-on already spans MMG's systems through the enterprise identity provider. Any customer-facing assistant must authenticate the customer and act only on their own data.</li>
+<li>Customers may see only their own vehicles, history, and orders.</li>
+<li>Service advisors and sales representatives may see the customers and vehicles they are responsible for. Managers may see their teams. Senior management may see roll-ups across regions.</li>
+<li>Marketing actions are governed by each customer's recorded consent.</li>
+<li>MMG must be able to log and, where required, explain automated decisions that affect a customer.</li>
+</ul>
+<hr />
+<h2>Reporting and Analytics Requirements</h2>
+<p>MMG wants to:
+- Forecast service demand and balance load across locations.
+- Track customer satisfaction and identify upsell and retention opportunities.
+- Measure recall campaign completion and customer response.</p>
+<hr />
+<h2>What you will produce</h2>
+<p>Working in your group, you will:
+1. Choose a set of AI technologies that meets the mandate. You will be given options across a wide range of complexity. Not all of them fit, and you cannot afford all of them.
+2. Produce a solution architecture diagram showing where and how AI is applied across the landscape.
+3. Produce a data flow diagram for the AI subsystem.
+4. Defend your approach to the executive board.</p>
+<p>Both diagrams must represent the AI components accurately enough that the board can see what they do, what they touch, and where customer data goes. A vague box will not survive the room.</p></div></details></section>
+<section id="kit" class="section reveal"><h2 class="section-title"><span class="n">02</span>The Notation Kit</h2><p class="section-lead">The handout every participant takes home. One colour system runs through every diagram on this page:
+black for the existing and deterministic, blue for the AI-specific, amber for the five places the kit deliberately
+runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"><span class="pn">KIT</span><span class="pt">The Notation Kit, v0.1</span></div><figcaption class="pc">Black is what you already use, blue is AI-specific, amber is where the kit deliberately runs out. Five primitives and five named gaps.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','SFMono-Regular','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <style>
+      .sec  { font-size:14px; font-weight:700; fill:#1C1C1A; letter-spacing:1.5px; }
+      .sub  { font-size:10px; fill:#6B6960; }
+      .lbl  { font-size:12px; fill:#1C1C1A; }
+      .lbls { font-size:10px; fill:#1C1C1A; }
+      .cap  { font-size:10px; fill:#6B6960; }
+      .acc  { fill:#1E55C0; }
+      .ambh { font-size:12px; font-weight:700; fill:#9A6A14; letter-spacing:1px; }
+    </style>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1123" height="794" fill="#F6F4EE"/>
+
+  <!-- header -->
+  <text x="44" y="92" font-size="30" font-weight="700" letter-spacing="3" fill="#1C1C1A">AI NOTATION KIT</text>
+  <text x="46" y="116" class="sub">v0.1 &#183; drawing AI components in Salesforce architecture diagrams</text>
+  <text x="46" y="140" font-size="12" fill="#6B6960" font-style="italic">A starter vocabulary. Extend it. Break it.</text>
+
+  <!-- header key -->
+  <rect x="820" y="62" width="15" height="15" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="843" y="74" class="lbls">black ink &#61; existing convention</text>
+  <rect x="820" y="86" width="15" height="15" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="843" y="98" font-size="10" fill="#1E55C0">accent &#61; new &#183; AI-specific (2nd marker colour)</text>
+
+  <line x1="44" y1="156" x2="1079" y2="156" stroke="#D9D5CB" stroke-width="1"/>
+  <line x1="568" y1="176" x2="568" y2="686" stroke="#E4E0D6" stroke-width="1"/>
+
+  <!-- ================= LEFT COLUMN ================= -->
+
+  <!-- 1 NODES -->
+  <text x="44" y="192" class="sec">1 &#183; NODES</text>
+  <!-- deterministic -->
+  <rect x="54" y="210" width="120" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="114" y="236" text-anchor="middle" class="lbl">Flow / Apex</text>
+  <text x="114" y="274" text-anchor="middle" class="cap">deterministic</text>
+  <text x="114" y="286" text-anchor="middle" class="cap">same in, same out</text>
+  <!-- probabilistic -->
+  <rect x="224" y="210" width="120" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="334" y="226" font-size="17" font-weight="700" class="acc">~</text>
+  <text x="284" y="236" text-anchor="middle" class="lbl">model call</text>
+  <text x="284" y="274" text-anchor="middle" class="cap">probabilistic</text>
+  <text x="284" y="286" text-anchor="middle" class="cap">output may vary</text>
+  <!-- agent -->
+  <rect x="394" y="210" width="120" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <path d="M512 203 a9 9 0 1 1 -6 -6" fill="none" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#agr)"/>
+  <text x="454" y="236" text-anchor="middle" class="lbl">agent</text>
+  <text x="454" y="274" text-anchor="middle" class="cap">reasons &#183; may loop</text>
+
+  <!-- 2 GROUNDING -->
+  <text x="44" y="316" class="sec">2 &#183; GROUNDING</text>
+  <!-- cylinder -->
+  <path d="M54 342 v28 a40 8 0 0 0 80 0 v-28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <ellipse cx="94" cy="342" rx="40" ry="8" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="94" y="360" text-anchor="middle" class="cap">knowledge</text>
+  <!-- retrieve -->
+  <line x1="134" y1="356" x2="170" y2="356" stroke="#1C1C1A" stroke-width="1.6" marker-end="url(#aink)"/>
+  <rect x="174" y="338" width="80" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="214" y="360" text-anchor="middle" class="lbls">retrieve</text>
+  <!-- grounds -->
+  <text x="302" y="348" text-anchor="middle" font-size="9" class="acc">grounds</text>
+  <line x1="254" y1="356" x2="350" y2="356" stroke="#1E55C0" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <rect x="354" y="336" width="86" height="40" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="397" y="360" text-anchor="middle" class="lbls">model</text>
+  <text x="54" y="398" class="cap">retrieve &#183; deterministic search (can return nothing &#8594; a silent gap)</text>
+  <text x="54" y="411" class="cap">grounds &#183; shapes the output, it is not passed through verbatim</text>
+
+  <!-- 3 TRUST BOUNDARY -->
+  <text x="44" y="440" class="sec">3 &#183; TRUST BOUNDARY</text>
+  <text x="262" y="440" class="sub">canonical: Einstein Trust Layer</text>
+  <!-- band -->
+  <rect x="252" y="470" width="96" height="124" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="300" y="500" text-anchor="middle" font-size="10" class="acc">mask PII</text>
+  <text x="300" y="522" text-anchor="middle" font-size="10" class="acc">ground-check</text>
+  <text x="300" y="544" text-anchor="middle" font-size="10" class="acc">zero-retain</text>
+  <text x="300" y="566" text-anchor="middle" font-size="10" class="acc">log / audit</text>
+  <!-- prompt box -->
+  <rect x="60" y="510" width="120" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="120" y="536" text-anchor="middle" class="lbls">prompt + data</text>
+  <!-- model box -->
+  <rect x="420" y="510" width="110" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="475" y="536" text-anchor="middle" class="lbl">model</text>
+  <!-- inbound -->
+  <line x1="180" y1="520" x2="250" y2="520" stroke="#1C1C1A" stroke-width="1.6" marker-end="url(#aink)"/>
+  <line x1="350" y1="520" x2="418" y2="520" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aacc)"/>
+  <text x="215" y="514" text-anchor="middle" font-size="8" fill="#6B6960">in</text>
+  <text x="384" y="514" text-anchor="middle" font-size="8" fill="#6B6960">in</text>
+  <!-- outbound -->
+  <line x1="418" y1="544" x2="350" y2="544" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aacc)"/>
+  <line x1="250" y1="544" x2="182" y2="544" stroke="#1C1C1A" stroke-width="1.6" marker-end="url(#aink)"/>
+  <text x="384" y="558" text-anchor="middle" font-size="8" fill="#6B6960">out</text>
+  <text x="215" y="558" text-anchor="middle" font-size="8" fill="#6B6960">out</text>
+  <text x="60" y="610" class="cap">What happens the instant data touches a model. Draw it as a place,</text>
+  <text x="60" y="623" class="cap">not a line you wave at.</text>
+
+  <!-- house-rule note -->
+  <rect x="44" y="640" width="512" height="40" rx="5" fill="#FFFFFF" stroke="#D9D5CB" stroke-width="1"/>
+  <text x="58" y="657" font-size="10" font-weight="700" fill="#1C1C1A">Rule of thumb</text>
+  <text x="58" y="671" class="cap">If a box hides a decision (will it loop? can it refuse? where does data go?), the box is wrong.</text>
+
+  <!-- ================= RIGHT COLUMN ================= -->
+
+  <!-- 4 CONNECTORS -->
+  <text x="592" y="192" class="sec">4 &#183; CONNECTORS</text>
+  <line x1="600" y1="214" x2="710" y2="214" stroke="#1C1C1A" stroke-width="1.8" marker-end="url(#aink)"/>
+  <text x="726" y="210" class="lbl">data flow</text>
+  <text x="726" y="224" class="cap">what data moves where</text>
+
+  <line x1="600" y1="252" x2="710" y2="252" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aopen)"/>
+  <text x="726" y="248" font-size="12" class="acc">invokes / calls</text>
+  <text x="726" y="262" class="cap">triggers behaviour, not data</text>
+
+  <text x="600" y="290" font-size="11" font-weight="700" class="acc">action</text>
+  <line x1="600" y1="304" x2="664" y2="304" stroke="#1E55C0" stroke-width="2.2" marker-end="url(#aacc)"/>
+  <line x1="672" y1="294" x2="672" y2="316" stroke="#1C1C1A" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <rect x="682" y="290" width="92" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="728" y="308" text-anchor="middle" font-size="9" class="lbls">system of record</text>
+  <text x="592" y="336" class="cap">a typed, validated door out &#183; the agent does something real</text>
+
+  <!-- 5 PLANES -->
+  <text x="592" y="368" class="sec">5 &#183; PLANES</text>
+  <text x="592" y="382" class="sub">every component sits on exactly one</text>
+  <rect x="600" y="390" width="320" height="26" rx="13" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="614" y="407" font-size="11" class="acc">RUNTIME &#183; customer-facing</text>
+  <rect x="600" y="422" width="320" height="26" rx="13" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="614" y="439" font-size="11" fill="#1C1C1A">DELIVERY &#183; build / SDLC</text>
+  <rect x="600" y="454" width="320" height="26" rx="13" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="614" y="471" font-size="11" fill="#1C1C1A">OPERATIONS &#183; internal / employee</text>
+  <text x="592" y="498" class="cap">Forces a decision: a build-time or internal tool cannot</text>
+  <text x="592" y="510" class="cap">hide inside the customer-facing runtime.</text>
+
+  <!-- WORKED EXAMPLE -->
+  <text x="592" y="540" font-size="12" font-weight="700" fill="#1C1C1A" letter-spacing="1px">WORKED EXAMPLE</text>
+  <text x="742" y="540" class="sub">&#183; book a service appointment, runtime plane</text>
+
+  <!-- main row -->
+  <rect x="596" y="566" width="62" height="30" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="627" y="585" text-anchor="middle" font-size="9">customer</text>
+  <line x1="658" y1="581" x2="688" y2="581" stroke="#1C1C1A" stroke-width="1.5" marker-end="url(#aink)"/>
+  <rect x="690" y="558" width="34" height="48" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <text x="707" y="578" text-anchor="middle" font-size="7" class="acc">mask</text>
+  <text x="707" y="596" text-anchor="middle" font-size="7" class="acc">log</text>
+  <line x1="724" y1="581" x2="754" y2="581" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/>
+  <rect x="756" y="564" width="72" height="34" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="788" y="585" text-anchor="middle" font-size="10">agent</text>
+  <text x="820" y="573" font-size="12" font-weight="700" class="acc">~</text>
+  <path d="M820 560 a6 6 0 1 1 -4 -4" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#agr)"/>
+  <text x="855" y="562" text-anchor="middle" font-size="8" class="acc">action</text>
+  <line x1="828" y1="576" x2="880" y2="576" stroke="#1E55C0" stroke-width="2" marker-end="url(#aacc)"/>
+  <rect x="882" y="564" width="92" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="928" y="584" text-anchor="middle" font-size="9">scheduling</text>
+
+  <!-- grounding branch -->
+  <path d="M658 616 v22 a30 6 0 0 0 60 0 v-22" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <ellipse cx="688" cy="616" rx="30" ry="6" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="688" y="631" text-anchor="middle" font-size="8">knowledge</text>
+  <line x1="712" y1="612" x2="772" y2="599" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <text x="735" y="598" text-anchor="middle" font-size="8" class="acc">grounds</text>
+
+  <text x="592" y="662" font-size="9" fill="#6B6960">boundary + probabilistic agent + grounding + a typed action &#183; one plane</text>
+
+  <!-- ================= KNOWN LIMITS ================= -->
+  <rect x="44" y="698" width="1035" height="60" rx="6" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/>
+  <text x="60" y="720" class="ambh">WHERE THIS KIT RUNS OUT &#183; v0.1</text>
+  <text x="60" y="738" font-size="10" fill="#1C1C1A">confidence (act vs defer) &#183; human oversight (who approves) &#183; data sensitivity (which arrows carry PII) &#183; cost + latency &#183; failure / fallback paths</text>
+  <text x="60" y="752" font-size="10" font-style="italic" fill="#6B6960">You will hit at least one of these today. Noticing where the notation breaks is the point.</text>
+
+  <!-- footer -->
+  <text x="44" y="782" font-size="9" fill="#9A958A">Drawing the Unseen &#183; Architect Dreamin</text>
+  <text x="1079" y="782" text-anchor="end" font-size="9" fill="#9A958A">extend &#183; break &#183; feed it back</text>
+</svg>
+</div></figure></div></section>
+<section id="cards" class="section reveal"><h2 class="section-title"><span class="n">03</span>Technology Cards</h2><p class="section-lead">The deck participants choose from, under a complexity budget.</p><details class="doc"><summary>mmg-tech-card-deck.md <span class="hint">the cards, the traps, and the facilitator key</span></summary><div class="prose"><p><strong>Scenario:</strong> Meridian Mobility Group (MMG)
+<strong>Use:</strong> Block 2 (Technology Fit). Groups select a subset of these cards to answer the shareholder mandate "embed AI more deeply into the product," then draw the resulting solution architecture using the notation kit.</p>
+<p>Accuracy note: cards describe architecture archetypes and where they sit, not feature GA status. Forward-looking productization claims are marked [Inference]. Verify the bleeding-edge ones (Voice, native MCP/A2A support) before fixing any dates with stakeholders.</p>
+<hr />
+<h2>How the cards work</h2>
+<p>Each card is one technology approach. They span a real complexity gradient, from configuration to cross-vendor orchestration. There is no single correct set. A strong answer matches ambition (Helena), risk and compliance (Marcus), and cost and operability (Priya) at the same time.</p>
+<p><strong>Complexity tiers:</strong> Low, Moderate, High, Very High.
+<strong>Two axes that decide everything:</strong> where the component lives (which plane of which diagram), and whether its behaviour is deterministic or probabilistic.</p>
+<hr />
+<h1>Section A: The Cards</h1>
+<h3>01. Grounded Prompt Templates (Prompt Builder)</h3>
+<ul>
+<li><strong>Tier:</strong> Low</li>
+<li><strong>What:</strong> Generative prompts grounded in record and field data, embedded in Flows and Lightning pages. Produces drafts, summaries, and recommendations inside screens people already use.</li>
+<li><strong>Placement:</strong> Runtime, inside the Salesforce platform. A probabilistic call that crosses the trust boundary and returns into a deterministic Flow or UI. No new system.</li>
+<li><strong>Appeals to:</strong> Priya (cheap, contained). Helena in part (visible, not headline material).</li>
+<li><strong>Cost and complexity:</strong> Lowest. Configuration over engineering. Fast to ship.</li>
+<li><strong>Watch-out:</strong> Output is only as good as the grounding context you pass in. Easy to ship something that reads well and is quietly wrong.</li>
+</ul>
+<h3>02. Einstein Standard Features (Sales and Service)</h3>
+<ul>
+<li><strong>Tier:</strong> Low</li>
+<li><strong>What:</strong> Out-of-the-box generative features: work and call summaries, reply and knowledge recommendations, email drafting.</li>
+<li><strong>Placement:</strong> Runtime, native. Vendor-managed probabilistic calls behind the trust boundary. Nothing to architect beyond enablement and data access.</li>
+<li><strong>Appeals to:</strong> Priya (buy, not build). Marcus (vendor-governed, auditable).</li>
+<li><strong>Cost and complexity:</strong> Low. Licensing and enablement, not development.</li>
+<li><strong>Watch-out:</strong> You inherit the vendor's model and behaviour, with limited control over tone, grounding, and edge cases. Satisfies "we use AI," not "we built something differentiated."</li>
+</ul>
+<h3>03. Grounded Retrieval / RAG (Data Cloud and Retrievers)</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate</li>
+<li><strong>What:</strong> Ground model answers in curated knowledge, vehicle history, and customer context retrieved at query time, instead of relying on the model's training.</li>
+<li><strong>Placement:</strong> Runtime. A retrieval step (deterministic search over indexed data) feeding a probabilistic generation step. Leans heavily on Data Cloud. [Inference] The exact retriever and library constructs are evolving.</li>
+<li><strong>Appeals to:</strong> Marcus (better grounding lowers hallucination risk). Helena (better answers). Priya (reuses the Data Cloud investment).</li>
+<li><strong>Cost and complexity:</strong> Moderate. The data plumbing, indexing, and grounding design are the real work, not the prompt.</li>
+<li><strong>Watch-out:</strong> Retrieval that silently returns nothing, or the wrong slice, degrades answers with no error. Grounding is an architecture problem, not a checkbox.</li>
+</ul>
+<h3>04. Conversational AI Voice</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>What:</strong> A customer-facing voice agent on the telephony channel. Speech in, agent reasoning, speech out. [Inference] Productization and GA scope move quickly; verify before committing dates.</li>
+<li><strong>Placement:</strong> Runtime, customer-facing. Sits on the CTI and voice channel in front of an agent or service logic. Adds a speech-to-text stage and a text-to-speech stage on either side of a probabilistic core.</li>
+<li><strong>Appeals to:</strong> Helena (this is the headline she wants).</li>
+<li><strong>Cost and complexity:</strong> High in practice. Latency budget, transcription accuracy, accents, interruptions, and brand-safe responses are all hard.</li>
+<li><strong>Watch-out:</strong> The most visible channel is the least forgiving. A wrong or hallucinated spoken answer about a recall or safety item is a brand and liability event, not a UX bug.</li>
+</ul>
+<h3>05. Agentforce Service Agent (autonomous)</h3>
+<ul>
+<li><strong>Tier:</strong> High</li>
+<li><strong>What:</strong> An autonomous agent that interprets a request, decides how to handle it, and acts, rather than following a fixed script. [Inference] Internal construct names (topics, sub-agents, actions) are shifting; describe behaviour, not a fixed mechanism.</li>
+<li><strong>Placement:</strong> Runtime, the heart of the customer experience. A reasoning node (probabilistic, may loop) behind the trust boundary, grounded via retrieval, invoking actions outward.</li>
+<li><strong>Appeals to:</strong> Helena (the growth story), provided Marcus and Priya are satisfied.</li>
+<li><strong>Cost and complexity:</strong> High. Topic and skill design, action design, grounding, guardrails, testing, and observability.</li>
+<li><strong>Watch-out:</strong> This is the box most teams leave as "magic." It reasons, so its path is not fully predictable. That property has to be visible in the diagram, not hidden inside a cloud.</li>
+</ul>
+<h3>06. Agentforce Custom Actions (Apex / Flow / API)</h3>
+<ul>
+<li><strong>Tier:</strong> High</li>
+<li><strong>What:</strong> Custom actions that let the agent actually do things: check inventory in the DMS, book a service bay, raise an order in ERP.</li>
+<li><strong>Placement:</strong> Runtime. The bridge from agent reasoning (probabilistic) to back-end systems of record (deterministic). Each action is a controlled, typed door out of the agent.</li>
+<li><strong>Appeals to:</strong> Helena (real outcomes, not just chat). Priya (depends on integration effort). Marcus (each action is an error and attack surface).</li>
+<li><strong>Cost and complexity:</strong> High and easily underestimated. The agent is only as capable, and only as safe, as its actions and their input validation.</li>
+<li><strong>Watch-out:</strong> An agent with broad actions and weak validation can take real, wrong actions on systems of record. Draw the boundary and the permissions explicitly.</li>
+</ul>
+<h3>07. MCP (Model Context Protocol)</h3>
+<ul>
+<li><strong>Tier:</strong> Very High (strategic)</li>
+<li><strong>What:</strong> An open standard for connecting agents and models to external tools and data through a common interface, instead of bespoke glue per integration. [Inference] Native Salesforce support is evolving; confirm current state.</li>
+<li><strong>Placement:</strong> Runtime integration layer. A standardized adapter between the agent and external systems and tools. Reduces N bespoke connectors to one protocol.</li>
+<li><strong>Appeals to:</strong> Priya (less lock-in, less custom integration, future-proofing). Marcus (one governed surface to audit instead of many).</li>
+<li><strong>Cost and complexity:</strong> Higher to adopt, lower to maintain over time. Pays off across many integrations, over-engineering for one.</li>
+<li><strong>Watch-out:</strong> A standard adopted for a single integration is premature. Justify it by breadth, not by novelty.</li>
+</ul>
+<h3>08. A2A (Agent-to-Agent)</h3>
+<ul>
+<li><strong>Tier:</strong> Very High</li>
+<li><strong>What:</strong> A protocol for agents from different systems or vendors to discover each other and collaborate, so MMG's agent can delegate to or negotiate with an external agent.</li>
+<li><strong>Placement:</strong> Runtime, cross-boundary. Agent-to-agent calls crossing an organizational trust boundary. The most complex orchestration on the board.</li>
+<li><strong>Appeals to:</strong> Helena (sounds visionary). Rarely the right first move.</li>
+<li><strong>Cost and complexity:</strong> Very high. Interop, trust, identity, and failure handling across parties you do not control.</li>
+<li><strong>Watch-out:</strong> If there is no real external agent to talk to, A2A is a slide, not an architecture. Demand a concrete counterparty before drawing it.</li>
+</ul>
+<h3>09. AI-Assisted Delivery (e.g. Claude Code)</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate (delivery-side)</li>
+<li><strong>What:</strong> Agentic coding and delivery tooling that generates code, tests, and metadata, and reviews changes inside the software development lifecycle.</li>
+<li><strong>Placement:</strong> Delivery and SDLC plane. IDE, version control, CI/CD, and pipelines. It accelerates how the team builds the product.</li>
+<li><strong>Appeals to:</strong> Priya (delivery speed and quality). The architects doing the work.</li>
+<li><strong>Cost and complexity:</strong> Moderate. Tooling and team enablement, governed by identity separation across IDE, commit, and push.</li>
+<li><strong>Watch-out:</strong> It speeds up build, which is rarely the real bottleneck. Be deliberate about where, and whether, it belongs on a runtime diagram.</li>
+</ul>
+<h3>10. AI Co-Worker (internal agentic assistant, e.g. Cowork)</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate (employee-side)</li>
+<li><strong>What:</strong> An agentic assistant for staff knowledge work: research, drafting, analysis, and multi-step internal tasks across documents and tools.</li>
+<li><strong>Placement:</strong> Employee productivity and internal operations plane. Used by people inside MMG, not by customers.</li>
+<li><strong>Appeals to:</strong> Priya and team leads (internal efficiency).</li>
+<li><strong>Cost and complexity:</strong> Moderate. Access management and data governance are the main concerns.</li>
+<li><strong>Watch-out:</strong> Useful, but it is an internal tool, not part of the customer-facing product. Be clear about which diagram it belongs on.</li>
+</ul>
+<h3>11. Predictive Models (propensity, churn, demand)</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate</li>
+<li><strong>What:</strong> Non-generative models that score or forecast: likelihood to buy, churn risk, expected service demand, the next best offer. They produce a number or a class, not text.</li>
+<li><strong>Placement:</strong> Runtime or batch, native via Data Cloud. A scoring node fed by structured data, writing a value back to a record rather than holding a conversation.</li>
+<li><strong>Appeals to:</strong> Priya (cheap and well understood), Helena (drives upsell and retention), Marcus (a score is explainable and auditable in ways a generation is not).</li>
+<li><strong>Cost and complexity:</strong> Moderate. The work is feature and data quality, not prompting. Reuses the unified profile.</li>
+<li><strong>Watch-out:</strong> Not all AI is a language model. A prediction is a different thing from a generated answer and must be drawn as such. Treating a score like a chat reply hides what it actually is.</li>
+</ul>
+<h3>12. Proactive, Event-Triggered Outreach</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>What:</strong> AI started by a signal rather than a customer question. A telematics fault code or a service-due event triggers an outbound message, offer, or booking.</li>
+<li><strong>Placement:</strong> Runtime, but the entry point is an event from outside (the telematics platform or a lifecycle rule), not a prompt. The trigger flows in, the AI decides, and it acts outward.</li>
+<li><strong>Appeals to:</strong> Helena (reaching the customer first), Priya (fewer inbound calls), Marcus (proactive contact on vehicle data raises consent and privacy questions).</li>
+<li><strong>Cost and complexity:</strong> Moderate to High. The orchestration and the eventing are the work, plus consent and frequency control.</li>
+<li><strong>Watch-out:</strong> The input is not a customer prompt, and most diagrams only draw the prompt-in case. Show where the trigger comes from and what the AI is allowed to do unattended.</li>
+</ul>
+<h3>13. Agent-Assist (advisor copilot)</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>What:</strong> AI beside the human advisor in real time: surfacing the answer, drafting the reply, suggesting the next action, while the human stays in control and sends.</li>
+<li><strong>Placement:</strong> Runtime, internal-facing within the service or sales console. The AI suggests; the human remains the actor of record toward the customer.</li>
+<li><strong>Appeals to:</strong> Marcus (a human stays in the loop by design), Priya (faster handling without full autonomy risk), Helena in part (efficiency, less of a headline than a customer-facing agent).</li>
+<li><strong>Cost and complexity:</strong> Moderate to High. Similar grounding to an autonomous agent, but the action surface is the advisor, not the customer.</li>
+<li><strong>Watch-out:</strong> Assist versus autonomous is a real architecture fork, not a phase to skip. A human in the loop changes the diagram, the risk, and the timeline. Often the wiser first step.</li>
+</ul>
+<h3>14. Real-Time Translation and Multilingual AI</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate</li>
+<li><strong>What:</strong> Serving customers across MMG's eight countries in their own language, including translating into and out of the model and grounding content that may exist in only one language.</li>
+<li><strong>Placement:</strong> Runtime. A translation step on either side of the AI core, or a multilingual-capable model. Either way it adds stages and calls to the flow.</li>
+<li><strong>Appeals to:</strong> Helena (one capability across every market), Priya (watch the added cost and latency).</li>
+<li><strong>Cost and complexity:</strong> Moderate, and easy to underestimate. Each translation can be another model call, and grounding quality varies by language.</li>
+<li><strong>Watch-out:</strong> Translation is rarely free or instant, and answers can degrade across languages. Show where it happens and what it costs, instead of assuming the model speaks every language equally well.</li>
+</ul>
+<h3>15. Vision AI (damage and trade-in assessment)</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>What:</strong> Models that read images: assessing vehicle damage for a trade-in or service intake, reading a VIN or plate, identifying parts.</li>
+<li><strong>Placement:</strong> Runtime. A vision model node with image data flowing in, distinct from the text path and often a different provider.</li>
+<li><strong>Appeals to:</strong> Helena (a slick trade-in or intake experience), Priya (faster, more consistent assessment), Marcus (images of vehicles and locations are personal data too).</li>
+<li><strong>Cost and complexity:</strong> Moderate to High. A separate modality, separate model, separate evaluation, and image storage and retention to manage.</li>
+<li><strong>Watch-out:</strong> Images are data with their own sensitivity and their own flow. A vision model is not the same node as a chat model, and the diagram should not blur them into one AI box.</li>
+</ul>
+<h3>16. Model Gateway and Multi-Model Abstraction</h3>
+<ul>
+<li><strong>Tier:</strong> High (strategic)</li>
+<li><strong>What:</strong> A layer between MMG and the model providers, so the choice of model is a configuration rather than a hard dependency, with routing and fallback across models.</li>
+<li><strong>Placement:</strong> Runtime infrastructure, between the agent or app and the external models. Behind it, models are interchangeable. Distinct from MCP, which standardises access to tools and data, not the model itself.</li>
+<li><strong>Appeals to:</strong> Priya (less lock-in, a fallback if a model changes or disappears), Marcus (one place to govern model use).</li>
+<li><strong>Cost and complexity:</strong> High to set up, lower risk over time. Pays for itself the first time a provider changes its terms.</li>
+<li><strong>Watch-out:</strong> Without it, the design is welded to one provider. With it drawn, the model becomes a swappable box behind a stable interface. That is the difference between surviving a vendor change and rebuilding.</li>
+</ul>
+<h3>17. AI Observability and Evaluation</h3>
+<ul>
+<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>What:</strong> The layer that watches the AI in production: grounding and quality checks, hallucination and toxicity detection, cost and latency monitoring, and an evaluation harness for changes before they ship.</li>
+<li><strong>Placement:</strong> A cross-cutting plane observing the runtime, not in the customer's path. It reads what the AI does and raises alarms.</li>
+<li><strong>Appeals to:</strong> Priya (knowing it works, and who is paged at 2am), Marcus (evidence the AI behaves and a record when it does not), Helena (fewer public failures).</li>
+<li><strong>Cost and complexity:</strong> Moderate to High, and routinely forgotten. It is the difference between an agent you hope works and one you can prove works.</li>
+<li><strong>Watch-out:</strong> Most teams draw the happy path and no way to see when it breaks. If the diagram cannot show how you would notice a bad answer, you cannot operate this.</li>
+</ul>
+<h3>18. Custom Model Fine-Tuning</h3>
+<ul>
+<li><strong>Tier:</strong> Very High</li>
+<li><strong>What:</strong> Training or fine-tuning a model on MMG's own data to specialise it for automotive and for MMG's tone and knowledge.</li>
+<li><strong>Placement:</strong> A data-science and delivery effort upstream of runtime. It produces a model artefact that then has to be hosted, governed, and kept current.</li>
+<li><strong>Appeals to:</strong> The instinct to build something uniquely MMG. Helena likes the differentiation.</li>
+<li><strong>Cost and complexity:</strong> Very high. Data preparation, training, hosting, evaluation, and continuous retraining, plus the specialist skills to run all of it.</li>
+<li><strong>Watch-out:</strong> It needs a capable data-science function and sustained investment. Grounding usually delivers the specialisation you actually need without training anything.</li>
+</ul>
+<hr />
+<h1>Section B: Facilitator Key</h1>
+<p><em>Do not hand this section to participants.</em></p>
+<h2>The engineered traps: cards 09, 10, and 18</h2>
+<p>Three cards are traps, of two kinds.</p>
+<p>Cards 09 (AI-assisted delivery) and 10 (internal co-worker) are wrong-plane traps: legitimate technologies that belong in the delivery or operations plane, not the customer-facing runtime. Their placement line says so plainly, but they are not flagged as traps. Groups under time pressure grab them for the current, impressive names and try to place them in the runtime diagram.</p>
+<p>Card 18 (custom fine-tuning) is a constraint-violation trap. Nothing on the card flags it. The scenario does: MMG has no in-house machine learning function and has decided not to train models. A group that picks it did not reread the brief, and grounding (03) usually delivers the specialisation they wanted without any of it.</p>
+<p>This is a central teaching moment of Block 2 and the debrief. For 09 and 10: where a component goes is a real architecture decision, not a formatting afterthought, and a build-time tool sitting in the customer runtime is exactly the "looks confident, explains nothing" failure the session is about. For 18: the constraints are written in the brief, and reading them is part of the job. Do not correct any of these during Block 2. Let them surface in the pitch or the debrief.</p>
+<h2>The shape of a strong answer</h2>
+<p>There is no single correct set, but a defensible north star for MMG looks like a staged path, not a big-bang:</p>
+<ol>
+<li>Quick value, low risk: cards 01 and 02, with 03 for grounding.</li>
+<li>Keep a human in control first: card 13 (agent-assist) is often the wiser opening move before any autonomous customer-facing agent. It satisfies Marcus and defuses the hallucination problem by design.</li>
+<li>A real differentiator: card 05 (autonomous agent), grounded by 03, governed by the trust boundary, made useful by 06 (custom actions) into the DMS and scheduling. Stage it after assist has proven the grounding.</li>
+<li>Use the data you already have: card 11 (predictive) for the forecasting and upsell the reporting requirements ask for, and card 12 (proactive) to act on telematics. These meet the mandate with non-generative AI that is cheaper and more explainable than a chat agent.</li>
+<li>Staged ambition: card 04 (Voice) as a later channel, not day one.</li>
+<li>Protect yourself: card 16 (model gateway) as the lock-in hedge, and card 17 (observability) so the thing can actually be operated. Neither is glamorous; both are what Priya needs.</li>
+<li>Strategic, only if justified: card 07 (MCP) for integration breadth, card 08 (A2A) only with a concrete counterparty.</li>
+</ol>
+<p>Cards 09, 10, and 18 do not belong in the customer runtime: 09 and 10 are delivery and internal tools, and 18 contradicts a stated constraint.</p>
+<h2>The two failure modes to provoke and then name</h2>
+<ul>
+<li><strong>Over-engineering:</strong> A2A plus Voice plus a full autonomous agent on day one, ignoring Priya's cost and operability reality and Marcus's risk. Glamorous, undeliverable.</li>
+<li><strong>Under-ambition:</strong> Only Tier Low features. Safe and cheap, but it does not meet Helena's growth mandate. "We added summaries" is not a strategy.</li>
+</ul>
+<p>The sweet spot is the staged middle. Reward groups that can say no to a shiny card and justify it.</p>
+<h2>Suggested game mechanic: a complexity budget</h2>
+<p>To force trade-offs instead of letting groups grab everything, give each group a budget rather than free choice. Recommended: Low = 1 point, Moderate = 2, High = 3, Very High = 4, total budget of 7 points. This lets a group take several cheap capabilities or one expensive one, and it encodes Priya's cost reality directly into the exercise. Tune the budget to the room. Announce that exceeding it means Priya walks out of the board meeting.</p>
+<h2>Per-CxO acceptance rubric</h2>
+<p>This doubles as the judging criteria for the pitch in Block 3. The facilitators voice these when they play the board.</p>
+<ul>
+<li><strong>Helena (CEO), says yes if:</strong> there is a visible, customer-facing capability that supports the growth narrative, with a credible timeline.</li>
+<li><strong>Marcus (CISO/CDO), says yes if:</strong> PII handling, the trust boundary, grounding, and human oversight are explicit and auditable, and AI Act exposure is acknowledged rather than ignored.</li>
+<li><strong>Priya (CIO), says yes if:</strong> run cost at scale, latency, operability (who runs this at 2am), and lock-in are addressed, and complexity matches value.</li>
+</ul>
+<p>A pitch that wins one persona and ignores the other two has failed the exercise. The diagrams are the evidence that earns all three.</p></div></details></section>
+<section id="diagrams" class="section reveal"><h2 class="section-title"><span class="n">04</span>The Diagrams</h2><p class="section-lead">Eight worked examples in the kit&#x27;s language, each tied to a stakeholder or a gap.</p><div class="gallery"><figure class="plate reveal"><div class="head"><span class="pn">01</span><span class="pt">Capability Map</span></div><figcaption class="pc">Helena's strategic view, and the architect's lock-in argument: the capability is stable, the technology under it is swappable.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 600" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <rect x="0" y="0" width="1123" height="600" fill="#F6F4EE"/>
+
+  <text x="44" y="62" font-size="25" font-weight="700" fill="#1C1C1A">MMG Capability Map</text>
+  <text x="46" y="86" font-size="12" fill="#6B6960">what the business needs &#183; technology-agnostic &#183; primary audience: Helena (CEO)</text>
+
+  <rect x="838" y="44" width="14" height="14" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="858" y="55" font-size="10" fill="#1C1C1A">existing capability</text>
+  <rect x="838" y="66" width="14" height="14" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="858" y="77" font-size="10" fill="#1E55C0">newly AI-enabled</text>
+
+  <line x1="44" y1="102" x2="1079" y2="102" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- north star -->
+  <rect x="44" y="116" width="1035" height="38" rx="6" fill="#1C1C1A"/>
+  <text x="561" y="140" text-anchor="middle" font-size="13" fill="#FFFFFF">Defend the customer relationship, and make serving it sustainable</text>
+
+  <!-- domain columns -->
+  <!-- D1 -->
+  <rect x="48" y="174" width="240" height="34" fill="#1E55C0"/>
+  <text x="168" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Customer Engagement</text>
+  <rect x="48" y="216" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="168" y="236" text-anchor="middle" font-size="11" fill="#1E55C0">Self-service answers</text>
+  <rect x="48" y="254" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="168" y="274" text-anchor="middle" font-size="11" fill="#1E55C0">Conversational service</text>
+  <rect x="48" y="292" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="168" y="312" text-anchor="middle" font-size="11" fill="#1E55C0">Proactive outreach</text>
+  <rect x="48" y="330" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="168" y="350" text-anchor="middle" font-size="11" fill="#1E55C0">Multilingual reach</text>
+
+  <!-- D2 -->
+  <rect x="313" y="174" width="240" height="34" fill="#1E55C0"/>
+  <text x="433" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Sales &amp; Commerce</text>
+  <rect x="313" y="216" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="433" y="236" text-anchor="middle" font-size="11" fill="#1E55C0">Guided configuration</text>
+  <rect x="313" y="254" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="433" y="274" text-anchor="middle" font-size="11" fill="#1E55C0">Financing guidance</text>
+  <rect x="313" y="292" width="240" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="433" y="312" text-anchor="middle" font-size="11" fill="#1C1C1A">Trade-in valuation</text>
+
+  <!-- D3 -->
+  <rect x="578" y="174" width="240" height="34" fill="#1E55C0"/>
+  <text x="698" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Service Operations</text>
+  <rect x="578" y="216" width="240" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="698" y="236" text-anchor="middle" font-size="11" fill="#1C1C1A">Service booking</text>
+  <rect x="578" y="254" width="240" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="698" y="274" text-anchor="middle" font-size="11" fill="#1C1C1A">Recall handling</text>
+  <rect x="578" y="292" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="698" y="312" text-anchor="middle" font-size="11" fill="#1E55C0">Predictive maintenance</text>
+
+  <!-- D4 -->
+  <rect x="843" y="174" width="240" height="34" fill="#1E55C0"/>
+  <text x="963" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Intelligence &amp; Insight</text>
+  <rect x="843" y="216" width="240" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="963" y="236" text-anchor="middle" font-size="11" fill="#1C1C1A">Demand forecasting</text>
+  <rect x="843" y="254" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="963" y="274" text-anchor="middle" font-size="11" fill="#1E55C0">Upsell &amp; churn prediction</text>
+  <rect x="843" y="292" width="240" height="32" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="963" y="312" text-anchor="middle" font-size="11" fill="#1E55C0">Satisfaction analysis</text>
+
+  <!-- foundation -->
+  <rect x="48" y="392" width="1035" height="86" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="2"/>
+  <text x="60" y="416" font-size="12" font-weight="700" fill="#1E55C0">TRUST &amp; OPERATIONS &#183; the AI backbone under every capability</text>
+  <rect x="60" y="428" width="246" height="36" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.4"/><text x="183" y="450" text-anchor="middle" font-size="11" fill="#1E55C0">Data grounding</text>
+  <rect x="316" y="428" width="246" height="36" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.4"/><text x="439" y="450" text-anchor="middle" font-size="11" fill="#1E55C0">Guardrails &amp; human oversight</text>
+  <rect x="572" y="428" width="246" height="36" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.4"/><text x="695" y="450" text-anchor="middle" font-size="11" fill="#1E55C0">Observability &amp; evaluation</text>
+  <rect x="828" y="428" width="255" height="36" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.4"/><text x="955" y="450" text-anchor="middle" font-size="11" fill="#1E55C0">Model portability</text>
+
+  <text x="48" y="510" font-size="11" fill="#6B6960">Capabilities are stable. The technology under each one (the cards) can change. That is the hedge against model and vendor churn.</text>
+  <text x="48" y="528" font-size="11" fill="#6B6960">This map answers WHAT. The technology cards answer HOW.</text>
+  <text x="48" y="556" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; capability view</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">02</span><span class="pt">Solution Architecture</span></div><figcaption class="pc">The shared base view. Helena reads the what, Priya the integration and operations, Marcus the data surface.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 800" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1123" height="800" fill="#F6F4EE"/>
+
+  <text x="44" y="62" font-size="25" font-weight="700" fill="#1C1C1A">MMG Solution Architecture</text>
+  <text x="46" y="86" font-size="12" fill="#6B6960">AI on the existing landscape &#183; the shared base view for all three stakeholders</text>
+
+  <rect x="892" y="44" width="14" height="14" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="912" y="55" font-size="10" fill="#1C1C1A">existing / deterministic</text>
+  <rect x="892" y="66" width="14" height="14" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="912" y="77" font-size="10" fill="#1E55C0">AI-specific</text>
+
+  <line x1="44" y1="100" x2="1079" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- plane bands -->
+  <rect x="44" y="112" width="1035" height="446" rx="6" fill="#FBFAF6" stroke="#E4E0D6"/>
+  <text x="56" y="130" font-size="11" font-weight="700" fill="#8C8576" letter-spacing="1px">RUNTIME &#183; customer-facing</text>
+  <rect x="44" y="568" width="1035" height="92" rx="6" fill="#F3F1EB" stroke="#E4E0D6"/>
+  <text x="56" y="586" font-size="11" font-weight="700" fill="#8C8576" letter-spacing="1px">OPERATIONS &#183; internal</text>
+  <rect x="44" y="672" width="1035" height="84" rx="6" fill="#EEECE4" stroke="#E4E0D6"/>
+  <text x="56" y="690" font-size="11" font-weight="700" fill="#8C8576" letter-spacing="1px">DELIVERY &#183; build-time, not customer runtime</text>
+
+  <!-- channels -->
+  <rect x="58" y="172" width="110" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="113" y="192" text-anchor="middle" font-size="10">Portal / App</text>
+  <rect x="58" y="214" width="110" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="113" y="234" text-anchor="middle" font-size="10">Web chat</text>
+  <rect x="58" y="256" width="110" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="113" y="276" text-anchor="middle" font-size="10">Voice / CTI</text>
+  <rect x="58" y="320" width="110" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="113" y="340" text-anchor="middle" font-size="10">Identity (SSO)</text>
+  <line x1="113" y1="320" x2="113" y2="288" stroke="#1C1C1A" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="120" y="306" font-size="8" fill="#6B6960">auth</text>
+
+  <!-- channels to core -->
+  <line x1="168" y1="188" x2="212" y2="220" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <line x1="168" y1="230" x2="212" y2="240" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <line x1="168" y1="272" x2="212" y2="262" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+
+  <!-- core -->
+  <rect x="214" y="178" width="150" height="152" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.8"/>
+  <text x="289" y="246" text-anchor="middle" font-size="11" font-weight="700">Salesforce</text>
+  <text x="289" y="262" text-anchor="middle" font-size="11" font-weight="700">Automotive Cloud</text>
+  <text x="289" y="280" text-anchor="middle" font-size="9" fill="#6B6960">(Sales + Service)</text>
+
+  <!-- agent + assist -->
+  <rect x="400" y="194" width="148" height="80" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="540" y="210" font-size="16" font-weight="700" fill="#1E55C0">~</text>
+  <path d="M520 188 a9 9 0 1 1 -6 -6" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/>
+  <text x="474" y="238" text-anchor="middle" font-size="12">Agentforce</text>
+  <text x="474" y="254" text-anchor="middle" font-size="12">Agent</text>
+  <rect x="214" y="346" width="184" height="36" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="306" y="369" text-anchor="middle" font-size="11" fill="#1E55C0">Agent-Assist (advisor)</text>
+
+  <!-- core <-> agent -->
+  <line x1="364" y1="226" x2="398" y2="226" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aopen)"/>
+  <text x="381" y="220" text-anchor="middle" font-size="8" fill="#1E55C0">invoke</text>
+  <line x1="398" y1="244" x2="364" y2="244" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+
+  <!-- trust boundary -->
+  <text x="682" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#1E55C0">TRUST BOUNDARY</text>
+  <rect x="590" y="180" width="184" height="182" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="600" y="200" font-size="9" fill="#1E55C0">mask</text>
+  <text x="600" y="352" font-size="9" fill="#1E55C0">log</text>
+  <rect x="606" y="212" width="152" height="40" rx="6" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="682" y="237" text-anchor="middle" font-size="11" fill="#1E55C0">Model Gateway</text>
+  <rect x="606" y="296" width="152" height="46" rx="6" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="682" y="318" text-anchor="middle" font-size="11" fill="#1E55C0">External models</text><text x="682" y="332" text-anchor="middle" font-size="8" fill="#6B6960">zero-retain</text>
+  <line x1="682" y1="252" x2="682" y2="294" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/>
+
+  <!-- agent to gateway -->
+  <line x1="548" y1="226" x2="604" y2="226" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aopen)"/>
+  <line x1="604" y1="240" x2="550" y2="240" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aacc)"/>
+
+  <!-- grounding -->
+  <path d="M420 432 v30 a50 8 0 0 0 100 0 v-30" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <ellipse cx="470" cy="432" rx="50" ry="8" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="470" y="452" text-anchor="middle" font-size="10">Data Cloud</text>
+  <rect x="540" y="418" width="76" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="578" y="438" text-anchor="middle" font-size="10">retrieve</text>
+  <line x1="520" y1="434" x2="538" y2="434" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <line x1="578" y1="418" x2="500" y2="276" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <text x="556" y="350" font-size="9" fill="#1E55C0">grounds</text>
+
+  <!-- telematics -->
+  <rect x="58" y="418" width="110" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="113" y="438" text-anchor="middle" font-size="10">Telematics</text>
+  <line x1="168" y1="434" x2="418" y2="434" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <text x="250" y="428" font-size="8" fill="#6B6960">feeds</text>
+  <text x="113" y="466" text-anchor="middle" font-size="8" fill="#1E55C0">also triggers proactive outreach</text>
+
+  <!-- actions bus -->
+  <path d="M474 274 V392 H816" fill="none" stroke="#1E55C0" stroke-width="2" marker-end="url(#aacc)"/>
+  <text x="620" y="386" text-anchor="middle" font-size="9" fill="#1E55C0">actions: validated &amp; logged</text>
+  <rect x="820" y="376" width="120" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="880" y="396" text-anchor="middle" font-size="10">DMS</text>
+  <rect x="820" y="418" width="120" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="880" y="438" text-anchor="middle" font-size="10">Scheduling</text>
+  <rect x="820" y="460" width="120" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="880" y="480" text-anchor="middle" font-size="10">ERP (SAP)</text>
+  <line x1="816" y1="392" x2="818" y2="392" stroke="#1E55C0" stroke-width="2"/>
+  <line x1="780" y1="392" x2="780" y2="434" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aacc)"/>
+  <line x1="780" y1="434" x2="818" y2="434" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aacc)"/>
+  <line x1="800" y1="392" x2="800" y2="476" stroke="#1E55C0" stroke-width="1.4"/>
+  <line x1="800" y1="476" x2="818" y2="476" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aacc)"/>
+
+  <!-- operations -->
+  <rect x="400" y="600" width="230" height="44" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="515" y="627" text-anchor="middle" font-size="11" fill="#1E55C0">Observability &amp; Evaluation</text>
+  <line x1="460" y1="600" x2="460" y2="338" stroke="#1E55C0" stroke-width="1.2" stroke-dasharray="2 3" marker-end="url(#agr)"/>
+  <line x1="600" y1="600" x2="660" y2="364" stroke="#1E55C0" stroke-width="1.2" stroke-dasharray="2 3" marker-end="url(#agr)"/>
+  <text x="540" y="596" text-anchor="middle" font-size="8" fill="#1E55C0">observes the runtime</text>
+  <rect x="680" y="600" width="200" height="44" rx="6" fill="#FFFFFF" stroke="#B9B4A6" stroke-width="1.3" stroke-dasharray="4 3"/><text x="780" y="627" text-anchor="middle" font-size="10" fill="#8C8576">Internal co-worker</text>
+
+  <!-- delivery -->
+  <rect x="400" y="702" width="280" height="40" rx="6" fill="#FFFFFF" stroke="#B9B4A6" stroke-width="1.3" stroke-dasharray="4 3"/><text x="540" y="722" text-anchor="middle" font-size="10" fill="#8C8576">AI-assisted delivery (Claude Code)</text><text x="540" y="735" text-anchor="middle" font-size="8" fill="#8C8576">deliberately out of the customer runtime</text>
+
+  <text x="44" y="780" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; solution architecture</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">03</span><span class="pt">AI Data Flow</span></div><figcaption class="pc">Marcus's view: PII, masking at the boundary, grounding scope, zero-retain, logging, and the human in the loop.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 600" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <marker id="amb" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#C2871A"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1123" height="600" fill="#F6F4EE"/>
+
+  <text x="44" y="62" font-size="25" font-weight="700" fill="#1C1C1A">MMG AI Data Flow</text>
+  <text x="46" y="86" font-size="12" fill="#6B6960">what happens to customer data the instant it touches a model &#183; Marcus's view</text>
+
+  <rect x="916" y="34" width="13" height="13" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="935" y="44" font-size="9" fill="#1C1C1A">existing</text>
+  <rect x="916" y="52" width="13" height="13" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="935" y="62" font-size="9" fill="#1E55C0">AI-specific</text>
+  <rect x="916" y="70" width="13" height="13" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="935" y="80" font-size="9" fill="#9A6A14">beyond kit v0.1</text>
+
+  <line x1="44" y1="100" x2="1079" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- human in loop -->
+  <rect x="470" y="128" width="210" height="46" rx="6" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.6"/>
+  <text x="575" y="148" text-anchor="middle" font-size="11" font-weight="700" fill="#9A6A14">Human approves</text>
+  <text x="575" y="164" text-anchor="middle" font-size="9" fill="#9A6A14">high-stakes: safety / recall</text>
+
+  <!-- customer in -->
+  <rect x="44" y="300" width="84" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="86" y="326" text-anchor="middle" font-size="10">Customer</text>
+  <line x1="128" y1="322" x2="170" y2="322" stroke="#1C1C1A" stroke-width="1.5" marker-end="url(#aink)"/>
+  <rect x="136" y="306" width="28" height="13" rx="2" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="150" y="316" text-anchor="middle" font-size="8" fill="#9A6A14">PII</text>
+  <rect x="172" y="302" width="70" height="40" rx="4" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="207" y="326" text-anchor="middle" font-size="9" fill="#9A6A14">AI notice</text>
+  <line x1="242" y1="322" x2="276" y2="322" stroke="#1C1C1A" stroke-width="1.5" marker-end="url(#aink)"/>
+
+  <!-- trust boundary IN -->
+  <text x="306" y="204" text-anchor="middle" font-size="9" fill="#1E55C0">mask PII</text>
+  <rect x="278" y="210" width="56" height="224" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="306" y="322" text-anchor="middle" font-size="10" font-weight="700" fill="#1E55C0" transform="rotate(-90 306 322)">TRUST BOUNDARY</text>
+
+  <!-- protected zone -->
+  <rect x="350" y="210" width="492" height="224" rx="6" fill="none" stroke="#1E55C0" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="358" y="226" font-size="8" fill="#1E55C0">protected zone (masked)</text>
+
+  <rect x="372" y="296" width="118" height="58" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="431" y="330" text-anchor="middle" font-size="12" fill="#1E55C0">agent</text>
+  <text x="482" y="310" font-size="15" font-weight="700" fill="#1E55C0">~</text>
+  <path d="M470 290 a8 8 0 1 1 -5 -5" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/>
+
+  <rect x="540" y="300" width="104" height="46" rx="6" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="592" y="327" text-anchor="middle" font-size="11" fill="#1E55C0">Model Gateway</text>
+  <rect x="678" y="298" width="148" height="50" rx="6" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="752" y="320" text-anchor="middle" font-size="11" fill="#1E55C0">external model</text><text x="752" y="335" text-anchor="middle" font-size="8" fill="#6B6960">zero-retain</text>
+
+  <line x1="490" y1="324" x2="538" y2="324" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aopen)"/>
+  <line x1="644" y1="324" x2="676" y2="324" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/>
+
+  <!-- grounding -->
+  <path d="M384 480 v22 a48 7 0 0 0 96 0 v-22" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <ellipse cx="432" cy="480" rx="48" ry="7" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="432" y="495" text-anchor="middle" font-size="10">Data Cloud</text>
+  <rect x="500" y="464" width="72" height="30" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="536" y="484" text-anchor="middle" font-size="10">retrieve</text>
+  <line x1="480" y1="480" x2="498" y2="480" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <line x1="536" y1="464" x2="436" y2="356" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <text x="455" y="430" font-size="9" fill="#1E55C0">grounds</text>
+  <rect x="585" y="470" width="118" height="14" rx="2" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="644" y="481" text-anchor="middle" font-size="8" fill="#9A6A14">scoped &#183; non-PII</text>
+
+  <!-- trust boundary OUT -->
+  <text x="880" y="204" text-anchor="middle" font-size="9" fill="#1E55C0">score &#183; log</text>
+  <rect x="852" y="210" width="56" height="224" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="880" y="322" text-anchor="middle" font-size="10" font-weight="700" fill="#1E55C0" transform="rotate(-90 880 322)">TRUST BOUNDARY</text>
+
+  <!-- to customer -->
+  <line x1="826" y1="322" x2="850" y2="322" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/>
+  <line x1="908" y1="322" x2="946" y2="322" stroke="#1C1C1A" stroke-width="1.5" marker-end="url(#aink)"/>
+  <rect x="950" y="300" width="92" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="996" y="326" text-anchor="middle" font-size="10">to customer</text>
+
+  <!-- escalate / approve -->
+  <line x1="450" y1="296" x2="500" y2="176" stroke="#C2871A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#amb)"/>
+  <text x="446" y="244" font-size="9" fill="#9A6A14">escalate</text>
+  <line x1="640" y1="176" x2="470" y2="294" stroke="#C2871A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#amb)"/>
+  <text x="600" y="232" font-size="9" fill="#9A6A14">approved</text>
+
+  <!-- audit log -->
+  <path d="M952 470 v22 a40 7 0 0 0 80 0 v-22" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <ellipse cx="992" cy="470" rx="40" ry="7" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="992" y="485" text-anchor="middle" font-size="9">audit log</text>
+  <text x="992" y="512" text-anchor="middle" font-size="8" fill="#6B6960">non-PII &#183; decisions</text>
+  <line x1="880" y1="434" x2="970" y2="462" stroke="#1E55C0" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+
+  <text x="44" y="560" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; AI data flow</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">04</span><span class="pt">Sequence: the Recall Question</span></div><figcaption class="pc">"Is my car safe to drive?" The confidence gate and the defer-to-human path that a static diagram hides.</figcaption><div class="svgwrap"><svg viewBox="0 0 1080 820" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="amb" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#C2871A"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="820" fill="#F6F4EE"/>
+
+  <text x="44" y="60" font-size="24" font-weight="700" fill="#1C1C1A">Recall Safety Question</text>
+  <text x="46" y="84" font-size="12" fill="#6B6960">sequence view &#183; "is my car safe to drive?" &#183; the act-vs-defer decision a static diagram hides</text>
+
+  <rect x="916" y="34" width="13" height="13" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="935" y="44" font-size="9" fill="#1E55C0">AI-specific</text>
+  <rect x="916" y="52" width="13" height="13" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="935" y="62" font-size="9" fill="#9A6A14">beyond kit v0.1</text>
+
+  <line x1="44" y1="100" x2="1036" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- lifeline headers -->
+  <rect x="40" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="100" y="146" text-anchor="middle" font-size="10">Customer</text>
+  <rect x="190" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="250" y="146" text-anchor="middle" font-size="9">Agent UI / Channel</text>
+  <rect x="360" y="124" width="120" height="36" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/><text x="420" y="146" text-anchor="middle" font-size="9" fill="#1E55C0">Agentforce Agent</text>
+  <rect x="525" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="585" y="143" text-anchor="middle" font-size="9">Grounding</text><text x="585" y="154" text-anchor="middle" font-size="8" fill="#6B6960">(recall data)</text>
+  <rect x="685" y="124" width="120" height="36" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/><text x="745" y="143" text-anchor="middle" font-size="9" fill="#1E55C0">Model</text><text x="745" y="154" text-anchor="middle" font-size="8" fill="#6B6960">(via Gateway)</text>
+  <rect x="860" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="920" y="146" text-anchor="middle" font-size="10">Human Advisor</text>
+
+  <!-- lifelines -->
+  <line x1="100" y1="160" x2="100" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="250" y1="160" x2="250" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="420" y1="160" x2="420" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="585" y1="160" x2="585" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="745" y1="160" x2="745" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="920" y1="160" x2="920" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+
+  <!-- activation bar on agent -->
+  <rect x="416" y="230" width="8" height="338" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1"/>
+
+  <!-- AI disclosure -->
+  <text x="250" y="184" text-anchor="middle" font-size="8" fill="#9A6A14">AI disclosed to customer</text>
+
+  <!-- messages -->
+  <line x1="100" y1="206" x2="248" y2="206" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="174" y="200" text-anchor="middle" font-size="9">is my car safe to drive?</text>
+  <line x1="250" y1="234" x2="416" y2="234" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="333" y="228" text-anchor="middle" font-size="9">forward request</text>
+
+  <path d="M432 256 a10 10 0 1 1 -7 -7" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/><text x="470" y="268" font-size="9" fill="#1E55C0">reasons</text>
+
+  <line x1="424" y1="300" x2="583" y2="300" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="502" y="294" text-anchor="middle" font-size="9">recall status for VIN</text>
+  <line x1="585" y1="334" x2="426" y2="334" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="502" y="328" text-anchor="middle" font-size="9">recall data</text>
+  <text x="700" y="334" font-size="8" fill="#9A6A14">alt: empty &#8594; do not guess</text>
+
+  <line x1="424" y1="376" x2="743" y2="376" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/><text x="500" y="370" text-anchor="middle" font-size="9" fill="#1E55C0">draft grounded answer</text>
+  <rect x="652" y="364" width="44" height="13" rx="2" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1"/><text x="674" y="374" text-anchor="middle" font-size="8" fill="#1E55C0">mask</text>
+  <line x1="745" y1="408" x2="426" y2="408" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/><text x="565" y="402" text-anchor="middle" font-size="9" fill="#1E55C0">draft + confidence</text>
+
+  <!-- confidence gate -->
+  <polygon points="420,432 438,450 420,468 402,450" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.6"/>
+  <text x="392" y="446" text-anchor="end" font-size="9" fill="#9A6A14">safety-critical</text>
+  <text x="392" y="458" text-anchor="end" font-size="9" fill="#9A6A14">OR conf &lt; threshold?</text>
+
+  <!-- defer branch -->
+  <line x1="424" y1="492" x2="918" y2="492" stroke="#C2871A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#amb)"/><text x="670" y="486" text-anchor="middle" font-size="9" fill="#9A6A14">escalate with full context</text>
+  <line x1="920" y1="526" x2="426" y2="526" stroke="#C2871A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#amb)"/><text x="670" y="520" text-anchor="middle" font-size="9" fill="#9A6A14">verified guidance / approve</text>
+
+  <line x1="416" y1="564" x2="252" y2="564" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="333" y="558" text-anchor="middle" font-size="9">safe answer + step</text>
+  <line x1="250" y1="592" x2="102" y2="592" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="174" y="586" text-anchor="middle" font-size="9">answer + booking</text>
+
+  <!-- notes -->
+  <rect x="360" y="630" width="380" height="34" rx="4" fill="#FFFFFF" stroke="#C2871A" stroke-width="1.3"/>
+  <text x="550" y="651" text-anchor="middle" font-size="9" fill="#9A6A14">if recall confirmed: book service &#8594; action logged</text>
+  <text x="44" y="694" font-size="10" fill="#6B6960">Non-safety question with high confidence: the agent answers directly and the escalate / approve steps are skipped.</text>
+  <text x="44" y="712" font-size="10" fill="#6B6960">A safety question is never answered by the model alone. That rule is the whole point of drawing the gate.</text>
+
+  <text x="44" y="800" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; sequence view</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">05</span><span class="pt">Cost, Latency and Staging</span></div><figcaption class="pc">Priya's economics, and an honest Q3 for Helena: Phase 1 ships first, the ramp is cost-managed.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 760" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1123" height="760" fill="#F6F4EE"/>
+
+  <text x="44" y="62" font-size="25" font-weight="700" fill="#1C1C1A">Cost, Latency &amp; Staging</text>
+  <text x="46" y="86" font-size="12" fill="#6B6960">Priya's view, and an honest timeline for Helena</text>
+
+  <rect x="916" y="52" width="13" height="13" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="935" y="62" font-size="9" fill="#9A6A14">cost / latency (beyond kit v0.1)</text>
+
+  <line x1="44" y1="100" x2="1079" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- volume -->
+  <text x="44" y="128" font-size="12" font-weight="700" fill="#8C8576" letter-spacing="1px">VOLUME &amp; UNIT ECONOMICS</text>
+  <rect x="60" y="144" width="470" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="295" y="164" text-anchor="middle" font-size="11">8 million inbound contacts / year</text>
+  <rect x="110" y="184" width="370" height="28" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="295" y="203" text-anchor="middle" font-size="10" fill="#1E55C0">AI triage (cheap, fast model)</text>
+  <rect x="150" y="220" width="170" height="40" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="235" y="244" text-anchor="middle" font-size="10" fill="#1E55C0">resolved by AI ~60%</text>
+  <rect x="322" y="220" width="158" height="40" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="401" y="244" text-anchor="middle" font-size="10">to human ~40%</text>
+  <text x="60" y="282" font-size="9" font-style="italic" fill="#9A958A">percentages illustrative</text>
+
+  <!-- model tiering -->
+  <text x="60" y="318" font-size="10" fill="#6B6960">tiering:</text>
+  <rect x="118" y="304" width="96" height="28" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="166" y="323" text-anchor="middle" font-size="10" fill="#1E55C0">triage ~</text>
+  <line x1="214" y1="318" x2="266" y2="318" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/><text x="240" y="312" text-anchor="middle" font-size="8" fill="#1E55C0">hard cases</text>
+  <rect x="270" y="304" width="120" height="28" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="330" y="323" text-anchor="middle" font-size="10" fill="#1E55C0">deep model ~</text>
+
+  <!-- cost latency panel -->
+  <text x="560" y="128" font-size="12" font-weight="700" fill="#8C8576" letter-spacing="1px">COST &amp; LATENCY PER STEP</text>
+  <text x="576" y="166" font-size="11" fill="#1C1C1A">triage model</text><rect x="830" y="152" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="166" text-anchor="middle" font-size="9" fill="#9A6A14">low cost &#183; ~0.8s</text>
+  <text x="576" y="196" font-size="11" fill="#1C1C1A">deep model (hard cases)</text><rect x="830" y="182" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="196" text-anchor="middle" font-size="9" fill="#9A6A14">high cost &#183; ~2.5s</text>
+  <text x="576" y="226" font-size="11" fill="#1C1C1A">voice: STT + TTS</text><rect x="830" y="212" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="226" text-anchor="middle" font-size="9" fill="#9A6A14">+ latency budget</text>
+  <text x="576" y="256" font-size="11" fill="#1C1C1A">human advisor</text><rect x="830" y="242" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="256" text-anchor="middle" font-size="9" fill="#9A6A14">highest cost</text>
+  <text x="560" y="296" font-size="9" font-style="italic" fill="#9A958A">the diagram has to carry these; the base kit cannot</text>
+
+  <line x1="44" y1="356" x2="1079" y2="356" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- staging -->
+  <text x="44" y="386" font-size="12" font-weight="700" fill="#8C8576" letter-spacing="1px">STAGING &#183; sequence the technology, the capabilities are stable</text>
+
+  <rect x="60" y="400" width="320" height="32" fill="#1E55C0"/><text x="220" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">PHASE 1 &#183; target Q3</text>
+  <rect x="60" y="432" width="320" height="178" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="76" y="458" font-size="11" fill="#1C1C1A">&#8226; Agent-assist for advisors</text>
+  <text x="76" y="482" font-size="11" fill="#1C1C1A">&#8226; Grounded self-service answers</text>
+  <text x="76" y="534" font-size="11" font-weight="700" fill="#1C1C1A">Risk: low</text>
+  <text x="76" y="558" font-size="11" fill="#1C1C1A">Gate: human in the loop</text>
+  <text x="76" y="592" font-size="10" font-style="italic" fill="#1E55C0">Helena's announcement lands here</text>
+
+  <rect x="408" y="400" width="320" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="568" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1C1A">PHASE 2</text>
+  <rect x="408" y="432" width="320" height="178" fill="#FFFFFF" stroke="#D9D5CB" stroke-width="1.4"/>
+  <text x="424" y="458" font-size="11" fill="#1C1C1A">&#8226; Autonomous service agent (routine)</text>
+  <text x="424" y="482" font-size="11" fill="#1C1C1A">&#8226; Voice channel</text>
+  <text x="424" y="506" font-size="11" fill="#1C1C1A">&#8226; Proactive telematics outreach</text>
+  <text x="424" y="544" font-size="11" font-weight="700" fill="#1C1C1A">Risk: medium</text>
+  <text x="424" y="568" font-size="11" fill="#1C1C1A">Gate: confidence + observability</text>
+
+  <rect x="756" y="400" width="320" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="916" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1C1A">PHASE 3</text>
+  <rect x="756" y="432" width="320" height="178" fill="#FFFFFF" stroke="#D9D5CB" stroke-width="1.4"/>
+  <text x="772" y="458" font-size="11" fill="#1C1C1A">&#8226; Broader autonomy</text>
+  <text x="772" y="482" font-size="11" fill="#1C1C1A">&#8226; More languages + vision trade-in</text>
+  <text x="772" y="506" font-size="11" fill="#1C1C1A">&#8226; A2A only with a real counterparty</text>
+  <text x="772" y="544" font-size="11" font-weight="700" fill="#1C1C1A">Risk: higher</text>
+  <text x="772" y="568" font-size="11" fill="#1C1C1A">Gate: proven metrics</text>
+
+  <!-- timeline -->
+  <line x1="60" y1="632" x2="1076" y2="632" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <line x1="220" y1="627" x2="220" y2="637" stroke="#1C1C1A" stroke-width="1.4"/><text x="220" y="652" text-anchor="middle" font-size="9" fill="#6B6960">Q3</text>
+  <line x1="568" y1="627" x2="568" y2="637" stroke="#1C1C1A" stroke-width="1.4"/><text x="568" y="652" text-anchor="middle" font-size="9" fill="#6B6960">later</text>
+  <line x1="916" y1="627" x2="916" y2="637" stroke="#1C1C1A" stroke-width="1.4"/><text x="916" y="652" text-anchor="middle" font-size="9" fill="#6B6960">later still</text>
+
+  <text x="44" y="690" font-size="10" fill="#6B6960">Numbers are illustrative. The point is that the diagram can carry cost, latency, and sequence at all, which is exactly where the base kit ran out.</text>
+  <text x="44" y="708" font-size="10" fill="#6B6960">This gives Helena a real Q3 (Phase 1) and Priya a cost-managed ramp instead of a big-bang.</text>
+  <text x="44" y="740" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; cost, latency &amp; staging</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">06</span><span class="pt">Degradation Ladder</span></div><figcaption class="pc">The fallback view (gap D5). Every rung degrades capability, never safety. No blank failure, no guessed answer.</figcaption><div class="svgwrap"><svg viewBox="0 0 1000 780" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="amb" markerWidth="10" markerHeight="10" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#C2871A"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="780" fill="#F6F4EE"/>
+
+  <text x="44" y="60" font-size="24" font-weight="700" fill="#1C1C1A">Degradation Ladder</text>
+  <text x="46" y="84" font-size="12" fill="#6B6960">what happens when the AI path fails or stalls &#183; the fallback the kit can't draw (gap D5)</text>
+
+  <rect x="838" y="34" width="13" height="13" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="857" y="44" font-size="9" fill="#1E55C0">model path</text>
+  <rect x="838" y="52" width="13" height="13" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="857" y="62" font-size="9" fill="#1C1C1A">deterministic / human</text>
+  <rect x="838" y="70" width="13" height="13" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="857" y="80" font-size="9" fill="#9A6A14">safety net</text>
+
+  <line x1="44" y1="100" x2="956" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <text x="60" y="156" font-size="10" font-weight="700" fill="#1E55C0">PRIMARY</text>
+  <text x="60" y="676" font-size="10" font-weight="700" fill="#9A6A14">LAST RESORT</text>
+
+  <!-- rung 1 -->
+  <rect x="200" y="140" width="380" height="48" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="390" y="162" text-anchor="middle" font-size="12" font-weight="700" fill="#1E55C0">Primary path</text>
+  <text x="390" y="178" text-anchor="middle" font-size="9" fill="#6B6960">grounded agent + deep model</text>
+  <text x="620" y="168" font-size="10" fill="#6B6960">customer gets: normal grounded answer</text>
+
+  <line x1="390" y1="188" x2="390" y2="236" stroke="#C2871A" stroke-width="1.6" marker-end="url(#amb)"/>
+  <text x="402" y="216" font-size="9" fill="#9A6A14">timeout / transient error</text>
+
+  <!-- rung 2 -->
+  <rect x="200" y="240" width="380" height="48" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="390" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="#1E55C0">Retry</text>
+  <text x="390" y="278" text-anchor="middle" font-size="9" fill="#6B6960">once, with backoff</text>
+  <text x="620" y="268" font-size="10" fill="#6B6960">customer gets: same answer, a bit slower</text>
+
+  <line x1="390" y1="288" x2="390" y2="336" stroke="#C2871A" stroke-width="1.6" marker-end="url(#amb)"/>
+  <text x="402" y="316" font-size="9" fill="#9A6A14">still failing or too slow</text>
+
+  <!-- rung 3 -->
+  <rect x="200" y="340" width="380" height="48" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="390" y="362" text-anchor="middle" font-size="12" font-weight="700" fill="#1E55C0">Cheaper, faster model</text>
+  <text x="390" y="378" text-anchor="middle" font-size="9" fill="#6B6960">degraded but available</text>
+  <text x="620" y="368" font-size="10" fill="#6B6960">customer gets: shorter answer, still grounded</text>
+
+  <line x1="390" y1="388" x2="390" y2="436" stroke="#C2871A" stroke-width="1.6" marker-end="url(#amb)"/>
+  <text x="402" y="416" font-size="9" fill="#9A6A14">model / gateway down</text>
+
+  <!-- rung 4 -->
+  <rect x="200" y="440" width="380" height="48" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="390" y="462" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1C1A">Deterministic fallback</text>
+  <text x="390" y="478" text-anchor="middle" font-size="9" fill="#6B6960">cached answer &#183; KB article &#183; scripted flow</text>
+  <text x="620" y="468" font-size="10" fill="#6B6960">customer gets: verified static answer, no model</text>
+  <line x1="196" y1="464" x2="120" y2="464" stroke="#C2871A" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#amb)"/>
+  <text x="60" y="450" font-size="8" fill="#9A6A14">low confidence</text>
+  <text x="60" y="461" font-size="8" fill="#9A6A14">(see sequence)</text>
+
+  <line x1="390" y1="488" x2="390" y2="536" stroke="#C2871A" stroke-width="1.6" marker-end="url(#amb)"/>
+  <text x="402" y="516" font-size="9" fill="#9A6A14">no deterministic match</text>
+
+  <!-- rung 5 -->
+  <rect x="200" y="540" width="380" height="48" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="390" y="562" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1C1A">Human handoff</text>
+  <text x="390" y="578" text-anchor="middle" font-size="9" fill="#6B6960">advisor, with full context</text>
+  <text x="620" y="568" font-size="10" fill="#6B6960">customer gets: advisor takes over</text>
+
+  <line x1="390" y1="588" x2="390" y2="636" stroke="#C2871A" stroke-width="1.6" marker-end="url(#amb)"/>
+  <text x="402" y="616" font-size="9" fill="#9A6A14">after hours / queue full</text>
+
+  <!-- rung 6 -->
+  <rect x="200" y="640" width="380" height="48" rx="8" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.8"/>
+  <text x="390" y="662" text-anchor="middle" font-size="12" font-weight="700" fill="#9A6A14">Graceful defer</text>
+  <text x="390" y="678" text-anchor="middle" font-size="9" fill="#9A6A14">ticket + callback, honest message</text>
+  <text x="620" y="668" font-size="10" fill="#6B6960">customer gets: "we'll come back", no dead end</text>
+
+  <text x="44" y="726" font-size="11" font-weight="700" fill="#1C1C1A">Every rung degrades capability, never safety.</text>
+  <text x="44" y="744" font-size="11" fill="#6B6960">No rung is a blank failure, and no rung is a guessed answer. That invariant is what the kit could not express.</text>
+  <text x="44" y="770" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; degradation ladder</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">07</span><span class="pt">Autonomy and Authority Map</span></div><figcaption class="pc">Gap D2 as an envelope: what the agent may do alone, what needs a human, what is off-limits. Prevents Piglet and Undocumented Genius.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 640" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="up" markerWidth="10" markerHeight="10" refX="4.5" refY="2" orient="auto"><path d="M4.5 0 L9 9 L0 9 z" fill="#1C1C1A"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1123" height="640" fill="#F6F4EE"/>
+
+  <text x="44" y="60" font-size="24" font-weight="700" fill="#1C1C1A">Autonomy &amp; Authority Map</text>
+  <text x="46" y="84" font-size="12" fill="#6B6960">what the agent may do alone, what needs a human, what is off-limits &#183; gap D2 as an envelope</text>
+
+  <text x="900" y="48" font-size="9" fill="#1C1C1A">[R] read</text>
+  <text x="900" y="64" font-size="9" fill="#1C1C1A">[W] write / commit</text>
+
+  <line x1="44" y1="100" x2="1079" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- impact axis -->
+  <line x1="54" y1="438" x2="54" y2="150" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#up)"/>
+  <text x="44" y="300" font-size="9" fill="#6B6960" transform="rotate(-90 44 300)">blast radius</text>
+
+  <!-- forbidden band -->
+  <rect x="80" y="144" width="999" height="28" fill="#1C1C1A"/>
+  <text x="92" y="163" font-size="12" font-weight="700" fill="#FFFFFF">FORBIDDEN TO AUTOMATE &#183; a human decides</text>
+  <g font-size="10" fill="#1C1C1A">
+    <rect x="92" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="104" y="207">Confirm car is safe to drive</text><rect x="262" y="194" width="50" height="16" rx="2" fill="#1C1C1A"/><text x="287" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">safety</text>
+    <rect x="336" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="348" y="207">Final credit / financing</text><rect x="528" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="542" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="580" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="592" y="207">Send binding commitment</text><rect x="772" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="786" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="824" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="836" y="207">Irreversible data deletion</text><rect x="1016" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="1030" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+  </g>
+
+  <!-- approval band -->
+  <rect x="80" y="246" width="999" height="28" fill="#C2871A"/>
+  <text x="92" y="265" font-size="12" font-weight="700" fill="#FFFFFF">NEEDS HUMAN APPROVAL BEFORE COMMIT</text>
+  <g font-size="10" fill="#9A6A14">
+    <rect x="92" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="104" y="309">Book / reschedule service</text><rect x="278" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="295" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="336" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="348" y="309">Goodwill credit over limit</text><rect x="522" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="539" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="580" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="592" y="309">Launch proactive outreach</text><rect x="766" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="783" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="824" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="836" y="309">Commit trade-in offer</text><rect x="1010" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="1027" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+  </g>
+
+  <!-- autonomous band -->
+  <rect x="80" y="348" width="999" height="28" fill="#1E55C0"/>
+  <text x="92" y="367" font-size="12" font-weight="700" fill="#FFFFFF">AUTONOMOUS &#183; the agent may act</text>
+  <g font-size="10" fill="#1E55C0">
+    <rect x="92" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="104" y="411">Answer grounded FAQ / status</text><rect x="288" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="302" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+    <rect x="336" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="348" y="411">Look up vehicle / recall</text><rect x="532" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="546" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+    <rect x="580" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="592" y="411">Draft reply for advisor</text><rect x="776" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="790" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+    <rect x="824" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="836" y="411">Translate / summarize</text><rect x="1020" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="1034" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+  </g>
+
+  <!-- failure modes -->
+  <text x="44" y="476" font-size="11" font-weight="700" fill="#1C1C1A">Two failure modes this map prevents</text>
+  <text x="44" y="498" font-size="10" fill="#6B6960">Push everything up into approval and the agent becomes safe but useless theater. That is the Piglet Agent.</text>
+  <text x="44" y="516" font-size="10" fill="#6B6960">Let write actions slip down into autonomous with no declared authority and nobody approved what it did. That is the Undocumented Genius.</text>
+  <text x="44" y="534" font-size="10" fill="#6B6960">The line between the bands is the decision the board actually signs off, not the technology.</text>
+
+  <text x="44" y="612" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; autonomy &amp; authority map</text>
+</svg>
+</div></figure>
+<figure class="plate reveal"><div class="head"><span class="pn">08</span><span class="pt">The Magic Box vs Honest Notation</span></div><figcaption class="pc">The same system drawn two ways. One the board cannot sign off, one where every risk has a home.</figcaption><div class="svgwrap"><svg viewBox="0 0 1240 650" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="acc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="ga" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="650" fill="#F6F4EE"/>
+
+  <text x="44" y="60" font-size="24" font-weight="700" fill="#1C1C1A">The Magic Box, and the Honest Version</text>
+  <text x="46" y="84" font-size="12" fill="#6B6960">the same system drawn two ways &#183; why vague notation fails the board</text>
+  <line x1="44" y1="100" x2="1196" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- divider -->
+  <line x1="618" y1="116" x2="618" y2="592" stroke="#D9D5CB" stroke-width="1"/>
+  <circle cx="618" cy="330" r="16" fill="#F6F4EE" stroke="#B9B4A6" stroke-width="1"/>
+  <text x="618" y="335" text-anchor="middle" font-size="11" fill="#8C8576">vs</text>
+
+  <!-- ===== LEFT : BEFORE ===== -->
+  <text x="44" y="130" font-size="14" font-weight="700" fill="#8C8576">BEFORE &#183; the magic box</text>
+
+  <!-- surrounding systems -->
+  <g font-size="9" fill="#1C1C1A">
+    <rect x="250" y="150" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="300" y="168" text-anchor="middle">Customers</text>
+    <rect x="90" y="196" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="140" y="214" text-anchor="middle">Customer data</text>
+    <rect x="60" y="316" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="110" y="334" text-anchor="middle">Telematics</text>
+    <rect x="90" y="436" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="140" y="454" text-anchor="middle">Marketing</text>
+    <rect x="250" y="486" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="300" y="504" text-anchor="middle">Payments</text>
+    <rect x="420" y="436" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="470" y="454" text-anchor="middle">ERP</text>
+    <rect x="450" y="316" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="500" y="334" text-anchor="middle">DMS</text>
+    <rect x="420" y="196" width="100" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.2"/><text x="470" y="214" text-anchor="middle">Models</text>
+  </g>
+
+  <!-- undifferentiated lines -->
+  <g stroke="#9A958A" stroke-width="1">
+    <line x1="300" y1="330" x2="300" y2="178"/>
+    <line x1="300" y1="330" x2="140" y2="224"/>
+    <line x1="300" y1="330" x2="160" y2="330"/>
+    <line x1="300" y1="330" x2="140" y2="436"/>
+    <line x1="300" y1="330" x2="300" y2="486"/>
+    <line x1="300" y1="330" x2="470" y2="464"/>
+    <line x1="300" y1="330" x2="450" y2="330"/>
+    <line x1="300" y1="330" x2="470" y2="224"/>
+  </g>
+
+  <!-- blob -->
+  <ellipse cx="300" cy="330" rx="105" ry="72" fill="#EDEAE2" stroke="#B9B4A6" stroke-width="1.6" stroke-dasharray="6 5"/>
+  <text x="300" y="306" text-anchor="middle" font-size="34" font-weight="700" fill="#8C8576">AI</text>
+  <text x="300" y="328" text-anchor="middle" font-size="10" fill="#8C8576">does everything</text>
+  <text x="300" y="350" text-anchor="middle" font-size="10" font-weight="700" fill="#9A6A14">data?   authority?</text>
+  <text x="300" y="368" text-anchor="middle" font-size="10" font-weight="700" fill="#9A6A14">failure?   cost?</text>
+
+  <rect x="44" y="556" width="556" height="32" fill="#3A3833"/>
+  <text x="322" y="577" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">The board cannot sign this off</text>
+
+  <!-- ===== RIGHT : AFTER ===== -->
+  <text x="640" y="130" font-size="14" font-weight="700" fill="#1E55C0">AFTER &#183; honest notation</text>
+
+  <rect x="648" y="216" width="78" height="34" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.3"/><text x="687" y="237" text-anchor="middle" font-size="9">channels</text>
+  <rect x="748" y="216" width="70" height="34" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.3"/><text x="783" y="237" text-anchor="middle" font-size="9">core</text>
+  <rect x="840" y="210" width="88" height="46" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="884" y="238" text-anchor="middle" font-size="10" fill="#1E55C0">agent</text><text x="916" y="223" font-size="13" font-weight="700" fill="#1E55C0">~</text><path d="M906 206 a7 7 0 1 1 -5 -5" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#ga)"/>
+  <text x="961" y="200" text-anchor="middle" font-size="8" fill="#1E55C0">mask</text>
+  <rect x="944" y="206" width="34" height="54" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <rect x="994" y="210" width="92" height="46" rx="8" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="1040" y="238" text-anchor="middle" font-size="10" fill="#1E55C0">model</text>
+
+  <line x1="726" y1="233" x2="746" y2="233" stroke="#1C1C1A" stroke-width="1.3" marker-end="url(#acc)"/>
+  <line x1="818" y1="233" x2="838" y2="233" stroke="#1C1C1A" stroke-width="1.3" marker-end="url(#acc)"/>
+  <line x1="928" y1="233" x2="942" y2="233" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#acc)"/>
+  <line x1="978" y1="233" x2="992" y2="233" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#acc)"/>
+
+  <!-- grounding -->
+  <path d="M842 332 v20 a42 6 0 0 0 84 0 v-20" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.3"/>
+  <ellipse cx="884" cy="332" rx="42" ry="6" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.3"/>
+  <text x="884" y="348" text-anchor="middle" font-size="9">Data Cloud</text>
+  <line x1="884" y1="326" x2="884" y2="258" stroke="#1E55C0" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#ga)"/>
+  <text x="894" y="296" font-size="8" fill="#1E55C0">grounds</text>
+
+  <!-- observability -->
+  <rect x="760" y="404" width="326" height="30" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="923" y="423" text-anchor="middle" font-size="10" fill="#1E55C0">observability &amp; evaluation</text>
+  <line x1="884" y1="404" x2="884" y2="372" stroke="#1E55C0" stroke-width="1.1" stroke-dasharray="2 3" marker-end="url(#ga)"/>
+
+  <!-- four questions placed -->
+  <rect x="648" y="450" width="438" height="98" rx="6" fill="#FBFAF6" stroke="#D9D5CB" stroke-width="1"/>
+  <text x="662" y="470" font-size="10" font-weight="700" fill="#1C1C1A">the same four questions, now each with a home</text>
+  <text x="662" y="490" font-size="10" fill="#1E55C0">data &#8594; masked at the trust boundary</text>
+  <text x="662" y="508" font-size="10" fill="#9A6A14">authority &#8594; the authority map</text>
+  <text x="662" y="526" font-size="10" fill="#9A6A14">failure &#8594; the degradation ladder</text>
+  <text x="662" y="544" font-size="10" fill="#9A6A14">cost &#8594; tiered models + staged rollout</text>
+
+  <rect x="640" y="556" width="556" height="32" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/>
+  <text x="918" y="577" text-anchor="middle" font-size="12" font-weight="700" fill="#1E55C0">Reviewable: every risk has a home</text>
+
+  <text x="44" y="628" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; magic box vs honest notation</text>
+</svg>
+</div></figure></div></section>
+<section id="playbook" class="section reveal"><h2 class="section-title"><span class="n">05</span>Facilitator Playbook</h2><p class="section-lead">How to run all 90 minutes. Version 2: the board throws distractors live.</p><details class="doc"><summary>facilitator-playbook.md <span class="hint">blocks, judge cards, distractor deck, debrief</span></summary><div class="prose"><p>How to Diagram AI in Your Salesforce Architecture
+90 minutes · ~15 participants · 3 groups of 5 · Architect Dreamin</p>
+<p>Version 2: live judging. The board throws distractors on the fly during the presentations rather than dealing them in waves, and each team builds for a different MMG domain so the three architectures and pitches stay distinct.</p>
+<hr />
+<h2>The shape</h2>
+<p>Three blocks plus a short close. Each block is one act, not a list of steps.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Start</th>
+<th>Min</th>
+<th>What happens</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 · Setting the Scene</td>
+<td>0:00</td>
+<td>10</td>
+<td>MMG landscape, the mandate, the three CxOs</td>
+<td>Shared context and tension</td>
+</tr>
+<tr>
+<td>2 · Build</td>
+<td>0:10</td>
+<td>40</td>
+<td>Assign domains, choose tech under a budget, hit the magic box, get the kit, draw the solution architecture and the data flow</td>
+<td>Two diagrams per team: solution architecture and data flow</td>
+</tr>
+<tr>
+<td>3 · The Review Board</td>
+<td>0:50</td>
+<td>30</td>
+<td>Teams present their domain in different formats, the board throws distractors live, the audience challenges</td>
+<td>A defended strategy</td>
+</tr>
+<tr>
+<td>Close · Debrief</td>
+<td>1:20</td>
+<td>10</td>
+<td>Where the notation ran out, the reveal, the cross-team comparison, the takeaway</td>
+<td>Notation vocabulary, community output</td>
+</tr>
+</tbody>
+</table></div>
+<p>What every group leaves with: a solution architecture diagram and a data flow diagram (both built in Block 2, both scoped to their domain), and the reusable notation kit. These three are the Abstract.</p>
+<p>Budgets are tunable [Inference]. Version 2 deliberately moves time out of structured distractor waves and into building both diagrams and defending them live.</p>
+<hr />
+<h2>Materials checklist</h2>
+<p>Per table (one set per group): pre-drawn MMG landscape worksheet (A2 or A3, surrounding systems drawn, AI not drawn); one tech card deck (the cards); one CxO acceptance rubric, which is also the pitch checklist; one domain card (the team's assigned slice of MMG); one format card (how this team must present in Block 3); two marker colours, black plus one accent; blank flip-chart sheets for the data flow diagram and the presentation.</p>
+<p>Per person: the notation kit handout.</p>
+<p>Judges-held (the three facilitators): one judge card each (Helena, Marcus, Priya); the distractor deck, to read aloud when a card is thrown; a five-column flip chart for the debrief; a timer visible to the room.</p>
+<p>Audience: three perspective cards (Customer, Regulator, Operations) handed to the non-presenting teams during each review round.</p>
+<p>Still to produce before the session: the landscape worksheet, the printed distractor cards, the three judge cards, the domain cards, the format cards, and the perspective cards. Content for all of these is in this playbook.</p>
+<hr />
+<h1>Block 1 · Setting the Scene (0:00 to 0:10)</h1>
+<p>Goal: set the scenario and the tension fast. No drawing in this block.</p>
+<p>You do: present MMG and its landscape, put the mandate on screen, introduce the three CxOs.</p>
+<p>You say:</p>
+<blockquote>
+<p>"Meridian Mobility Group: a European automotive retail and service group. Salesforce Automotive Cloud is the centre. Around it sit the eight systems on your worksheet. The shareholders have given the board one instruction."</p>
+<p>"Embed AI more deeply into the product to drive growth and efficiency."</p>
+<p>"That is the whole brief. It is vague on purpose, because your three executives read it three different ways."</p>
+</blockquote>
+<ul>
+<li>Helena Vance, CEO, ambition: "I want customers talking to our AI by Q3, and I want it in the announcement."</li>
+<li>Marcus Reinhardt, CISO and CDO, risk: "Where does the customer's data go the second it touches a model, and who can prove it?"</li>
+<li>Priya Anand, CIO, feasibility and cost: "Show me the cost at 10,000 conversations a day, and who operates this at 2 a.m."</li>
+</ul>
+<blockquote>
+<p>"Your job today is to satisfy all three. Not one. All three."</p>
+</blockquote>
+<p>Watch-out: hold this to ten minutes. The scenario earns its weight in Block 2, not here.</p>
+<hr />
+<h1>Block 2 · Build (0:10 to 0:50)</h1>
+<p>Goal: choose a defensible set of technologies for your domain, discover the magic-box problem when you try to present it, learn to draw AI honestly, and produce both required diagrams. Output: the solution architecture diagram and the data flow diagram.</p>
+<h3>Beat 0: assign domains (first 60 seconds of the block)</h3>
+<p>You do: give each team a domain card. Same MMG, same landscape, but each team builds the AI architecture for one slice. This is what keeps the three architectures, and later the three pitches, genuinely different.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Domain card</th>
+<th>Whose problem it is most</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Customer self-service: chat and voice, deflection at scale</td>
+<td>Priya</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Sales: financing and trade-in</td>
+<td>Marcus</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Service and recall</td>
+<td>Helena</td>
+</tr>
+</tbody>
+</table></div>
+<p>You say:</p>
+<blockquote>
+<p>"You are all inside the same MMG, but each team owns one part of it. Build your AI architecture for your slice. At the board, you present your slice."</p>
+</blockquote>
+<h3>Beat 1: choose, then try to present it (0:11 to 0:25)</h3>
+<p>You do: announce the complexity budget.</p>
+<p>You say:</p>
+<blockquote>
+<p>"Pick the set of technologies that meets the mandate for your domain. There is a budget: Low costs 1 point, Moderate 2, High 3, Very High 4, and you have 7 points. Spend more and Priya walks out."</p>
+</blockquote>
+<p>Groups (about 10 minutes): read the cards, debate the fit for their domain, commit to a set within the budget.</p>
+<p>Then, with about four minutes left in the beat:</p>
+<blockquote>
+<p>"Now draw it for the board, on your landscape."</p>
+</blockquote>
+<p>Groups attempt it. Their boxes carry real names, Agentforce, RAG, an agent, but show nothing about what those things do. Reasoning, grounding, and where data crosses are all invisible.</p>
+<p>The hook (last two minutes, hold up the sheets):</p>
+<blockquote>
+<p>"You picked real technology. Your diagram still cannot show what any of it does, what it touches, or where the customer's data goes. That is the presentation problem, and it is the same vague box we draw in every real review."</p>
+</blockquote>
+<h3>Beat 2: the notation kit (0:25 to 0:31)</h3>
+<p>You do: hand out the kit. Walk the five primitives fast, each tied to the box they just drew. Use the Einstein Trust Layer as the worked example for the boundary.</p>
+<p>You say (compressed):</p>
+<blockquote>
+<p>"Black is for conventions you already use. The accent colour, your second marker, is for everything new and AI-specific."
+"Nodes: is the box deterministic, same in same out, or probabilistic, where the same input can vary? Mark the probabilistic ones."
+"The agent is not one call. It reasons and may loop. Draw the loop."
+"Grounding is not data flow. It shapes the answer without being passed through, and retrieval is a deterministic search that can quietly return nothing."
+"The trust boundary is the one that matters most for Marcus. The Einstein Trust Layer is the canonical example: the instant data touches a model, it is masked, ground-checked, kept out of retention, and logged. Draw it as a place, not a line you wave at."
+"Every component sits on exactly one plane: runtime, delivery, or operations."
+"This kit is version 0.1 and deliberately incomplete. Part of your job today is to notice where it runs out."</p>
+</blockquote>
+<h3>Beat 3: draw the solution architecture (0:31 to 0:43)</h3>
+<p>Groups redraw the solution on the landscape using the kit. Probabilistic nodes marked, the agent loop drawn, grounding shown, the trust boundary placed, every component on a plane. This is the solution architecture diagram.</p>
+<h3>Beat 4: draw the data flow (0:43 to 0:50)</h3>
+<p>You say:</p>
+<blockquote>
+<p>"Now zoom into the box. On a fresh sheet, draw the data flow through your AI subsystem: the prompt going in, the trust boundary, grounding and retrieval, the model call, the response coming back, and what gets logged. This is the diagram Marcus reads line by line, and the one the board will push on hardest."</p>
+</blockquote>
+<p>Groups (about 7 minutes): draw the AI subsystem data flow with the kit. Subsystem only, not the whole landscape.</p>
+<p>Watch-out: this whole block is the tightest stretch for its value, and it now carries two diagrams. Circulate and keep groups moving: pick, do not perfect. Let two failure modes happen rather than preventing them:
+- over-engineering, a group that blew the budget on the shiniest cards
+- the plane trap, a group that puts an AI-assisted delivery tool or an internal co-worker assistant in the customer runtime</p>
+<p>Both surface in the close. Do not correct them now.</p>
+<hr />
+<h1>Block 3 · The Review Board (0:50 to 1:20)</h1>
+<p>Goal: each team presents its domain architecture and defends it against curveballs the board throws live, aimed exactly where the notation is weakest. Output: a defended strategy. Both diagrams already exist from Block 2.</p>
+<p>How the live judging works, and why it is disciplined rather than chaotic:
+- Each persona owns a small set of distractors (see Judge Cards). A judge throws one only when the team's diagram invites it, that is, when the diagram cannot answer it. Throwing the curveball the notation cannot answer is the diagnostic moment, and it is the skill you are modelling.
+- Cap: at most two distractors per team, plus the oversight wildcard (D2), which any judge may throw at any team at any time.
+- When you throw a card, read its participant side aloud from the distractor deck, then make the team respond on the diagram, not in conversation.</p>
+<h3>Beat 1: prep in your assigned format (0:50 to 0:55)</h3>
+<p>Each team assembles its presentation in the format on its format card. Five minutes, no new analysis, just shape what they already built.</p>
+<h3>Beat 2: three review rounds (0:55 to 1:19)</h3>
+<p>About eight minutes per team: roughly four to present, four to be grilled. For each round:
+1. The team presents its domain architecture in its assigned format.
+2. The board grills. Each judge may throw an owned distractor if the diagram invites it, capped at two for the team, with the oversight wildcard always available.
+3. One audience challenge. The two non-presenting teams hold perspective cards; one of them poses a single challenge from its role (Customer, Regulator, or Operations).
+4. Rotate the signature opener. Each judge opens each round with a different one of their signature questions, so the three rounds feel distinct.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Domain</th>
+<th>Primary judge</th>
+<th>Sharpest live distractor</th>
+<th>Presentation format</th>
+<th>Audience lens most likely to bite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Customer self-service</td>
+<td>Priya</td>
+<td>D4, cost and latency at 8M contacts</td>
+<td>Three-slide board pitch</td>
+<td>Operations</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Sales, financing, trade-in</td>
+<td>Marcus</td>
+<td>D1 PII, plus D5 model lock-in</td>
+<td>Live whiteboard, no slides</td>
+<td>Regulator</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Service and recall</td>
+<td>Helena</td>
+<td>D3, a confident wrong answer on a safety question</td>
+<td>Walk one journey end to end</td>
+<td>Customer</td>
+</tr>
+</tbody>
+</table></div>
+<p>The formats are not arbitrary. The board pitch suits Team A's deflection-and-cost story for Priya. The live whiteboard suits Marcus interrogating Team B's data flow line by line. The single-journey walk for Team C is literally the recall question, "is my car safe to drive?", which is exactly where the D3 confidence distractor and Helena's announcement risk collide.</p>
+<p>Watch-out: protect the rounds. If time is short, cut the close, not this. A presentation that wins one persona and ignores the other two has failed; say so kindly when it happens. Keep one eye on the two-distractor cap so a strong team does not get buried.</p>
+<h3>The formats (one card per team)</h3>
+<ul>
+<li>Team A, three-slide board pitch: slide for Helena (what and why, with the solution diagram), slide for Marcus (where the data goes and where a human stays in control, with the data flow), slide for Priya (cost and operability posture).</li>
+<li>Team B, live whiteboard: no slides. Present at the data flow sheet and redraw the changes as the board pushes. Rewards a team that can think in notation under pressure.</li>
+<li>Team C, one journey end to end: narrate the recall question from the customer's first message to the resolution, saying at each step what the customer experiences and what the architecture does, including the moment the agent must defer to a human.</li>
+</ul>
+<hr />
+<h1>Close · Debrief (1:20 to 1:30)</h1>
+<p>Goal: harvest where the notation ran out, reveal the design, and leave with a thesis. The cross-team comparison is the new centrepiece.</p>
+<p>Harvest (4 minutes): on a flip chart with five columns, ask each group to name the one place their notation ran out. Tally each answer under the matching gap.</p>
+<p>The cross-comparison (the gold): because the teams had different domains, they hit different gaps. Name it out loud:</p>
+<blockquote>
+<p>"Team C had to invent a confidence symbol for a safety answer that Team A never needed. Team B needed a way to mark PII on an arrow that Team A's diagram never had. Team A needed a cost-per-call notation the others could ignore. Put together, your three boards just covered all five gaps. That was the design."</p>
+</blockquote>
+<p>The reveal (2 minutes):</p>
+<blockquote>
+<p>"The kit was deliberately incomplete, and the distractors were aimed at exactly the gaps it does not cover: confidence, human oversight, data sensitivity, cost and latency, failure and fallback. You did not fail to draw these. The conventions do not exist yet. That is the finding: this is where AI architecture notation still has to evolve, from version 0.1 toward version 1.0."</p>
+</blockquote>
+<p>The traps (1 minute): ask whether anyone placed a delivery tool or an internal assistant in the customer runtime. Surface it without blame. The lesson: where a component goes is a real architecture decision.</p>
+<p>Takeaway and collect (3 minutes):</p>
+<blockquote>
+<p>"Good AI notation is not decoration. It is risk management you can see. Every distractor today was a risk your first vague box hid. Take the kit, plus the gaps you discovered, as your starting vocabulary."</p>
+</blockquote>
+<p>Collect the notation the room invented: a symbol for an agent that must defer, a human-approval gate, a PII-bearing arrow, a cost per call. This is the constructive feedback to Salesforce and the community output.</p>
+<hr />
+<h1>Judge cards (one per judge)</h1>
+<p>Print one card per judge. Each is self-contained: stance, the curveballs you own, when to throw them, your signature openers, and the single condition under which you say yes. The rule on every card: throw the curveball the team's diagram cannot answer, and stop at two per team.</p>
+<hr />
+<h3>JUDGE CARD · Helena Vance, CEO</h3>
+<p>Stance: ambition and story. You already promised the board AI by Q3. You want a headline, and you do not want to hear "it depends."</p>
+<p>You own:
+- The Q3 Promise. "I told the board this ships in Q3. Show me on the diagram what is live by then and what is not." Throw when a team shows a big-bang design with no phasing. Forces a staged roadmap.
+- The Simplify-or-Scale squeeze. To an over-built design: "This is a science project. Will a customer ever feel it?" To a thin one: "Is this all the shareholders get for the investment?" Throw the half that matches what you see.
+- (Shared with Marcus) The story angle on D3. "If this gives a wrong safety answer in week one, my announcement becomes the story. What on this page stops that?" Throw at any safety-touching design, especially Team C.</p>
+<p>Signature openers (rotate one per round): "Where is my headline on this page?" · "What can I announce, and when?" · "Put me on stage in Q3. What do I say?"</p>
+<p>You say yes only if: a visible, customer-facing capability supports the growth story, with a credible, phased timeline.</p>
+<hr />
+<h3>JUDGE CARD · Marcus Reinhardt, CISO and CDO</h3>
+<p>Stance: risk and proof. Nothing is safe until the diagram proves it. "Where does the data go the second it touches a model, and who can prove it?"</p>
+<p>You own:
+- D1 Data Breach. Throw when the data flow does not clearly mask PII before the model, when PII-carrying arrows are undifferentiated, or when retention and logging are unshown.
+- D2 The AI Act Knock, your wildcard. You may throw this at ANY team at any time. Throw when human oversight, AI disclosure, or traceability is missing from a design that gives advice or takes action.
+- (Shared with Helena) D3 the risk angle. Throw on any safety or recall guidance with no confidence or grounding gate before the answer.</p>
+<p>Signature openers (rotate): "Walk me to the exact line where a customer's data crosses into a model." · "Who is accountable when this is wrong, and where is that on the page?" · "Show me where a human can still say no."</p>
+<p>You say yes only if: PII handling, the trust boundary, grounding, and human oversight are explicit and auditable, and AI Act exposure is acknowledged.</p>
+<hr />
+<h3>JUDGE CARD · Priya Anand, CIO</h3>
+<p>Stance: feasibility and cost. You operate this at 2 a.m. "Show me the cost at 10,000 conversations a day, and who runs it."</p>
+<p>You own:
+- D4 The Bill and the Lag. Throw when the design routes everything through the expensive model, adds gratuitous model calls, or puts voice everywhere without justifying the latency and the cost.
+- D5 The Vendor Moves. Throw when the design is coupled to one provider with no stable interface or gateway, and no fallback if a model disappears.</p>
+<p>Signature openers (rotate): "What does this cost me per conversation, and where on the diagram is the expensive call?" · "Your model vendor doubles the price in ninety days. What changes on this page?" · "It is 2 a.m. and the model is down. What does the customer get?"</p>
+<p>You say yes only if: run cost at scale, latency, operability, and lock-in are addressed, with complexity matched to value.</p>
+<hr />
+<h1>The distractor deck</h1>
+<p>Version 2: these are no longer dealt in waves. Each card is owned by a judge (see Judge Cards) and thrown live, read aloud, when the team's diagram invites it. Cap two per team, plus the D2 oversight wildcard.</p>
+<h3>D1 · Data Breach (owned by Marcus)</h3>
+<p>Participant:</p>
+<blockquote>
+<p>"A journalist publishes a screenshot from your model provider's logs. It shows a named customer's full service history and home address. The provider retained it. The board meets in twenty minutes."
+Your diagram must now show: where customer data crosses into the model, what is masked before it does, what is retained or logged and by whom, and which arrows carry PII end to end.</p>
+</blockquote>
+<p>Throw when: the data flow does not mask PII before the model, or PII arrows are undifferentiated. Good response: PII masked at the trust boundary before the model call, zero retention with the provider, sensitive arrows marked distinctly, logging scoped to non-PII.</p>
+<h3>D2 · The AI Act Knock (owned by Marcus, the wildcard, any team)</h3>
+<p>Participant:</p>
+<blockquote>
+<p>"Legal has reviewed the pilot. Because the agent gives recall and safety guidance, it may carry higher-risk obligations under the EU AI Act: transparency, human oversight, traceability. The board wants to see, on the diagram, where a human stays in control."
+Your diagram must now show: where the customer is told they are talking to AI, which agent actions need human approval before they commit, and how decisions are logged for traceability.</p>
+</blockquote>
+<p>Throw when: any team's design gives advice or takes action without visible oversight, disclosure, or an audit trail. Good response: a human-in-the-loop checkpoint on high-stakes actions, an explicit AI-disclosure node, an audit trail.</p>
+<h3>D3 · The Confident Wrong Answer (shared by Marcus and Helena)</h3>
+<p>Participant:</p>
+<blockquote>
+<p>"In the pilot, the agent told a customer with worn brake pads that everything looked fine and they could skip the inspection. It was wrong. No one was hurt. This time. And it sounded completely confident."
+Your diagram must now show: when the agent may answer versus when it must defer or escalate, what grounding it needs before giving safety guidance, and what happens when it is unsure.</p>
+</blockquote>
+<p>Throw when: a design gives safety or recall guidance with no confidence or grounding gate. Good response: a confidence or grounding gate before high-stakes answers, a defer-and-escalate path below threshold, stricter grounding for safety topics.</p>
+<h3>D4 · The Bill and the Lag (owned by Priya)</h3>
+<p>Participant:</p>
+<blockquote>
+<p>"Finance modelled it at projected volume. The design costs four times the contact-centre savings it was meant to deliver, and voice replies lag six seconds. Priya wants the number to work before this leaves the room."
+Your diagram must now show: where the expensive model calls are, what could use a cheaper model or none, where latency accumulates, and what you would cut or cache.</p>
+</blockquote>
+<p>Throw when: everything routes through the expensive model, or voice is everywhere without justification. Good response: model tiering, removing gratuitous model calls, caching, scoping voice to where it pays.</p>
+<h3>D5 · The Vendor Moves (owned by Priya)</h3>
+<p>Participant:</p>
+<blockquote>
+<p>"Your model provider announces a breaking API change and a thirty percent price rise, effective in ninety days. Procurement asks two questions: how locked in are we, and what happens if a model we depend on simply goes away?"
+Your diagram must now show: where you are coupled to one provider, what sits behind a stable interface, and the fallback path if a model becomes unavailable.</p>
+</blockquote>
+<p>Throw when: the design couples directly to one provider with no gateway and no fallback. Good response: the model behind a stable interface or gateway, a documented fallback model, graceful degradation.</p>
+<hr />
+<h1>CxO acceptance rubric</h1>
+<p>Judges the presentations and voices the board. Also given to groups as the pitch checklist.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Persona</th>
+<th>Says yes only if the presentation shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Helena (CEO)</td>
+<td>A visible, customer-facing capability that supports the growth story, with a credible, phased timeline</td>
+</tr>
+<tr>
+<td>Marcus (CISO and CDO)</td>
+<td>PII handling, the trust boundary, grounding, and human oversight made explicit and auditable, and AI Act exposure acknowledged</td>
+</tr>
+<tr>
+<td>Priya (CIO)</td>
+<td>Run cost at scale, latency, operability (who runs this at 2 a.m.), and lock-in addressed, with complexity matched to value</td>
+</tr>
+</tbody>
+</table></div>
+<p>A presentation must move all three. Winning one and ignoring two is a fail.</p>
+<p>Fairness note: with different domains, "who wins" is no longer apples to apples. Since the goal is learning rather than competition, that is fine. If you want a competitive element, score against this shared rubric on two things only: did the notation make the risk visible, and did they parry the live distractor with notation rather than hand-waving.</p>
+<hr />
+<h1>Facilitator design map</h1>
+<p>The kit gaps map one to one to the distractors:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Kit gap (named on the handout)</th>
+<th>Distractor that exploits it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confidence: act vs defer</td>
+<td>D3 Confident Wrong Answer</td>
+</tr>
+<tr>
+<td>Human oversight: who approves</td>
+<td>D2 AI Act Knock (the wildcard)</td>
+</tr>
+<tr>
+<td>Data sensitivity: which arrows carry PII</td>
+<td>D1 Data Breach</td>
+</tr>
+<tr>
+<td>Cost and latency</td>
+<td>D4 Bill and the Lag</td>
+</tr>
+<tr>
+<td>Failure and fallback paths</td>
+<td>D5 Vendor Moves</td>
+</tr>
+</tbody>
+</table></div>
+<p>And in Version 2, domains, judges, and distractors line up so the union of three grillings covers all five gaps:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Domain</th>
+<th>Primary judge</th>
+<th>Distractors most likely thrown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Customer self-service</td>
+<td>Priya</td>
+<td>D4, then D2 wildcard</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Sales, financing, trade-in</td>
+<td>Marcus</td>
+<td>D1 and D5, then D2 wildcard</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Service and recall</td>
+<td>Helena (with Marcus)</td>
+<td>D3, then D2 wildcard</td>
+</tr>
+</tbody>
+</table></div>
+<p>D2 is shared on purpose: oversight should be askable of everyone, and it guarantees the human-control gap surfaces no matter which way a team built.</p>
+<p>The two engineered traps live in the tech deck (the AI-assisted delivery card and the internal co-worker card). Their placement clue is honest, but they are never labelled traps. A group that puts either in the customer runtime made a category error the planes primitive should have caught. Surface it in the close.</p>
+<p>Two failure modes to provoke and then name: over-engineering, made costly by the budget and punished live by D4, and under-ambition, made visible by the mandate and by Helena's simplify-or-scale squeeze.</p>
+<p>The through-line: the first vague box hid five risks. The kit made the easy structure visible. The live distractors proved that the hard, AI-specific risks are exactly the ones notation still struggles with, and the cross-team comparison shows the gaps were placed on purpose. That is the session.</p>
+<hr />
+<h1>Flex and contingency</h1>
+<p>If running long, in this order: drop the audience challenge in one or two rounds; shorten the close harvest to two groups reporting; trim the Block 3 prep to four minutes; hold each judge to one distractor plus the wildcard instead of two.</p>
+<p>Never cut: the three review rounds, and the reveal in the close.</p>
+<p>If running short: let the board throw the second distractor it was holding, extend the cross-comparison, and collect more invented notation. The richest output of this session is the vocabulary the room builds.</p></div></details></section>
+<section id="slides" class="section reveal"><h2 class="section-title"><span class="n">06</span>Slide Prompt</h2><p class="section-lead">A ready prompt for Claude Design to build the opening Setting the Scene deck.</p><details class="doc"><summary>setting-the-scene.prompt <span class="hint">paste into Claude Design</span></summary><div class="promptwrap"><button class="copy" data-target="sp">Copy</button><pre id="sp"><code>You are designing the opening segment, &quot;Setting the Scene&quot;, of a 90-minute hands-on workshop at Architect Dreamin called &quot;Drawing the Unseen: How to Diagram AI in Your Salesforce Architecture&quot;. This is the first 10 minutes: two speakers introduce themselves, then we set up a fictional scenario and its three executive stakeholders. After this, the audience (~15 architects) will design AI into a Salesforce architecture and defend it to a board.
+
+Build a 7-slide deck, 16:9. Presenter-facing: large type, one idea per slide, very few words. This is a talk, not a document, so no dense bullet lists. No marketing jargon. No em-dashes.
+
+DESIGN SYSTEM (match the workshop&#x27;s hand-notation aesthetic so the deck feels of a piece with the diagrams):
+- Background: warm paper / cream #F6F4EE, optionally a very faint graph-paper grid.
+- Ink (primary text, &quot;the known&quot;): near-black #1C1C1A.
+- Accent (AI-specific, highlights): blue #1E55C0, light fill #EEF3FC.
+- Amber (tension, open questions): #C2871A, light fill #F6ECD6.
+- Muted text #6B6960, hairlines #D9D5CB.
+- Type: monospace-forward (JetBrains Mono or IBM Plex Mono feel) for titles, labels, and the stakeholder quotes; a clean neutral sans is fine for any longer line. Technical notebook / architect&#x27;s blueprint mood: thin rules, the occasional dashed box, a probabilistic rounded box with a &quot;~&quot; to foreshadow the notation.
+- Tone: confident, plain, calm. The title idea is &quot;the unseen&quot;: something hand-sketched being made visible.
+- Stakeholders are fictional, so use stylized illustrative avatars or monogram/icon treatments, never realistic photos. For the two real speakers, leave clearly labelled photo placeholders.
+
+SLIDES:
+
+1) TITLE
+- &quot;Drawing the Unseen&quot;
+- Subtitle: &quot;How to Diagram AI in Your Salesforce Architecture&quot;
+- Small: &quot;Architect Dreamin - hands-on workshop&quot;
+- Footer with the two presenters&#x27; names/handles, small.
+- Visual: a faint sketch revealing a clean diagram, or a dashed &quot;AI&quot; box with a &quot;~&quot;, hinting at notation.
+
+2) THE TWO SPEAKERS (two-up, parallel layout, one column each)
+- Speaker 1: photo placeholder; name &quot;Christopher Ramm&quot;; role &quot;[Salesforce CTA - Salesforce MVP 2025 - DCX CTO Germany @ Capgemini - indie dev @ cramm.dev - confirm/trim]&quot;; one short line of personality (placeholder).
+- Speaker 2: photo placeholder &quot;[SPEAKER 2 PHOTO]&quot;; &quot;[SPEAKER 2 NAME]&quot;; &quot;[SPEAKER 2 ROLE]&quot;; &quot;[one short personal line]&quot;.
+- Keep both columns visually identical in weight.
+
+3) TODAY, IN ONE LINE
+- Headline: &quot;You will design AI into a Salesforce architecture, and defend it to a board that won&#x27;t accept a vague box.&quot;
+- Small promise line: &quot;You leave with a notation kit and two diagrams you drew yourself.&quot;
+
+4) MEET MERIDIAN MOBILITY GROUP
+- &quot;Meridian Mobility Group (MMG)&quot; with a one-line descriptor: &quot;A European automotive retail and service group. Not a manufacturer.&quot;
+- A simple landscape sketch: Salesforce Automotive Cloud (Sales + Service) at the centre, with eight surrounding systems labelled around it: DMS, OEM telematics, ERP (SAP), marketing automation, CTI, service scheduling, Data Cloud, customer portal + identity (SSO). Centre in ink, clean boxes.
+- A small strip of scale figures: &quot;8 countries - ~600 locations - ~4M customers - ~8M inbound contacts a year - no AI in production yet.&quot;
+
+5) THE MANDATE (the hero slide, mostly empty space)
+- Big, centred: &quot;Embed AI more deeply into the product to drive growth and efficiency.&quot;
+- Beneath, smaller, in amber: &quot;That&#x27;s the whole brief. It&#x27;s vague on purpose.&quot;
+
+6) THREE EXECUTIVES, THREE READINGS (three-up, one column each, stylized avatar + name + role + their line)
+- Helena Vance - CEO - ambition. Quote: &quot;I want customers talking to our AI by Q3, and I want it in the announcement.&quot;
+- Marcus Reinhardt - CISO &amp; CDO - risk. Quote: &quot;Where does the customer&#x27;s data go the second it touches a model, and who can prove it?&quot;
+- Priya Anand - CIO - feasibility &amp; cost. Quote: &quot;Show me the cost at 10,000 conversations a day, and who operates this at 2 a.m.&quot;
+- Make each quote the hero text of its column.
+
+7) YOUR JOB
+- Centred, large: &quot;Satisfy all three. Not one. All three.&quot;
+- Quiet transition line beneath: &quot;Let&#x27;s draw.&quot;
+
+Produce slide 1 first so I can confirm the visual direction, then build the rest in the same system. Keep everything editable.</code></pre></div></details></section>
+<footer class="foot"><div class="rule"></div>
+Drawing the Unseen &#183; Meridian Mobility Group is a fictional scenario built for this workshop.<br>
+Built for Architect Dreamin. Notation kit v0.1 &#8594; v1.0 is the community output of the session.
+</footer>
+</main>
+</div></div>
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const links=[...document.querySelectorAll('.toc a')];
+const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+const so=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map.get(e.target.id);if(a)a.classList.add('active')}})},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target);try{await navigator.clipboard.writeText(t.innerText);b.textContent='Copied';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done')},1600)}catch(e){b.textContent='Select all'}}));
+</script>
+</body>
+</html>

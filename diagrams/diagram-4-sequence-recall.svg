@@ -1,0 +1,74 @@
+<svg viewBox="0 0 1080 820" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="amb" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#C2871A"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="820" fill="#F6F4EE"/>
+
+  <text x="44" y="60" font-size="24" font-weight="700" fill="#1C1C1A">Recall Safety Question</text>
+  <text x="46" y="84" font-size="12" fill="#6B6960">sequence view &#183; "is my car safe to drive?" &#183; the act-vs-defer decision a static diagram hides</text>
+
+  <rect x="916" y="34" width="13" height="13" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="935" y="44" font-size="9" fill="#1E55C0">AI-specific</text>
+  <rect x="916" y="52" width="13" height="13" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="935" y="62" font-size="9" fill="#9A6A14">beyond kit v0.1</text>
+
+  <line x1="44" y1="100" x2="1036" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- lifeline headers -->
+  <rect x="40" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="100" y="146" text-anchor="middle" font-size="10">Customer</text>
+  <rect x="190" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="250" y="146" text-anchor="middle" font-size="9">Agent UI / Channel</text>
+  <rect x="360" y="124" width="120" height="36" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/><text x="420" y="146" text-anchor="middle" font-size="9" fill="#1E55C0">Agentforce Agent</text>
+  <rect x="525" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="585" y="143" text-anchor="middle" font-size="9">Grounding</text><text x="585" y="154" text-anchor="middle" font-size="8" fill="#6B6960">(recall data)</text>
+  <rect x="685" y="124" width="120" height="36" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/><text x="745" y="143" text-anchor="middle" font-size="9" fill="#1E55C0">Model</text><text x="745" y="154" text-anchor="middle" font-size="8" fill="#6B6960">(via Gateway)</text>
+  <rect x="860" y="124" width="120" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="920" y="146" text-anchor="middle" font-size="10">Human Advisor</text>
+
+  <!-- lifelines -->
+  <line x1="100" y1="160" x2="100" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="250" y1="160" x2="250" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="420" y1="160" x2="420" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="585" y1="160" x2="585" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="745" y1="160" x2="745" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="920" y1="160" x2="920" y2="770" stroke="#B9B4A6" stroke-width="1" stroke-dasharray="3 4"/>
+
+  <!-- activation bar on agent -->
+  <rect x="416" y="230" width="8" height="338" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1"/>
+
+  <!-- AI disclosure -->
+  <text x="250" y="184" text-anchor="middle" font-size="8" fill="#9A6A14">AI disclosed to customer</text>
+
+  <!-- messages -->
+  <line x1="100" y1="206" x2="248" y2="206" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="174" y="200" text-anchor="middle" font-size="9">is my car safe to drive?</text>
+  <line x1="250" y1="234" x2="416" y2="234" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="333" y="228" text-anchor="middle" font-size="9">forward request</text>
+
+  <path d="M432 256 a10 10 0 1 1 -7 -7" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/><text x="470" y="268" font-size="9" fill="#1E55C0">reasons</text>
+
+  <line x1="424" y1="300" x2="583" y2="300" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="502" y="294" text-anchor="middle" font-size="9">recall status for VIN</text>
+  <line x1="585" y1="334" x2="426" y2="334" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="502" y="328" text-anchor="middle" font-size="9">recall data</text>
+  <text x="700" y="334" font-size="8" fill="#9A6A14">alt: empty &#8594; do not guess</text>
+
+  <line x1="424" y1="376" x2="743" y2="376" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/><text x="500" y="370" text-anchor="middle" font-size="9" fill="#1E55C0">draft grounded answer</text>
+  <rect x="652" y="364" width="44" height="13" rx="2" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1"/><text x="674" y="374" text-anchor="middle" font-size="8" fill="#1E55C0">mask</text>
+  <line x1="745" y1="408" x2="426" y2="408" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/><text x="565" y="402" text-anchor="middle" font-size="9" fill="#1E55C0">draft + confidence</text>
+
+  <!-- confidence gate -->
+  <polygon points="420,432 438,450 420,468 402,450" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.6"/>
+  <text x="392" y="446" text-anchor="end" font-size="9" fill="#9A6A14">safety-critical</text>
+  <text x="392" y="458" text-anchor="end" font-size="9" fill="#9A6A14">OR conf &lt; threshold?</text>
+
+  <!-- defer branch -->
+  <line x1="424" y1="492" x2="918" y2="492" stroke="#C2871A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#amb)"/><text x="670" y="486" text-anchor="middle" font-size="9" fill="#9A6A14">escalate with full context</text>
+  <line x1="920" y1="526" x2="426" y2="526" stroke="#C2871A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#amb)"/><text x="670" y="520" text-anchor="middle" font-size="9" fill="#9A6A14">verified guidance / approve</text>
+
+  <line x1="416" y1="564" x2="252" y2="564" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="333" y="558" text-anchor="middle" font-size="9">safe answer + step</text>
+  <line x1="250" y1="592" x2="102" y2="592" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="174" y="586" text-anchor="middle" font-size="9">answer + booking</text>
+
+  <!-- notes -->
+  <rect x="360" y="630" width="380" height="34" rx="4" fill="#FFFFFF" stroke="#C2871A" stroke-width="1.3"/>
+  <text x="550" y="651" text-anchor="middle" font-size="9" fill="#9A6A14">if recall confirmed: book service &#8594; action logged</text>
+  <text x="44" y="694" font-size="10" fill="#6B6960">Non-safety question with high confidence: the agent answers directly and the escalate / approve steps are skipped.</text>
+  <text x="44" y="712" font-size="10" fill="#6B6960">A safety question is never answered by the model alone. That rule is the whole point of drawing the gate.</text>
+
+  <text x="44" y="800" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; sequence view</text>
+</svg>

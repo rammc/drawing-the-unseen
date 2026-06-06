@@ -1,0 +1,57 @@
+<svg viewBox="0 0 1123 640" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="up" markerWidth="10" markerHeight="10" refX="4.5" refY="2" orient="auto"><path d="M4.5 0 L9 9 L0 9 z" fill="#1C1C1A"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1123" height="640" fill="#F6F4EE"/>
+
+  <text x="44" y="60" font-size="24" font-weight="700" fill="#1C1C1A">Autonomy &amp; Authority Map</text>
+  <text x="46" y="84" font-size="12" fill="#6B6960">what the agent may do alone, what needs a human, what is off-limits &#183; gap D2 as an envelope</text>
+
+  <text x="900" y="48" font-size="9" fill="#1C1C1A">[R] read</text>
+  <text x="900" y="64" font-size="9" fill="#1C1C1A">[W] write / commit</text>
+
+  <line x1="44" y1="100" x2="1079" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- impact axis -->
+  <line x1="54" y1="438" x2="54" y2="150" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#up)"/>
+  <text x="44" y="300" font-size="9" fill="#6B6960" transform="rotate(-90 44 300)">blast radius</text>
+
+  <!-- forbidden band -->
+  <rect x="80" y="144" width="999" height="28" fill="#1C1C1A"/>
+  <text x="92" y="163" font-size="12" font-weight="700" fill="#FFFFFF">FORBIDDEN TO AUTOMATE &#183; a human decides</text>
+  <g font-size="10" fill="#1C1C1A">
+    <rect x="92" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="104" y="207">Confirm car is safe to drive</text><rect x="262" y="194" width="50" height="16" rx="2" fill="#1C1C1A"/><text x="287" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">safety</text>
+    <rect x="336" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="348" y="207">Final credit / financing</text><rect x="528" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="542" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="580" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="592" y="207">Send binding commitment</text><rect x="772" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="786" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="824" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="836" y="207">Irreversible data deletion</text><rect x="1016" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="1030" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+  </g>
+
+  <!-- approval band -->
+  <rect x="80" y="246" width="999" height="28" fill="#C2871A"/>
+  <text x="92" y="265" font-size="12" font-weight="700" fill="#FFFFFF">NEEDS HUMAN APPROVAL BEFORE COMMIT</text>
+  <g font-size="10" fill="#9A6A14">
+    <rect x="92" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="104" y="309">Book / reschedule service</text><rect x="278" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="295" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="336" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="348" y="309">Goodwill credit over limit</text><rect x="522" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="539" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="580" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="592" y="309">Launch proactive outreach</text><rect x="766" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="783" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+    <rect x="824" y="282" width="232" height="44" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/><text x="836" y="309">Commit trade-in offer</text><rect x="1010" y="296" width="34" height="16" rx="2" fill="#C2871A"/><text x="1027" y="308" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
+  </g>
+
+  <!-- autonomous band -->
+  <rect x="80" y="348" width="999" height="28" fill="#1E55C0"/>
+  <text x="92" y="367" font-size="12" font-weight="700" fill="#FFFFFF">AUTONOMOUS &#183; the agent may act</text>
+  <g font-size="10" fill="#1E55C0">
+    <rect x="92" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="104" y="411">Answer grounded FAQ / status</text><rect x="288" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="302" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+    <rect x="336" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="348" y="411">Look up vehicle / recall</text><rect x="532" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="546" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+    <rect x="580" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="592" y="411">Draft reply for advisor</text><rect x="776" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="790" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+    <rect x="824" y="384" width="232" height="44" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="836" y="411">Translate / summarize</text><rect x="1020" y="398" width="28" height="16" rx="2" fill="#1E55C0"/><text x="1034" y="410" text-anchor="middle" font-size="8" fill="#FFFFFF">R</text>
+  </g>
+
+  <!-- failure modes -->
+  <text x="44" y="476" font-size="11" font-weight="700" fill="#1C1C1A">Two failure modes this map prevents</text>
+  <text x="44" y="498" font-size="10" fill="#6B6960">Push everything up into approval and the agent becomes safe but useless theater. That is the Piglet Agent.</text>
+  <text x="44" y="516" font-size="10" fill="#6B6960">Let write actions slip down into autonomous with no declared authority and nobody approved what it did. That is the Undocumented Genius.</text>
+  <text x="44" y="534" font-size="10" fill="#6B6960">The line between the bands is the decision the board actually signs off, not the technology.</text>
+
+  <text x="44" y="612" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; autonomy &amp; authority map</text>
+</svg>

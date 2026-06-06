@@ -1,0 +1,76 @@
+<svg viewBox="0 0 1123 760" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1123" height="760" fill="#F6F4EE"/>
+
+  <text x="44" y="62" font-size="25" font-weight="700" fill="#1C1C1A">Cost, Latency &amp; Staging</text>
+  <text x="46" y="86" font-size="12" fill="#6B6960">Priya's view, and an honest timeline for Helena</text>
+
+  <rect x="916" y="52" width="13" height="13" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.5"/><text x="935" y="62" font-size="9" fill="#9A6A14">cost / latency (beyond kit v0.1)</text>
+
+  <line x1="44" y1="100" x2="1079" y2="100" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- volume -->
+  <text x="44" y="128" font-size="12" font-weight="700" fill="#8C8576" letter-spacing="1px">VOLUME &amp; UNIT ECONOMICS</text>
+  <rect x="60" y="144" width="470" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/><text x="295" y="164" text-anchor="middle" font-size="11">8 million inbound contacts / year</text>
+  <rect x="110" y="184" width="370" height="28" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="295" y="203" text-anchor="middle" font-size="10" fill="#1E55C0">AI triage (cheap, fast model)</text>
+  <rect x="150" y="220" width="170" height="40" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="235" y="244" text-anchor="middle" font-size="10" fill="#1E55C0">resolved by AI ~60%</text>
+  <rect x="322" y="220" width="158" height="40" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="401" y="244" text-anchor="middle" font-size="10">to human ~40%</text>
+  <text x="60" y="282" font-size="9" font-style="italic" fill="#9A958A">percentages illustrative</text>
+
+  <!-- model tiering -->
+  <text x="60" y="318" font-size="10" fill="#6B6960">tiering:</text>
+  <rect x="118" y="304" width="96" height="28" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="166" y="323" text-anchor="middle" font-size="10" fill="#1E55C0">triage ~</text>
+  <line x1="214" y1="318" x2="266" y2="318" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/><text x="240" y="312" text-anchor="middle" font-size="8" fill="#1E55C0">hard cases</text>
+  <rect x="270" y="304" width="120" height="28" rx="6" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4"/><text x="330" y="323" text-anchor="middle" font-size="10" fill="#1E55C0">deep model ~</text>
+
+  <!-- cost latency panel -->
+  <text x="560" y="128" font-size="12" font-weight="700" fill="#8C8576" letter-spacing="1px">COST &amp; LATENCY PER STEP</text>
+  <text x="576" y="166" font-size="11" fill="#1C1C1A">triage model</text><rect x="830" y="152" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="166" text-anchor="middle" font-size="9" fill="#9A6A14">low cost &#183; ~0.8s</text>
+  <text x="576" y="196" font-size="11" fill="#1C1C1A">deep model (hard cases)</text><rect x="830" y="182" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="196" text-anchor="middle" font-size="9" fill="#9A6A14">high cost &#183; ~2.5s</text>
+  <text x="576" y="226" font-size="11" fill="#1C1C1A">voice: STT + TTS</text><rect x="830" y="212" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="226" text-anchor="middle" font-size="9" fill="#9A6A14">+ latency budget</text>
+  <text x="576" y="256" font-size="11" fill="#1C1C1A">human advisor</text><rect x="830" y="242" width="220" height="20" rx="3" fill="#F6ECD6" stroke="#C2871A" stroke-width="1"/><text x="940" y="256" text-anchor="middle" font-size="9" fill="#9A6A14">highest cost</text>
+  <text x="560" y="296" font-size="9" font-style="italic" fill="#9A958A">the diagram has to carry these; the base kit cannot</text>
+
+  <line x1="44" y1="356" x2="1079" y2="356" stroke="#D9D5CB" stroke-width="1"/>
+
+  <!-- staging -->
+  <text x="44" y="386" font-size="12" font-weight="700" fill="#8C8576" letter-spacing="1px">STAGING &#183; sequence the technology, the capabilities are stable</text>
+
+  <rect x="60" y="400" width="320" height="32" fill="#1E55C0"/><text x="220" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">PHASE 1 &#183; target Q3</text>
+  <rect x="60" y="432" width="320" height="178" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="76" y="458" font-size="11" fill="#1C1C1A">&#8226; Agent-assist for advisors</text>
+  <text x="76" y="482" font-size="11" fill="#1C1C1A">&#8226; Grounded self-service answers</text>
+  <text x="76" y="534" font-size="11" font-weight="700" fill="#1C1C1A">Risk: low</text>
+  <text x="76" y="558" font-size="11" fill="#1C1C1A">Gate: human in the loop</text>
+  <text x="76" y="592" font-size="10" font-style="italic" fill="#1E55C0">Helena's announcement lands here</text>
+
+  <rect x="408" y="400" width="320" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="568" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1C1A">PHASE 2</text>
+  <rect x="408" y="432" width="320" height="178" fill="#FFFFFF" stroke="#D9D5CB" stroke-width="1.4"/>
+  <text x="424" y="458" font-size="11" fill="#1C1C1A">&#8226; Autonomous service agent (routine)</text>
+  <text x="424" y="482" font-size="11" fill="#1C1C1A">&#8226; Voice channel</text>
+  <text x="424" y="506" font-size="11" fill="#1C1C1A">&#8226; Proactive telematics outreach</text>
+  <text x="424" y="544" font-size="11" font-weight="700" fill="#1C1C1A">Risk: medium</text>
+  <text x="424" y="568" font-size="11" fill="#1C1C1A">Gate: confidence + observability</text>
+
+  <rect x="756" y="400" width="320" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="916" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1C1A">PHASE 3</text>
+  <rect x="756" y="432" width="320" height="178" fill="#FFFFFF" stroke="#D9D5CB" stroke-width="1.4"/>
+  <text x="772" y="458" font-size="11" fill="#1C1C1A">&#8226; Broader autonomy</text>
+  <text x="772" y="482" font-size="11" fill="#1C1C1A">&#8226; More languages + vision trade-in</text>
+  <text x="772" y="506" font-size="11" fill="#1C1C1A">&#8226; A2A only with a real counterparty</text>
+  <text x="772" y="544" font-size="11" font-weight="700" fill="#1C1C1A">Risk: higher</text>
+  <text x="772" y="568" font-size="11" fill="#1C1C1A">Gate: proven metrics</text>
+
+  <!-- timeline -->
+  <line x1="60" y1="632" x2="1076" y2="632" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/>
+  <line x1="220" y1="627" x2="220" y2="637" stroke="#1C1C1A" stroke-width="1.4"/><text x="220" y="652" text-anchor="middle" font-size="9" fill="#6B6960">Q3</text>
+  <line x1="568" y1="627" x2="568" y2="637" stroke="#1C1C1A" stroke-width="1.4"/><text x="568" y="652" text-anchor="middle" font-size="9" fill="#6B6960">later</text>
+  <line x1="916" y1="627" x2="916" y2="637" stroke="#1C1C1A" stroke-width="1.4"/><text x="916" y="652" text-anchor="middle" font-size="9" fill="#6B6960">later still</text>
+
+  <text x="44" y="690" font-size="10" fill="#6B6960">Numbers are illustrative. The point is that the diagram can carry cost, latency, and sequence at all, which is exactly where the base kit ran out.</text>
+  <text x="44" y="708" font-size="10" fill="#6B6960">This gives Helena a real Q3 (Phase 1) and Priya a cost-managed ramp instead of a big-bang.</text>
+  <text x="44" y="740" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; cost, latency &amp; staging</text>
+</svg>

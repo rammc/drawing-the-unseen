@@ -1,0 +1,177 @@
+<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','SFMono-Regular','DejaVu Sans Mono',monospace">
+  <defs>
+    <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
+    <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
+    <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <style>
+      .sec  { font-size:14px; font-weight:700; fill:#1C1C1A; letter-spacing:1.5px; }
+      .sub  { font-size:10px; fill:#6B6960; }
+      .lbl  { font-size:12px; fill:#1C1C1A; }
+      .lbls { font-size:10px; fill:#1C1C1A; }
+      .cap  { font-size:10px; fill:#6B6960; }
+      .acc  { fill:#1E55C0; }
+      .ambh { font-size:12px; font-weight:700; fill:#9A6A14; letter-spacing:1px; }
+    </style>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1123" height="794" fill="#F6F4EE"/>
+
+  <!-- header -->
+  <text x="44" y="92" font-size="30" font-weight="700" letter-spacing="3" fill="#1C1C1A">AI NOTATION KIT</text>
+  <text x="46" y="116" class="sub">v0.1 &#183; drawing AI components in Salesforce architecture diagrams</text>
+  <text x="46" y="140" font-size="12" fill="#6B6960" font-style="italic">A starter vocabulary. Extend it. Break it.</text>
+
+  <!-- header key -->
+  <rect x="820" y="62" width="15" height="15" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="843" y="74" class="lbls">black ink &#61; existing convention</text>
+  <rect x="820" y="86" width="15" height="15" rx="3" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="843" y="98" font-size="10" fill="#1E55C0">accent &#61; new &#183; AI-specific (2nd marker colour)</text>
+
+  <line x1="44" y1="156" x2="1079" y2="156" stroke="#D9D5CB" stroke-width="1"/>
+  <line x1="568" y1="176" x2="568" y2="686" stroke="#E4E0D6" stroke-width="1"/>
+
+  <!-- ================= LEFT COLUMN ================= -->
+
+  <!-- 1 NODES -->
+  <text x="44" y="192" class="sec">1 &#183; NODES</text>
+  <!-- deterministic -->
+  <rect x="54" y="210" width="120" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="114" y="236" text-anchor="middle" class="lbl">Flow / Apex</text>
+  <text x="114" y="274" text-anchor="middle" class="cap">deterministic</text>
+  <text x="114" y="286" text-anchor="middle" class="cap">same in, same out</text>
+  <!-- probabilistic -->
+  <rect x="224" y="210" width="120" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="334" y="226" font-size="17" font-weight="700" class="acc">~</text>
+  <text x="284" y="236" text-anchor="middle" class="lbl">model call</text>
+  <text x="284" y="274" text-anchor="middle" class="cap">probabilistic</text>
+  <text x="284" y="286" text-anchor="middle" class="cap">output may vary</text>
+  <!-- agent -->
+  <rect x="394" y="210" width="120" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <path d="M512 203 a9 9 0 1 1 -6 -6" fill="none" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#agr)"/>
+  <text x="454" y="236" text-anchor="middle" class="lbl">agent</text>
+  <text x="454" y="274" text-anchor="middle" class="cap">reasons &#183; may loop</text>
+
+  <!-- 2 GROUNDING -->
+  <text x="44" y="316" class="sec">2 &#183; GROUNDING</text>
+  <!-- cylinder -->
+  <path d="M54 342 v28 a40 8 0 0 0 80 0 v-28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <ellipse cx="94" cy="342" rx="40" ry="8" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="94" y="360" text-anchor="middle" class="cap">knowledge</text>
+  <!-- retrieve -->
+  <line x1="134" y1="356" x2="170" y2="356" stroke="#1C1C1A" stroke-width="1.6" marker-end="url(#aink)"/>
+  <rect x="174" y="338" width="80" height="36" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="214" y="360" text-anchor="middle" class="lbls">retrieve</text>
+  <!-- grounds -->
+  <text x="302" y="348" text-anchor="middle" font-size="9" class="acc">grounds</text>
+  <line x1="254" y1="356" x2="350" y2="356" stroke="#1E55C0" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <rect x="354" y="336" width="86" height="40" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="397" y="360" text-anchor="middle" class="lbls">model</text>
+  <text x="54" y="398" class="cap">retrieve &#183; deterministic search (can return nothing &#8594; a silent gap)</text>
+  <text x="54" y="411" class="cap">grounds &#183; shapes the output, it is not passed through verbatim</text>
+
+  <!-- 3 TRUST BOUNDARY -->
+  <text x="44" y="440" class="sec">3 &#183; TRUST BOUNDARY</text>
+  <text x="262" y="440" class="sub">canonical: Einstein Trust Layer</text>
+  <!-- band -->
+  <rect x="252" y="470" width="96" height="124" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="300" y="500" text-anchor="middle" font-size="10" class="acc">mask PII</text>
+  <text x="300" y="522" text-anchor="middle" font-size="10" class="acc">ground-check</text>
+  <text x="300" y="544" text-anchor="middle" font-size="10" class="acc">zero-retain</text>
+  <text x="300" y="566" text-anchor="middle" font-size="10" class="acc">log / audit</text>
+  <!-- prompt box -->
+  <rect x="60" y="510" width="120" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="120" y="536" text-anchor="middle" class="lbls">prompt + data</text>
+  <!-- model box -->
+  <rect x="420" y="510" width="110" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
+  <text x="475" y="536" text-anchor="middle" class="lbl">model</text>
+  <!-- inbound -->
+  <line x1="180" y1="520" x2="250" y2="520" stroke="#1C1C1A" stroke-width="1.6" marker-end="url(#aink)"/>
+  <line x1="350" y1="520" x2="418" y2="520" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aacc)"/>
+  <text x="215" y="514" text-anchor="middle" font-size="8" fill="#6B6960">in</text>
+  <text x="384" y="514" text-anchor="middle" font-size="8" fill="#6B6960">in</text>
+  <!-- outbound -->
+  <line x1="418" y1="544" x2="350" y2="544" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aacc)"/>
+  <line x1="250" y1="544" x2="182" y2="544" stroke="#1C1C1A" stroke-width="1.6" marker-end="url(#aink)"/>
+  <text x="384" y="558" text-anchor="middle" font-size="8" fill="#6B6960">out</text>
+  <text x="215" y="558" text-anchor="middle" font-size="8" fill="#6B6960">out</text>
+  <text x="60" y="610" class="cap">What happens the instant data touches a model. Draw it as a place,</text>
+  <text x="60" y="623" class="cap">not a line you wave at.</text>
+
+  <!-- house-rule note -->
+  <rect x="44" y="640" width="512" height="40" rx="5" fill="#FFFFFF" stroke="#D9D5CB" stroke-width="1"/>
+  <text x="58" y="657" font-size="10" font-weight="700" fill="#1C1C1A">Rule of thumb</text>
+  <text x="58" y="671" class="cap">If a box hides a decision (will it loop? can it refuse? where does data go?), the box is wrong.</text>
+
+  <!-- ================= RIGHT COLUMN ================= -->
+
+  <!-- 4 CONNECTORS -->
+  <text x="592" y="192" class="sec">4 &#183; CONNECTORS</text>
+  <line x1="600" y1="214" x2="710" y2="214" stroke="#1C1C1A" stroke-width="1.8" marker-end="url(#aink)"/>
+  <text x="726" y="210" class="lbl">data flow</text>
+  <text x="726" y="224" class="cap">what data moves where</text>
+
+  <line x1="600" y1="252" x2="710" y2="252" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aopen)"/>
+  <text x="726" y="248" font-size="12" class="acc">invokes / calls</text>
+  <text x="726" y="262" class="cap">triggers behaviour, not data</text>
+
+  <text x="600" y="290" font-size="11" font-weight="700" class="acc">action</text>
+  <line x1="600" y1="304" x2="664" y2="304" stroke="#1E55C0" stroke-width="2.2" marker-end="url(#aacc)"/>
+  <line x1="672" y1="294" x2="672" y2="316" stroke="#1C1C1A" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <rect x="682" y="290" width="92" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="728" y="308" text-anchor="middle" font-size="9" class="lbls">system of record</text>
+  <text x="592" y="336" class="cap">a typed, validated door out &#183; the agent does something real</text>
+
+  <!-- 5 PLANES -->
+  <text x="592" y="368" class="sec">5 &#183; PLANES</text>
+  <text x="592" y="382" class="sub">every component sits on exactly one</text>
+  <rect x="600" y="390" width="320" height="26" rx="13" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="614" y="407" font-size="11" class="acc">RUNTIME &#183; customer-facing</text>
+  <rect x="600" y="422" width="320" height="26" rx="13" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="614" y="439" font-size="11" fill="#1C1C1A">DELIVERY &#183; build / SDLC</text>
+  <rect x="600" y="454" width="320" height="26" rx="13" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.5"/>
+  <text x="614" y="471" font-size="11" fill="#1C1C1A">OPERATIONS &#183; internal / employee</text>
+  <text x="592" y="498" class="cap">Forces a decision: a build-time or internal tool cannot</text>
+  <text x="592" y="510" class="cap">hide inside the customer-facing runtime.</text>
+
+  <!-- WORKED EXAMPLE -->
+  <text x="592" y="540" font-size="12" font-weight="700" fill="#1C1C1A" letter-spacing="1px">WORKED EXAMPLE</text>
+  <text x="742" y="540" class="sub">&#183; book a service appointment, runtime plane</text>
+
+  <!-- main row -->
+  <rect x="596" y="566" width="62" height="30" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="627" y="585" text-anchor="middle" font-size="9">customer</text>
+  <line x1="658" y1="581" x2="688" y2="581" stroke="#1C1C1A" stroke-width="1.5" marker-end="url(#aink)"/>
+  <rect x="690" y="558" width="34" height="48" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <text x="707" y="578" text-anchor="middle" font-size="7" class="acc">mask</text>
+  <text x="707" y="596" text-anchor="middle" font-size="7" class="acc">log</text>
+  <line x1="724" y1="581" x2="754" y2="581" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/>
+  <rect x="756" y="564" width="72" height="34" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
+  <text x="788" y="585" text-anchor="middle" font-size="10">agent</text>
+  <text x="820" y="573" font-size="12" font-weight="700" class="acc">~</text>
+  <path d="M820 560 a6 6 0 1 1 -4 -4" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#agr)"/>
+  <text x="855" y="562" text-anchor="middle" font-size="8" class="acc">action</text>
+  <line x1="828" y1="576" x2="880" y2="576" stroke="#1E55C0" stroke-width="2" marker-end="url(#aacc)"/>
+  <rect x="882" y="564" width="92" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="928" y="584" text-anchor="middle" font-size="9">scheduling</text>
+
+  <!-- grounding branch -->
+  <path d="M658 616 v22 a30 6 0 0 0 60 0 v-22" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <ellipse cx="688" cy="616" rx="30" ry="6" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="688" y="631" text-anchor="middle" font-size="8">knowledge</text>
+  <line x1="712" y1="612" x2="772" y2="599" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <text x="735" y="598" text-anchor="middle" font-size="8" class="acc">grounds</text>
+
+  <text x="592" y="662" font-size="9" fill="#6B6960">boundary + probabilistic agent + grounding + a typed action &#183; one plane</text>
+
+  <!-- ================= KNOWN LIMITS ================= -->
+  <rect x="44" y="698" width="1035" height="60" rx="6" fill="#F6ECD6" stroke="#C2871A" stroke-width="1.4"/>
+  <text x="60" y="720" class="ambh">WHERE THIS KIT RUNS OUT &#183; v0.1</text>
+  <text x="60" y="738" font-size="10" fill="#1C1C1A">confidence (act vs defer) &#183; human oversight (who approves) &#183; data sensitivity (which arrows carry PII) &#183; cost + latency &#183; failure / fallback paths</text>
+  <text x="60" y="752" font-size="10" font-style="italic" fill="#6B6960">You will hit at least one of these today. Noticing where the notation breaks is the point.</text>
+
+  <!-- footer -->
+  <text x="44" y="782" font-size="9" fill="#9A958A">Drawing the Unseen &#183; Architect Dreamin</text>
+  <text x="1079" y="782" text-anchor="end" font-size="9" fill="#9A958A">extend &#183; break &#183; feed it back</text>
+</svg>
