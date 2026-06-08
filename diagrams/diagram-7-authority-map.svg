@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1123 640" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
-    <marker id="up" markerWidth="10" markerHeight="10" refX="4.5" refY="2" orient="auto"><path d="M4.5 0 L9 9 L0 9 z" fill="#1C1C1A"/></marker>
+    <marker id="up" markerWidth="10" markerHeight="10" refX="9" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#1C1C1A"/></marker>
   </defs>
 
   <rect x="0" y="0" width="1123" height="640" fill="#F6F4EE"/>
@@ -21,7 +21,7 @@
   <rect x="80" y="144" width="999" height="28" fill="#1C1C1A"/>
   <text x="92" y="163" font-size="12" font-weight="700" fill="#FFFFFF">FORBIDDEN TO AUTOMATE &#183; a human decides</text>
   <g font-size="10" fill="#1C1C1A">
-    <rect x="92" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="104" y="207">Confirm car safe to drive</text><rect x="266" y="194" width="46" height="16" rx="2" fill="#1C1C1A"/><text x="289" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">safety</text>
+    <rect x="92" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="104" y="207">Confirm car safe to drive</text><rect x="284" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="298" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
     <rect x="336" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="348" y="207">Final credit / financing</text><rect x="528" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="542" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
     <rect x="580" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="592" y="207">Send binding commitment</text><rect x="772" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="786" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
     <rect x="824" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="836" y="207">Irreversible data deletion</text><rect x="1016" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="1030" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
