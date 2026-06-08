@@ -4,6 +4,7 @@
     <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
     <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
     <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <marker id="aloop" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L5 3 L0 6 z" fill="#1E55C0"/></marker>
   </defs>
 
   <rect x="0" y="0" width="1123" height="800" fill="#F6F4EE"/>
@@ -47,8 +48,9 @@
 
   <!-- agent + assist -->
   <rect x="400" y="194" width="148" height="80" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
-  <text x="540" y="210" font-size="16" font-weight="700" fill="#1E55C0">~</text>
-  <path d="M520 188 a9 9 0 1 1 -6 -6" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/>
+  <text x="538" y="212" font-size="15" font-weight="700" fill="#1E55C0">~</text>
+  <!-- self-loop on top edge -->
+  <path d="M512 194 a9 9 0 1 1 18 0" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aloop)"/>
   <text x="474" y="238" text-anchor="middle" font-size="12">Agentforce</text>
   <text x="474" y="254" text-anchor="middle" font-size="12">Agent</text>
   <rect x="214" y="346" width="184" height="36" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>

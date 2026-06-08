@@ -227,6 +227,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
     <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
     <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
     <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <marker id="aloop" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L5 3 L0 6 z" fill="#1E55C0"/></marker>
     <style>
       .sec  { font-size:14px; font-weight:700; fill:#1C1C1A; letter-spacing:1.5px; }
       .sub  { font-size:10px; fill:#6B6960; }
@@ -272,7 +273,8 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="284" y="286" text-anchor="middle" class="cap">output may vary</text>
   <!-- agent -->
   <rect x="394" y="210" width="120" height="44" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
-  <path d="M512 203 a9 9 0 1 1 -6 -6" fill="none" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#agr)"/>
+  <!-- self-loop: starts and ends on top edge of agent box -->
+  <path d="M494 210 a8 8 0 1 1 16 0" fill="none" stroke="#1E55C0" stroke-width="1.6" marker-end="url(#aloop)"/>
   <text x="454" y="236" text-anchor="middle" class="lbl">agent</text>
   <text x="454" y="274" text-anchor="middle" class="cap">reasons &#183; may loop</text>
 
@@ -341,9 +343,9 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 
   <text x="600" y="290" font-size="11" font-weight="700" class="acc">action</text>
   <line x1="600" y1="304" x2="664" y2="304" stroke="#1E55C0" stroke-width="2.2" marker-end="url(#aacc)"/>
-  <line x1="672" y1="294" x2="672" y2="316" stroke="#1C1C1A" stroke-width="1.4" stroke-dasharray="3 3"/>
-  <rect x="682" y="290" width="92" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
-  <text x="728" y="308" text-anchor="middle" font-size="9" class="lbls">system of record</text>
+  <line x1="672" y1="290" x2="672" y2="318" stroke="#1C1C1A" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <rect x="678" y="290" width="106" height="28" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.6"/>
+  <text x="731" y="308" text-anchor="middle" font-size="9" class="lbls">system of record</text>
   <text x="592" y="336" class="cap">a typed, validated door out &#183; the agent does something real</text>
 
   <!-- 5 PLANES -->
@@ -371,20 +373,21 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="707" y="596" text-anchor="middle" font-size="7" class="acc">log</text>
   <line x1="724" y1="581" x2="754" y2="581" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aacc)"/>
   <rect x="756" y="564" width="72" height="34" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/>
-  <text x="788" y="585" text-anchor="middle" font-size="10">agent</text>
-  <text x="820" y="573" font-size="12" font-weight="700" class="acc">~</text>
-  <path d="M820 560 a6 6 0 1 1 -4 -4" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#agr)"/>
+  <text x="784" y="585" text-anchor="middle" font-size="10">agent</text>
+  <text x="816" y="578" font-size="11" font-weight="700" class="acc">~</text>
+  <!-- self-loop: starts and ends on top edge of agent box -->
+  <path d="M788 564 a6 6 0 1 1 12 0" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aloop)"/>
   <text x="855" y="562" text-anchor="middle" font-size="8" class="acc">action</text>
   <line x1="828" y1="576" x2="880" y2="576" stroke="#1E55C0" stroke-width="2" marker-end="url(#aacc)"/>
   <rect x="882" y="564" width="92" height="32" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
   <text x="928" y="584" text-anchor="middle" font-size="9">scheduling</text>
 
   <!-- grounding branch -->
-  <path d="M658 616 v22 a30 6 0 0 0 60 0 v-22" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
-  <ellipse cx="688" cy="616" rx="30" ry="6" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
-  <text x="688" y="631" text-anchor="middle" font-size="8">knowledge</text>
-  <line x1="712" y1="612" x2="772" y2="599" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#agr)"/>
-  <text x="735" y="598" text-anchor="middle" font-size="8" class="acc">grounds</text>
+  <path d="M658 622 v22 a30 6 0 0 0 60 0 v-22" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <ellipse cx="688" cy="622" rx="30" ry="6" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/>
+  <text x="688" y="637" text-anchor="middle" font-size="8">knowledge</text>
+  <line x1="718" y1="618" x2="768" y2="600" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#agr)"/>
+  <text x="746" y="624" text-anchor="middle" font-size="8" class="acc">grounds</text>
 
   <text x="592" y="662" font-size="9" fill="#6B6960">boundary + probabilistic agent + grounding + a typed action &#183; one plane</text>
 
@@ -397,8 +400,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <!-- footer -->
   <text x="44" y="782" font-size="9" fill="#9A958A">Drawing the Unseen &#183; Architect Dreamin</text>
   <text x="1079" y="782" text-anchor="end" font-size="9" fill="#9A958A">extend &#183; break &#183; feed it back</text>
-</svg>
-</div></figure></div></section>
+</svg></div></figure></div></section>
 <section id="cards" class="section reveal"><h2 class="section-title"><span class="n">03</span>Technology Cards</h2><p class="section-lead">The deck participants choose from, under a complexity budget.</p><details class="doc"><summary>mmg-tech-card-deck.md <span class="hint">the cards, the traps, and the facilitator key</span></summary><div class="prose"><p><strong>Scenario:</strong> Meridian Mobility Group (MMG)
 <strong>Use:</strong> Block 2 (Technology Fit). Groups select a subset of these cards to answer the shareholder mandate "embed AI more deeply into the product," then draw the resulting solution architecture using the notation kit.</p>
 <p>Accuracy note: cards describe architecture archetypes and where they sit, not feature GA status. Forward-looking productization claims are marked [Inference]. Verify the bleeding-edge ones (Voice, native MCP/A2A support) before fixing any dates with stakeholders.</p>
@@ -665,14 +667,14 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="48" y="510" font-size="11" fill="#6B6960">Capabilities are stable. The technology under each one (the cards) can change. That is the hedge against model and vendor churn.</text>
   <text x="48" y="528" font-size="11" fill="#6B6960">This map answers WHAT. The technology cards answer HOW.</text>
   <text x="48" y="556" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; capability view</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">02</span><span class="pt">Solution Architecture</span></div><figcaption class="pc">The shared base view. Helena reads the what, Priya the integration and operations, Marcus the data surface.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 800" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
     <marker id="aacc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
     <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
     <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <marker id="aloop" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L5 3 L0 6 z" fill="#1E55C0"/></marker>
   </defs>
 
   <rect x="0" y="0" width="1123" height="800" fill="#F6F4EE"/>
@@ -716,8 +718,9 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 
   <!-- agent + assist -->
   <rect x="400" y="194" width="148" height="80" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
-  <text x="540" y="210" font-size="16" font-weight="700" fill="#1E55C0">~</text>
-  <path d="M520 188 a9 9 0 1 1 -6 -6" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/>
+  <text x="538" y="212" font-size="15" font-weight="700" fill="#1E55C0">~</text>
+  <!-- self-loop on top edge -->
+  <path d="M512 194 a9 9 0 1 1 18 0" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aloop)"/>
   <text x="474" y="238" text-anchor="middle" font-size="12">Agentforce</text>
   <text x="474" y="254" text-anchor="middle" font-size="12">Agent</text>
   <rect x="214" y="346" width="184" height="36" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
@@ -779,8 +782,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <rect x="400" y="702" width="280" height="40" rx="6" fill="#FFFFFF" stroke="#B9B4A6" stroke-width="1.3" stroke-dasharray="4 3"/><text x="540" y="722" text-anchor="middle" font-size="10" fill="#8C8576">AI-assisted delivery (Claude Code)</text><text x="540" y="735" text-anchor="middle" font-size="8" fill="#8C8576">deliberately out of the customer runtime</text>
 
   <text x="44" y="780" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; solution architecture</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">03</span><span class="pt">AI Data Flow</span></div><figcaption class="pc">Marcus's view: PII, masking at the boundary, grounding scope, zero-retain, logging, and the human in the loop.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 600" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
@@ -788,6 +790,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
     <marker id="aopen" markerWidth="11" markerHeight="10" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#1E55C0" stroke-width="1.4"/></marker>
     <marker id="agr" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
     <marker id="amb" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#C2871A"/></marker>
+    <marker id="aloop" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L5 3 L0 6 z" fill="#1E55C0"/></marker>
   </defs>
 
   <rect x="0" y="0" width="1123" height="600" fill="#F6F4EE"/>
@@ -823,9 +826,10 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="358" y="226" font-size="8" fill="#1E55C0">protected zone (masked)</text>
 
   <rect x="372" y="296" width="118" height="58" rx="9" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.6"/>
-  <text x="431" y="330" text-anchor="middle" font-size="12" fill="#1E55C0">agent</text>
-  <text x="482" y="310" font-size="15" font-weight="700" fill="#1E55C0">~</text>
-  <path d="M470 290 a8 8 0 1 1 -5 -5" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/>
+  <text x="425" y="330" text-anchor="middle" font-size="12" fill="#1E55C0">agent</text>
+  <text x="478" y="313" font-size="14" font-weight="700" fill="#1E55C0">~</text>
+  <!-- self-loop on top edge -->
+  <path d="M453 296 a8 8 0 1 1 16 0" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#aloop)"/>
 
   <rect x="540" y="300" width="104" height="46" rx="6" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="592" y="327" text-anchor="middle" font-size="11" fill="#1E55C0">Model Gateway</text>
   <rect x="678" y="298" width="148" height="50" rx="6" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="752" y="320" text-anchor="middle" font-size="11" fill="#1E55C0">external model</text><text x="752" y="335" text-anchor="middle" font-size="8" fill="#6B6960">zero-retain</text>
@@ -867,8 +871,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <line x1="880" y1="434" x2="970" y2="462" stroke="#1E55C0" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#agr)"/>
 
   <text x="44" y="560" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; AI data flow</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">04</span><span class="pt">Sequence: the Recall Question</span></div><figcaption class="pc">"Is my car safe to drive?" The confidence gate and the defer-to-human path that a static diagram hides.</figcaption><div class="svgwrap"><svg viewBox="0 0 1080 820" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
@@ -913,7 +916,8 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <line x1="100" y1="206" x2="248" y2="206" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="174" y="200" text-anchor="middle" font-size="9">is my car safe to drive?</text>
   <line x1="250" y1="234" x2="416" y2="234" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="333" y="228" text-anchor="middle" font-size="9">forward request</text>
 
-  <path d="M432 256 a10 10 0 1 1 -7 -7" fill="none" stroke="#1E55C0" stroke-width="1.5" marker-end="url(#agr)"/><text x="470" y="268" font-size="9" fill="#1E55C0">reasons</text>
+  <!-- reflexive self-call on the activation bar -->
+  <path d="M424 252 h22 v14 h-22" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aacc)"/><text x="454" y="263" font-size="9" fill="#1E55C0">reasons</text>
 
   <line x1="424" y1="300" x2="583" y2="300" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="502" y="294" text-anchor="middle" font-size="9">recall status for VIN</text>
   <line x1="585" y1="334" x2="426" y2="334" stroke="#1C1C1A" stroke-width="1.4" marker-end="url(#aink)"/><text x="502" y="328" text-anchor="middle" font-size="9">recall data</text>
@@ -942,8 +946,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="44" y="712" font-size="10" fill="#6B6960">A safety question is never answered by the model alone. That rule is the whole point of drawing the gate.</text>
 
   <text x="44" y="800" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; sequence view</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">05</span><span class="pt">Cost, Latency and Staging</span></div><figcaption class="pc">Priya's economics, and an honest Q3 for Helena: Phase 1 ships first, the ramp is cost-managed.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 760" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="aink" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1C1C1A"/></marker>
@@ -1019,8 +1022,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="44" y="690" font-size="10" fill="#6B6960">Numbers are illustrative. The point is that the diagram can carry cost, latency, and sequence at all, which is exactly where the base kit ran out.</text>
   <text x="44" y="708" font-size="10" fill="#6B6960">This gives Helena a real Q3 (Phase 1) and Priya a cost-managed ramp instead of a big-bang.</text>
   <text x="44" y="740" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; cost, latency &amp; staging</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">06</span><span class="pt">Degradation Ladder</span></div><figcaption class="pc">The fallback view (gap D5). Every rung degrades capability, never safety. No blank failure, no guessed answer.</figcaption><div class="svgwrap"><svg viewBox="0 0 1000 780" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="amb" markerWidth="10" markerHeight="10" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#C2871A"/></marker>
@@ -1097,8 +1099,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="44" y="726" font-size="11" font-weight="700" fill="#1C1C1A">Every rung degrades capability, never safety.</text>
   <text x="44" y="744" font-size="11" fill="#6B6960">No rung is a blank failure, and no rung is a guessed answer. That invariant is what the kit could not express.</text>
   <text x="44" y="770" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; degradation ladder</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">07</span><span class="pt">Autonomy and Authority Map</span></div><figcaption class="pc">Gap D2 as an envelope: what the agent may do alone, what needs a human, what is off-limits. Prevents Piglet and Undocumented Genius.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 640" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="up" markerWidth="10" markerHeight="10" refX="4.5" refY="2" orient="auto"><path d="M4.5 0 L9 9 L0 9 z" fill="#1C1C1A"/></marker>
@@ -1122,7 +1123,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <rect x="80" y="144" width="999" height="28" fill="#1C1C1A"/>
   <text x="92" y="163" font-size="12" font-weight="700" fill="#FFFFFF">FORBIDDEN TO AUTOMATE &#183; a human decides</text>
   <g font-size="10" fill="#1C1C1A">
-    <rect x="92" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="104" y="207">Confirm car is safe to drive</text><rect x="262" y="194" width="50" height="16" rx="2" fill="#1C1C1A"/><text x="287" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">safety</text>
+    <rect x="92" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="104" y="207">Confirm car safe to drive</text><rect x="266" y="194" width="46" height="16" rx="2" fill="#1C1C1A"/><text x="289" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">safety</text>
     <rect x="336" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="348" y="207">Final credit / financing</text><rect x="528" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="542" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
     <rect x="580" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="592" y="207">Send binding commitment</text><rect x="772" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="786" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
     <rect x="824" y="180" width="232" height="44" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.4"/><text x="836" y="207">Irreversible data deletion</text><rect x="1016" y="194" width="28" height="16" rx="2" fill="#1C1C1A"/><text x="1030" y="206" text-anchor="middle" font-size="8" fill="#FFFFFF">W</text>
@@ -1155,12 +1156,12 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="44" y="534" font-size="10" fill="#6B6960">The line between the bands is the decision the board actually signs off, not the technology.</text>
 
   <text x="44" y="612" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; autonomy &amp; authority map</text>
-</svg>
-</div></figure>
+</svg></div></figure>
 <figure class="plate reveal"><div class="head"><span class="pn">08</span><span class="pt">The Magic Box vs Honest Notation</span></div><figcaption class="pc">The same system drawn two ways. One the board cannot sign off, one where every risk has a home.</figcaption><div class="svgwrap"><svg viewBox="0 0 1240 650" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
   <defs>
     <marker id="acc" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1E55C0"/></marker>
     <marker id="ga" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#1E55C0"/></marker>
+    <marker id="aloop" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L5 3 L0 6 z" fill="#1E55C0"/></marker>
   </defs>
 
   <rect x="0" y="0" width="1240" height="650" fill="#F6F4EE"/>
@@ -1216,7 +1217,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 
   <rect x="648" y="216" width="78" height="34" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.3"/><text x="687" y="237" text-anchor="middle" font-size="9">channels</text>
   <rect x="748" y="216" width="70" height="34" fill="#FFFFFF" stroke="#1C1C1A" stroke-width="1.3"/><text x="783" y="237" text-anchor="middle" font-size="9">core</text>
-  <rect x="840" y="210" width="88" height="46" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="884" y="238" text-anchor="middle" font-size="10" fill="#1E55C0">agent</text><text x="916" y="223" font-size="13" font-weight="700" fill="#1E55C0">~</text><path d="M906 206 a7 7 0 1 1 -5 -5" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#ga)"/>
+  <rect x="840" y="210" width="88" height="46" rx="8" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.5"/><text x="878" y="240" text-anchor="middle" font-size="10" fill="#1E55C0">agent</text><text x="912" y="226" font-size="13" font-weight="700" fill="#1E55C0">~</text><path d="M898 210 a7 7 0 1 1 14 0" fill="none" stroke="#1E55C0" stroke-width="1.4" marker-end="url(#aloop)"/>
   <text x="961" y="200" text-anchor="middle" font-size="8" fill="#1E55C0">mask</text>
   <rect x="944" y="206" width="34" height="54" rx="4" fill="#EEF3FC" stroke="#1E55C0" stroke-width="1.4" stroke-dasharray="4 3"/>
   <rect x="994" y="210" width="92" height="46" rx="8" fill="#FFFFFF" stroke="#1E55C0" stroke-width="1.5"/><text x="1040" y="238" text-anchor="middle" font-size="10" fill="#1E55C0">model</text>
@@ -1249,8 +1250,7 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="918" y="577" text-anchor="middle" font-size="12" font-weight="700" fill="#1E55C0">Reviewable: every risk has a home</text>
 
   <text x="44" y="628" font-size="10" font-style="italic" fill="#9A958A">Drawing the Unseen &#183; MMG &#183; magic box vs honest notation</text>
-</svg>
-</div></figure></div></section>
+</svg></div></figure></div></section>
 <section id="playbook" class="section reveal"><h2 class="section-title"><span class="n">05</span>Facilitator Playbook</h2><p class="section-lead">How to run all 90 minutes. Version 2: the board throws distractors live.</p><details class="doc"><summary>facilitator-playbook.md <span class="hint">blocks, judge cards, distractor deck, debrief</span></summary><div class="prose"><p>How to Diagram AI in Your Salesforce Architecture
 90 minutes · ~15 participants · 3 groups of 5 · Architect Dreamin</p>
 <p>Version 2: live judging. The board throws distractors on the fly during the presentations rather than dealing them in waves, and each team builds for a different MMG domain so the three architectures and pitches stay distinct.</p>
