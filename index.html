@@ -126,6 +126,9 @@ Architect Dreamin · 90 minutes · groups of 5</p>
 <p>The pressure to act is real. The manufacturers MMG represents are increasingly selling directly to customers through their own digital channels and agency models, which threatens the group's traditional position as the owner of the customer relationship. At the same time, customers now expect the same instant, self-service experience from a car group that they get from any consumer app. The board sees AI as the way to defend the customer relationship and to make the cost of serving it sustainable. That is the growth and the efficiency the shareholders are asking for, even if they have not put it in those words.</p>
 <p>Two facts shape what is possible. The customer experience today is fragmented and slow. A customer who calls, then chats, then visits a location usually has to repeat themselves, and advisors spend much of their day on the same routine questions rather than selling or resolving complex cases. The consolidation, however, left MMG with something valuable: a single unified customer and vehicle profile in the enterprise data platform, bringing together contact details, ownership, service history, and telematics. The raw material for a better experience already exists. It has simply never been put to work in the moment a customer is waiting.</p>
 <hr />
+<h2>The Constraints</h2>
+<p>None of this will be easy, and the constraints are exactly the kind that surface in an architecture review. Operating in eight countries means eight regulatory and language contexts: GDPR applies everywhere, but consent for marketing and for telematics data was captured differently in each market during the CRM consolidation, and the works councils in Germany and Austria must approve any tool that could be read as monitoring advisor performance. The EU AI Act is on every legal agenda, and any AI that gives safety-relevant guidance, such as recall advice, is expected to attract its higher-risk obligations. The manufacturer contracts add a second layer: each brand has its own rules on how its vehicle, telematics, and customer data may be used, several insist that the customer relationship is theirs, and at least one is piloting an agency model in which MMG legally sells on the manufacturer's behalf. The location network is a mix of fully owned dealerships and franchise partners, running three different dealer management systems on various versions, so no integration can assume one system of record at the retail edge. Data quality reflects the consolidation's age: duplicate customers across markets and stale vehicle ownership records still exist in the regions that migrated last. Demand is spiky, a single safety recall across one brand's model range can triple inbound contact volume within days and floods exactly the routine-question channels AI is meant to relieve. And while the Salesforce platform team is strong, it already carries the release calendar for eight markets, so anything new must fit an established governance cadence, a finite change budget, and a board that expects something visible within three quarters.</p>
+<hr />
 <h2>The System Landscape</h2>
 <p>Salesforce Automotive Cloud sits at the centre. Eight systems surround it and will be retained. Your worksheet shows them already.</p>
 <ol>
@@ -403,212 +406,206 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
   <text x="44" y="782" font-size="9" fill="#9A958A">Drawing the Unseen &#183; Architect Dreamin</text>
   <text x="1079" y="782" text-anchor="end" font-size="9" fill="#9A958A">extend &#183; break &#183; feed it back</text>
 </svg></div></figure></div></section>
-<section id="cards" class="section reveal"><h2 class="section-title"><span class="n">03</span>Technology Cards</h2><p class="section-lead">The deck participants choose from, under a complexity budget.</p><details class="doc"><summary>mmg-tech-card-deck.md <span class="hint">the cards, the traps, and the facilitator key</span></summary><div class="prose"><p><strong>Scenario:</strong> Meridian Mobility Group (MMG)
-<strong>Use:</strong> Block 2 (Technology Fit). Groups select a subset of these cards to answer the shareholder mandate "embed AI more deeply into the product," then draw the resulting solution architecture using the notation kit.</p>
+<section id="cards" class="section reveal"><h2 class="section-title"><span class="n">03</span>Technology Cards</h2><p class="section-lead">The deck participants choose from, under a 12-point cap.</p><details class="doc"><summary>mmg-tech-card-deck.md <span class="hint">the cards, the traps, and the facilitator key</span></summary><div class="prose"><p><strong>Scenario:</strong> Meridian Mobility Group (MMG)
+<strong>Use:</strong> Block 4 of the session. Groups select a subset of these cards under the point cap to answer the shareholder mandate "embed AI more deeply into the product," then draw the resulting solution architecture and AI data flow using the notation kit.</p>
 <p>Accuracy note: cards describe architecture archetypes and where they sit, not feature GA status. Forward-looking productization claims are marked [Inference]. Verify the bleeding-edge ones (Voice, native MCP/A2A support) before fixing any dates with stakeholders.</p>
 <hr />
 <h2>How the cards work</h2>
-<p>Each card is one technology approach. They span a real complexity gradient, from configuration to cross-vendor orchestration. There is no single correct set. A strong answer matches ambition (Helena), risk and compliance (Marcus), and cost and operability (Priya) at the same time.</p>
-<p><strong>Complexity tiers:</strong> Low, Moderate, High, Very High.
-<strong>Two axes that decide everything:</strong> where the component lives (which plane of which diagram), and whether its behaviour is deterministic or probabilistic.</p>
+<p>Each card is one technology approach. There is no single correct set. A strong answer matches ambition (Helena), risk and compliance (Marcus), and cost and operability (Priya) at the same time.</p>
+<p><strong>The point model, all the rules.</strong> Put these on screen for the whole block.</p>
+<ul>
+<li><strong>Cap.</strong> You have 12 effort points per team. Spend more and Priya walks out.</li>
+<li><strong>Cost.</strong> Each card shows a cost from 1 to 7. Higher cost means more to build, more to run, and more to govern.</li>
+<li><strong>Discounts.</strong> Three cards carry a blue star with a minus one. Each lowers the cost of another card by 1: MCP discounts your custom actions and extra integrations, AI-Assisted Delivery discounts every build-heavy card, and the Model Gateway discounts extra model cards. A card never drops below 1 point, and at most one discount applies to any single card.</li>
+<li><strong>Defends.</strong> Four cards carry a blue star that gives a head start in the review: Grounded RAG defends safety, Agent-Assist defends oversight, Observability and Evaluation defends operability, and the Model Gateway defends a vendor change. A defense is a head start, not immunity. You still have to draw the thing on the diagram for the executive to accept it.</li>
+<li><strong>The point.</strong> Twelve points is not enough for everything. Choose what actually serves your domain and your three executives, and be ready to defend the trade-offs.</li>
+</ul>
+<p><strong>Two axes that decide everything:</strong> where the component lives (which plane of which diagram), and whether its behaviour is deterministic or probabilistic.</p>
 <hr />
 <h1>Section A: The Cards</h1>
-<h3>01. Grounded Prompt Templates (Prompt Builder)</h3>
+<h3>01. Prompt Templates (Prompt Builder)</h3>
 <ul>
-<li><strong>Tier:</strong> Low</li>
+<li><strong>Cost:</strong> 1</li>
 <li><strong>What:</strong> Generative prompts grounded in record and field data, embedded in Flows and Lightning pages. Produces drafts, summaries, and recommendations inside screens people already use.</li>
 <li><strong>Placement:</strong> Runtime, inside the Salesforce platform. A probabilistic call that crosses the trust boundary and returns into a deterministic Flow or UI. No new system.</li>
 <li><strong>Appeals to:</strong> Priya (cheap, contained). Helena in part (visible, not headline material).</li>
-<li><strong>Cost and complexity:</strong> Lowest. Configuration over engineering. Fast to ship.</li>
 <li><strong>Watch-out:</strong> Output is only as good as the grounding context you pass in. Easy to ship something that reads well and is quietly wrong.</li>
 </ul>
 <h3>02. Einstein Standard Features (Sales and Service)</h3>
 <ul>
-<li><strong>Tier:</strong> Low</li>
+<li><strong>Cost:</strong> 2</li>
 <li><strong>What:</strong> Out-of-the-box generative features: work and call summaries, reply and knowledge recommendations, email drafting.</li>
 <li><strong>Placement:</strong> Runtime, native. Vendor-managed probabilistic calls behind the trust boundary. Nothing to architect beyond enablement and data access.</li>
 <li><strong>Appeals to:</strong> Priya (buy, not build). Marcus (vendor-governed, auditable).</li>
-<li><strong>Cost and complexity:</strong> Low. Licensing and enablement, not development.</li>
 <li><strong>Watch-out:</strong> You inherit the vendor's model and behaviour, with limited control over tone, grounding, and edge cases. Satisfies "we use AI," not "we built something differentiated."</li>
 </ul>
 <h3>03. Grounded Retrieval / RAG (Data Cloud and Retrievers)</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate</li>
+<li><strong>Cost:</strong> 3</li>
+<li><strong>Bonus:</strong> Defends safety in the review.</li>
 <li><strong>What:</strong> Ground model answers in curated knowledge, vehicle history, and customer context retrieved at query time, instead of relying on the model's training.</li>
 <li><strong>Placement:</strong> Runtime. A retrieval step (deterministic search over indexed data) feeding a probabilistic generation step. Leans heavily on Data Cloud. [Inference] The exact retriever and library constructs are evolving.</li>
 <li><strong>Appeals to:</strong> Marcus (better grounding lowers hallucination risk). Helena (better answers). Priya (reuses the Data Cloud investment).</li>
-<li><strong>Cost and complexity:</strong> Moderate. The data plumbing, indexing, and grounding design are the real work, not the prompt.</li>
 <li><strong>Watch-out:</strong> Retrieval that silently returns nothing, or the wrong slice, degrades answers with no error. Grounding is an architecture problem, not a checkbox.</li>
 </ul>
 <h3>04. Conversational AI Voice</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>Cost:</strong> 5</li>
 <li><strong>What:</strong> A customer-facing voice agent on the telephony channel. Speech in, agent reasoning, speech out. [Inference] Productization and GA scope move quickly; verify before committing dates.</li>
 <li><strong>Placement:</strong> Runtime, customer-facing. Sits on the CTI and voice channel in front of an agent or service logic. Adds a speech-to-text stage and a text-to-speech stage on either side of a probabilistic core.</li>
 <li><strong>Appeals to:</strong> Helena (this is the headline she wants).</li>
-<li><strong>Cost and complexity:</strong> High in practice. Latency budget, transcription accuracy, accents, interruptions, and brand-safe responses are all hard.</li>
 <li><strong>Watch-out:</strong> The most visible channel is the least forgiving. A wrong or hallucinated spoken answer about a recall or safety item is a brand and liability event, not a UX bug.</li>
 </ul>
 <h3>05. Agentforce Service Agent (autonomous)</h3>
 <ul>
-<li><strong>Tier:</strong> High</li>
+<li><strong>Cost:</strong> 4</li>
 <li><strong>What:</strong> An autonomous agent that interprets a request, decides how to handle it, and acts, rather than following a fixed script. [Inference] Internal construct names (topics, sub-agents, actions) are shifting; describe behaviour, not a fixed mechanism.</li>
 <li><strong>Placement:</strong> Runtime, the heart of the customer experience. A reasoning node (probabilistic, may loop) behind the trust boundary, grounded via retrieval, invoking actions outward.</li>
 <li><strong>Appeals to:</strong> Helena (the growth story), provided Marcus and Priya are satisfied.</li>
-<li><strong>Cost and complexity:</strong> High. Topic and skill design, action design, grounding, guardrails, testing, and observability.</li>
 <li><strong>Watch-out:</strong> This is the box most teams leave as "magic." It reasons, so its path is not fully predictable. That property has to be visible in the diagram, not hidden inside a cloud.</li>
 </ul>
 <h3>06. Agentforce Custom Actions (Apex / Flow / API)</h3>
 <ul>
-<li><strong>Tier:</strong> High</li>
+<li><strong>Cost:</strong> 4</li>
 <li><strong>What:</strong> Custom actions that let the agent actually do things: check inventory in the DMS, book a service bay, raise an order in ERP.</li>
 <li><strong>Placement:</strong> Runtime. The bridge from agent reasoning (probabilistic) to back-end systems of record (deterministic). Each action is a controlled, typed door out of the agent.</li>
 <li><strong>Appeals to:</strong> Helena (real outcomes, not just chat). Priya (depends on integration effort). Marcus (each action is an error and attack surface).</li>
-<li><strong>Cost and complexity:</strong> High and easily underestimated. The agent is only as capable, and only as safe, as its actions and their input validation.</li>
 <li><strong>Watch-out:</strong> An agent with broad actions and weak validation can take real, wrong actions on systems of record. Draw the boundary and the permissions explicitly.</li>
 </ul>
 <h3>07. MCP (Model Context Protocol)</h3>
 <ul>
-<li><strong>Tier:</strong> Very High (strategic)</li>
+<li><strong>Cost:</strong> 4</li>
+<li><strong>Bonus:</strong> Discount, minus 1 to one custom-action or integration card.</li>
 <li><strong>What:</strong> An open standard for connecting agents and models to external tools and data through a common interface, instead of bespoke glue per integration. [Inference] Native Salesforce support is evolving; confirm current state.</li>
 <li><strong>Placement:</strong> Runtime integration layer. A standardized adapter between the agent and external systems and tools. Reduces N bespoke connectors to one protocol.</li>
 <li><strong>Appeals to:</strong> Priya (less lock-in, less custom integration, future-proofing). Marcus (one governed surface to audit instead of many).</li>
-<li><strong>Cost and complexity:</strong> Higher to adopt, lower to maintain over time. Pays off across many integrations, over-engineering for one.</li>
 <li><strong>Watch-out:</strong> A standard adopted for a single integration is premature. Justify it by breadth, not by novelty.</li>
 </ul>
 <h3>08. A2A (Agent-to-Agent)</h3>
 <ul>
-<li><strong>Tier:</strong> Very High</li>
+<li><strong>Cost:</strong> 6</li>
 <li><strong>What:</strong> A protocol for agents from different systems or vendors to discover each other and collaborate, so MMG's agent can delegate to or negotiate with an external agent.</li>
 <li><strong>Placement:</strong> Runtime, cross-boundary. Agent-to-agent calls crossing an organizational trust boundary. The most complex orchestration on the board.</li>
 <li><strong>Appeals to:</strong> Helena (sounds visionary). Rarely the right first move.</li>
-<li><strong>Cost and complexity:</strong> Very high. Interop, trust, identity, and failure handling across parties you do not control.</li>
 <li><strong>Watch-out:</strong> If there is no real external agent to talk to, A2A is a slide, not an architecture. Demand a concrete counterparty before drawing it.</li>
 </ul>
 <h3>09. AI-Assisted Delivery (e.g. Claude Code)</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate (delivery-side)</li>
+<li><strong>Cost:</strong> 3</li>
+<li><strong>Bonus:</strong> Discount, minus 1 to one build-heavy card.</li>
 <li><strong>What:</strong> Agentic coding and delivery tooling that generates code, tests, and metadata, and reviews changes inside the software development lifecycle.</li>
 <li><strong>Placement:</strong> Delivery and SDLC plane. IDE, version control, CI/CD, and pipelines. It accelerates how the team builds the product.</li>
 <li><strong>Appeals to:</strong> Priya (delivery speed and quality). The architects doing the work.</li>
-<li><strong>Cost and complexity:</strong> Moderate. Tooling and team enablement, governed by identity separation across IDE, commit, and push.</li>
 <li><strong>Watch-out:</strong> It speeds up build, which is rarely the real bottleneck. Be deliberate about where, and whether, it belongs on a runtime diagram.</li>
 </ul>
 <h3>10. AI Co-Worker (internal agentic assistant, e.g. Cowork)</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate (employee-side)</li>
+<li><strong>Cost:</strong> 3</li>
 <li><strong>What:</strong> An agentic assistant for staff knowledge work: research, drafting, analysis, and multi-step internal tasks across documents and tools.</li>
 <li><strong>Placement:</strong> Employee productivity and internal operations plane. Used by people inside MMG, not by customers.</li>
 <li><strong>Appeals to:</strong> Priya and team leads (internal efficiency).</li>
-<li><strong>Cost and complexity:</strong> Moderate. Access management and data governance are the main concerns.</li>
 <li><strong>Watch-out:</strong> Useful, but it is an internal tool, not part of the customer-facing product. Be clear about which diagram it belongs on.</li>
 </ul>
 <h3>11. Predictive Models (propensity, churn, demand)</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate</li>
+<li><strong>Cost:</strong> 2</li>
 <li><strong>What:</strong> Non-generative models that score or forecast: likelihood to buy, churn risk, expected service demand, the next best offer. They produce a number or a class, not text.</li>
 <li><strong>Placement:</strong> Runtime or batch, native via Data Cloud. A scoring node fed by structured data, writing a value back to a record rather than holding a conversation.</li>
 <li><strong>Appeals to:</strong> Priya (cheap and well understood), Helena (drives upsell and retention), Marcus (a score is explainable and auditable in ways a generation is not).</li>
-<li><strong>Cost and complexity:</strong> Moderate. The work is feature and data quality, not prompting. Reuses the unified profile.</li>
 <li><strong>Watch-out:</strong> Not all AI is a language model. A prediction is a different thing from a generated answer and must be drawn as such. Treating a score like a chat reply hides what it actually is.</li>
 </ul>
 <h3>12. Proactive, Event-Triggered Outreach</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>Cost:</strong> 4</li>
 <li><strong>What:</strong> AI started by a signal rather than a customer question. A telematics fault code or a service-due event triggers an outbound message, offer, or booking.</li>
 <li><strong>Placement:</strong> Runtime, but the entry point is an event from outside (the telematics platform or a lifecycle rule), not a prompt. The trigger flows in, the AI decides, and it acts outward.</li>
 <li><strong>Appeals to:</strong> Helena (reaching the customer first), Priya (fewer inbound calls), Marcus (proactive contact on vehicle data raises consent and privacy questions).</li>
-<li><strong>Cost and complexity:</strong> Moderate to High. The orchestration and the eventing are the work, plus consent and frequency control.</li>
 <li><strong>Watch-out:</strong> The input is not a customer prompt, and most diagrams only draw the prompt-in case. Show where the trigger comes from and what the AI is allowed to do unattended.</li>
 </ul>
 <h3>13. Agent-Assist (advisor copilot)</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>Cost:</strong> 3</li>
+<li><strong>Bonus:</strong> Defends oversight in the review.</li>
 <li><strong>What:</strong> AI beside the human advisor in real time: surfacing the answer, drafting the reply, suggesting the next action, while the human stays in control and sends.</li>
 <li><strong>Placement:</strong> Runtime, internal-facing within the service or sales console. The AI suggests; the human remains the actor of record toward the customer.</li>
 <li><strong>Appeals to:</strong> Marcus (a human stays in the loop by design), Priya (faster handling without full autonomy risk), Helena in part (efficiency, less of a headline than a customer-facing agent).</li>
-<li><strong>Cost and complexity:</strong> Moderate to High. Similar grounding to an autonomous agent, but the action surface is the advisor, not the customer.</li>
 <li><strong>Watch-out:</strong> Assist versus autonomous is a real architecture fork, not a phase to skip. A human in the loop changes the diagram, the risk, and the timeline. Often the wiser first step.</li>
 </ul>
 <h3>14. Real-Time Translation and Multilingual AI</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate</li>
+<li><strong>Cost:</strong> 3</li>
 <li><strong>What:</strong> Serving customers across MMG's eight countries in their own language, including translating into and out of the model and grounding content that may exist in only one language.</li>
 <li><strong>Placement:</strong> Runtime. A translation step on either side of the AI core, or a multilingual-capable model. Either way it adds stages and calls to the flow.</li>
 <li><strong>Appeals to:</strong> Helena (one capability across every market), Priya (watch the added cost and latency).</li>
-<li><strong>Cost and complexity:</strong> Moderate, and easy to underestimate. Each translation can be another model call, and grounding quality varies by language.</li>
 <li><strong>Watch-out:</strong> Translation is rarely free or instant, and answers can degrade across languages. Show where it happens and what it costs, instead of assuming the model speaks every language equally well.</li>
 </ul>
 <h3>15. Vision AI (damage and trade-in assessment)</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>Cost:</strong> 4</li>
 <li><strong>What:</strong> Models that read images: assessing vehicle damage for a trade-in or service intake, reading a VIN or plate, identifying parts.</li>
 <li><strong>Placement:</strong> Runtime. A vision model node with image data flowing in, distinct from the text path and often a different provider.</li>
 <li><strong>Appeals to:</strong> Helena (a slick trade-in or intake experience), Priya (faster, more consistent assessment), Marcus (images of vehicles and locations are personal data too).</li>
-<li><strong>Cost and complexity:</strong> Moderate to High. A separate modality, separate model, separate evaluation, and image storage and retention to manage.</li>
 <li><strong>Watch-out:</strong> Images are data with their own sensitivity and their own flow. A vision model is not the same node as a chat model, and the diagram should not blur them into one AI box.</li>
 </ul>
 <h3>16. Model Gateway and Multi-Model Abstraction</h3>
 <ul>
-<li><strong>Tier:</strong> High (strategic)</li>
+<li><strong>Cost:</strong> 4</li>
+<li><strong>Bonus:</strong> Discount, minus 1 to one extra model card. Defends a vendor change in the review.</li>
 <li><strong>What:</strong> A layer between MMG and the model providers, so the choice of model is a configuration rather than a hard dependency, with routing and fallback across models.</li>
 <li><strong>Placement:</strong> Runtime infrastructure, between the agent or app and the external models. Behind it, models are interchangeable. Distinct from MCP, which standardises access to tools and data, not the model itself.</li>
 <li><strong>Appeals to:</strong> Priya (less lock-in, a fallback if a model changes or disappears), Marcus (one place to govern model use).</li>
-<li><strong>Cost and complexity:</strong> High to set up, lower risk over time. Pays for itself the first time a provider changes its terms.</li>
 <li><strong>Watch-out:</strong> Without it, the design is welded to one provider. With it drawn, the model becomes a swappable box behind a stable interface. That is the difference between surviving a vendor change and rebuilding.</li>
 </ul>
 <h3>17. AI Observability and Evaluation</h3>
 <ul>
-<li><strong>Tier:</strong> Moderate to High</li>
+<li><strong>Cost:</strong> 3</li>
+<li><strong>Bonus:</strong> Defends operability in the review.</li>
 <li><strong>What:</strong> The layer that watches the AI in production: grounding and quality checks, hallucination and toxicity detection, cost and latency monitoring, and an evaluation harness for changes before they ship.</li>
 <li><strong>Placement:</strong> A cross-cutting plane observing the runtime, not in the customer's path. It reads what the AI does and raises alarms.</li>
 <li><strong>Appeals to:</strong> Priya (knowing it works, and who is paged at 2am), Marcus (evidence the AI behaves and a record when it does not), Helena (fewer public failures).</li>
-<li><strong>Cost and complexity:</strong> Moderate to High, and routinely forgotten. It is the difference between an agent you hope works and one you can prove works.</li>
 <li><strong>Watch-out:</strong> Most teams draw the happy path and no way to see when it breaks. If the diagram cannot show how you would notice a bad answer, you cannot operate this.</li>
 </ul>
 <h3>18. Custom Model Fine-Tuning</h3>
 <ul>
-<li><strong>Tier:</strong> Very High</li>
+<li><strong>Cost:</strong> 7</li>
 <li><strong>What:</strong> Training or fine-tuning a model on MMG's own data to specialise it for automotive and for MMG's tone and knowledge.</li>
 <li><strong>Placement:</strong> A data-science and delivery effort upstream of runtime. It produces a model artefact that then has to be hosted, governed, and kept current.</li>
 <li><strong>Appeals to:</strong> The instinct to build something uniquely MMG. Helena likes the differentiation.</li>
-<li><strong>Cost and complexity:</strong> Very high. Data preparation, training, hosting, evaluation, and continuous retraining, plus the specialist skills to run all of it.</li>
 <li><strong>Watch-out:</strong> It needs a capable data-science function and sustained investment. Grounding usually delivers the specialisation you actually need without training anything.</li>
 </ul>
 <hr />
 <h1>Section B: Facilitator Key</h1>
-<p><em>Do not hand this section to participants.</em></p>
-<h2>The engineered traps: cards 09, 10, and 18</h2>
-<p>Three cards are traps, of two kinds.</p>
-<p>Cards 09 (AI-assisted delivery) and 10 (internal co-worker) are wrong-plane traps: legitimate technologies that belong in the delivery or operations plane, not the customer-facing runtime. Their placement line says so plainly, but they are not flagged as traps. Groups under time pressure grab them for the current, impressive names and try to place them in the runtime diagram.</p>
-<p>Card 18 (custom fine-tuning) is a constraint-violation trap. Nothing on the card flags it. The scenario does: MMG has no in-house machine learning function and has decided not to train models. A group that picks it did not reread the brief, and grounding (03) usually delivers the specialisation they wanted without any of it.</p>
-<p>This is a central teaching moment of Block 2 and the debrief. For 09 and 10: where a component goes is a real architecture decision, not a formatting afterthought, and a build-time tool sitting in the customer runtime is exactly the "looks confident, explains nothing" failure the session is about. For 18: the constraints are written in the brief, and reading them is part of the job. Do not correct any of these during Block 2. Let them surface in the pitch or the debrief.</p>
+<p><em>Do not hand this section to participants. No card is labelled a trap on its face; the honest watch-out text and the placement line are the only clues.</em></p>
+<h2>The traps: cards 08, 09, 10, and 18</h2>
+<p>Four cards are traps, of three kinds.</p>
+<p>Cards 09 (AI-Assisted Delivery) and 10 (AI Co-Worker) are wrong-plane traps: legitimate technologies that belong in the delivery or operations plane, not the customer-facing runtime. Their placement line says so plainly. Groups under time pressure grab them for the current, impressive names and try to place them in the runtime diagram. Card 09 also carries a real discount bonus, which is the right reason to take it; the wrong reason is to draw it inside the customer runtime.</p>
+<p>Card 08 (A2A) is a counterparty trap. The protocol is real, but the scenario gives MMG no concrete external agent to talk to. A team that spends 6 points here has bought an integration with nobody.</p>
+<p>Card 18 (Custom Fine-Tuning) is a constraint-violation trap. Nothing on the card flags it. The scenario does: MMG has no in-house machine learning function and has decided not to train models. A group that picks it did not reread the brief, and Grounded RAG (03) usually delivers the specialisation they wanted without any of it.</p>
+<p>This is a central teaching moment of Block 4 and the debrief. Where a component goes is a real architecture decision, not a formatting afterthought. The constraints are written in the brief, and reading them is part of the job. Do not correct any of these during the build. Let them surface in the pitch or the debrief.</p>
 <h2>The shape of a strong answer</h2>
 <p>There is no single correct set, but a defensible north star for MMG looks like a staged path, not a big-bang:</p>
 <ol>
-<li>Quick value, low risk: cards 01 and 02, with 03 for grounding.</li>
-<li>Keep a human in control first: card 13 (agent-assist) is often the wiser opening move before any autonomous customer-facing agent. It satisfies Marcus and defuses the hallucination problem by design.</li>
-<li>A real differentiator: card 05 (autonomous agent), grounded by 03, governed by the trust boundary, made useful by 06 (custom actions) into the DMS and scheduling. Stage it after assist has proven the grounding.</li>
-<li>Use the data you already have: card 11 (predictive) for the forecasting and upsell the reporting requirements ask for, and card 12 (proactive) to act on telematics. These meet the mandate with non-generative AI that is cheaper and more explainable than a chat agent.</li>
+<li>Quick value, low risk: cards 01 and 02, with 03 for grounding (and its safety defense).</li>
+<li>Keep a human in control first: card 13 (Agent-Assist) is often the wiser opening move before any autonomous customer-facing agent. It satisfies Marcus and defuses the hallucination problem by design, and its oversight defense pays for itself in the review.</li>
+<li>A real differentiator: card 05 (autonomous agent), grounded by 03, governed by the trust boundary, made useful by 06 (Custom Actions) into the DMS and scheduling. Stage it after Assist has proven the grounding.</li>
+<li>Use the data you already have: card 11 (Predictive) for the forecasting and upsell the reporting requirements ask for, and card 12 (Proactive) to act on telematics. These meet the mandate with non-generative AI that is cheaper and more explainable than a chat agent.</li>
 <li>Staged ambition: card 04 (Voice) as a later channel, not day one.</li>
-<li>Protect yourself: card 16 (model gateway) as the lock-in hedge, and card 17 (observability) so the thing can actually be operated. Neither is glamorous; both are what Priya needs.</li>
-<li>Strategic, only if justified: card 07 (MCP) for integration breadth, card 08 (A2A) only with a concrete counterparty.</li>
+<li>Protect yourself: card 16 (Model Gateway) as the lock-in hedge with its vendor-change defense, and card 17 (Observability) so the thing can actually be operated and defended for operability. Neither is glamorous; both are what Priya needs.</li>
+<li>Strategic, only if justified: card 07 (MCP) for integration breadth (and its action discount), card 08 (A2A) only with a concrete counterparty.</li>
 </ol>
-<p>Cards 09, 10, and 18 do not belong in the customer runtime: 09 and 10 are delivery and internal tools, and 18 contradicts a stated constraint.</p>
+<p>Cards 08, 09, 10, and 18 do not belong in the customer runtime when picked for the wrong reason: 08 has no counterparty, 09 and 10 are delivery and internal tools, and 18 contradicts a stated constraint.</p>
 <h2>The two failure modes to provoke and then name</h2>
 <ul>
-<li><strong>Over-engineering:</strong> A2A plus Voice plus a full autonomous agent on day one, ignoring Priya's cost and operability reality and Marcus's risk. Glamorous, undeliverable.</li>
-<li><strong>Under-ambition:</strong> Only Tier Low features. Safe and cheap, but it does not meet Helena's growth mandate. "We added summaries" is not a strategy.</li>
+<li><strong>Over-engineering:</strong> A2A plus Voice plus a full autonomous agent on day one, ignoring Priya's cost and operability reality and Marcus's risk. Glamorous, undeliverable, and almost always over the cap.</li>
+<li><strong>Under-ambition:</strong> Only the cheapest cards. Safe, cheap, well under the cap, but it does not meet Helena's growth mandate. "We added summaries" is not a strategy.</li>
 </ul>
-<p>The sweet spot is the staged middle. Reward groups that can say no to a shiny card and justify it.</p>
-<h2>Suggested game mechanic: a complexity budget</h2>
-<p>To force trade-offs instead of letting groups grab everything, give each group a budget rather than free choice. Recommended: Low = 1 point, Moderate = 2, High = 3, Very High = 4, total budget of 7 points. This lets a group take several cheap capabilities or one expensive one, and it encodes Priya's cost reality directly into the exercise. Tune the budget to the room. Announce that exceeding it means Priya walks out of the board meeting.</p>
+<p>The sweet spot is the staged middle. Reward groups that can say no to a shiny card and justify it, and groups that read a bonus star correctly: a discount is a real saving, a defense is a real head start, neither is a free pass.</p>
 <h2>Per-CxO acceptance rubric</h2>
-<p>This doubles as the judging criteria for the pitch in Block 3. The facilitators voice these when they play the board.</p>
+<p>This doubles as the judging criteria for the pitch in the review board. The facilitators voice these when they play the board.</p>
 <ul>
 <li><strong>Helena (CEO), says yes if:</strong> there is a visible, customer-facing capability that supports the growth narrative, with a credible timeline.</li>
 <li><strong>Marcus (CISO/CDO), says yes if:</strong> PII handling, the trust boundary, grounding, and human oversight are explicit and auditable, and AI Act exposure is acknowledged rather than ignored.</li>
-<li><strong>Priya (CIO), says yes if:</strong> run cost at scale, latency, operability (who runs this at 2am), and lock-in are addressed, and complexity matches value.</li>
+<li><strong>Priya (CIO), says yes if:</strong> run cost at scale, latency, operability (who runs this at 2am), and lock-in are addressed, and complexity matches value. The team stayed under 12 points or argued credibly for the over-spend.</li>
 </ul>
 <p>A pitch that wins one persona and ignores the other two has failed the exercise. The diagrams are the evidence that earns all three.</p></div></details></section>
 <section id="diagrams" class="section reveal"><h2 class="section-title"><span class="n">04</span>The Diagrams</h2><p class="section-lead">Eight worked examples in the kit&#x27;s language, each tied to a stakeholder or a gap.</p><div class="gallery"><figure class="plate reveal"><div class="head"><span class="pn">01</span><span class="pt">Capability Map</span></div><figcaption class="pc">Helena's strategic view, and the architect's lock-in argument: the capability is stable, the technology under it is swappable.</figcaption><div class="svgwrap"><svg viewBox="0 0 1123 600" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','IBM Plex Mono','DejaVu Sans Mono',monospace">
@@ -1256,54 +1253,13 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 <hr />
 <h1>1 · Timeline</h1>
 <p>Five working blocks plus this overview. Each block is one act, not a checklist.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Start</th>
-<th>Min</th>
-<th>What happens</th>
-<th>Output</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2 · Scenario and stakeholders</td>
-<td>0:00</td>
-<td>10</td>
-<td>MMG, the mandate, the three CxOs</td>
-<td>Shared context and tension</td>
-</tr>
-<tr>
-<td>3 · Intro to the AI notation</td>
-<td>0:10</td>
-<td>10</td>
-<td>The vague box problem, the kit, where it runs out</td>
-<td>A shared vocabulary</td>
-</tr>
-<tr>
-<td>4 · Cards and build</td>
-<td>0:20</td>
-<td>30</td>
-<td>Assign domains, the point model and all its rules, pick under the cap, draw both diagrams</td>
-<td>Solution architecture and data flow per team</td>
-</tr>
-<tr>
-<td>5 · Review board</td>
-<td>0:50</td>
-<td>30</td>
-<td>Each team presents to one executive, optional distractors</td>
-<td>A defended strategy</td>
-</tr>
-<tr>
-<td>6 · Closing</td>
-<td>1:20</td>
-<td>10</td>
-<td>Where the notation ran out, the reveal, the takeaway</td>
-<td>Notation vocabulary, community output</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Section | Start | Min | What happens | Output |
+|---|---|---|---|---|
+| 2 · Scenario and stakeholders | 0:00 | 10 | MMG, the mandate, the three CxOs | Shared context and tension |
+| 3 · Intro to the AI notation | 0:10 | 10 | The vague box problem, the kit, where it runs out | A shared vocabulary |
+| 4 · Cards and build | 0:20 | 30 | Assign domains, the point model and all its rules, pick under the cap, draw both diagrams | Solution architecture and data flow per team |
+| 5 · Review board | 0:50 | 30 | Each team presents to one executive, optional distractors | A defended strategy |
+| 6 · Closing | 1:20 | 10 | Where the notation ran out, the reveal, the takeaway | Notation vocabulary, community output |</p>
 <p>What every team leaves with: a solution architecture diagram, a data flow diagram (both drawn in section 4, both scoped to the team's domain), and the reusable notation kit. These three are the Abstract.</p>
 <p>Times and the point cap are tunable [Inference]. The version 3 split puts the notation before the build and moves defending time into a single focused review per team.</p>
 <hr />
@@ -1362,32 +1318,11 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 <p>Goal: choose a defensible AI architecture for your domain under a constraint that forces trade-offs, then draw it honestly with the kit. Output: the solution architecture diagram and the data flow diagram.</p>
 <h3>Beat 0: assign domains (first 60 seconds)</h3>
 <p>You do: give each team a domain card. Same MMG, same landscape, but each team builds the AI architecture for one slice. This is what keeps the three architectures, and later the three pitches, genuinely different.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Team</th>
-<th>Domain</th>
-<th>Whose concern it most touches</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td>Customer self-service: chat and voice, deflection at scale</td>
-<td>Priya</td>
-</tr>
-<tr>
-<td>B</td>
-<td>Sales: financing and trade-in</td>
-<td>Marcus</td>
-</tr>
-<tr>
-<td>C</td>
-<td>Service and recall</td>
-<td>Helena</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Team | Domain | Whose concern it most touches |
+|---|---|---|
+| A | Customer self-service: chat and voice, deflection at scale | Priya |
+| B | Sales: financing and trade-in | Marcus |
+| C | Service and recall | Helena |</p>
 <p>You say:</p>
 <blockquote>
 <p>"You are all inside the same MMG, but each team owns one part of it. Build your AI architecture for your slice. At the board, you present your slice to the executive who cares about it most."</p>
@@ -1423,36 +1358,11 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 <h1>5 · Review board, present to one stakeholder with optional distractors (0:50 to 1:20)</h1>
 <p>Goal: each team presents its architecture to the one executive whose concern its domain most touches, and defends it. The executive may throw optional distractors, aimed exactly where the notation is weakest. Output: a defended strategy. Both diagrams already exist from section 4.</p>
 <h3>Who presents to whom</h3>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Team</th>
-<th>Domain</th>
-<th>Presents to</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td>Customer self-service</td>
-<td>Priya, CIO</td>
-<td>Three-slide board pitch</td>
-</tr>
-<tr>
-<td>B</td>
-<td>Sales, financing, trade-in</td>
-<td>Marcus, CISO and CDO</td>
-<td>Live whiteboard, no slides</td>
-</tr>
-<tr>
-<td>C</td>
-<td>Service and recall</td>
-<td>Helena, CEO</td>
-<td>Walk one journey end to end</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Team | Domain | Presents to | Format |
+|---|---|---|---|
+| A | Customer self-service | Priya, CIO | Three-slide board pitch |
+| B | Sales, financing, trade-in | Marcus, CISO and CDO | Live whiteboard, no slides |
+| C | Service and recall | Helena, CEO | Walk one journey end to end |</p>
 <p>The build had to satisfy all three executives. The review is a focused defense to one. The other two may optionally throw a distractor, and the oversight wildcard is open to any team, but the assigned executive leads the round and gives the verdict.</p>
 <p>The formats are not arbitrary. The board pitch suits Team A's deflection and cost story for Priya. The live whiteboard lets Marcus interrogate Team B's data flow line by line. The single-journey walk for Team C is literally the recall question, "is my car safe to drive?", which is exactly where a confident wrong answer and Helena's announcement risk collide.</p>
 <h3>How a round runs (about 8 minutes per team)</h3>
@@ -1466,28 +1376,11 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 </ol>
 <p>Optional audience challenge [drop if short on time]: the two non-presenting teams hold perspective cards, Customer, Regulator, and Operations. After the executive is done, one of them poses a single challenge from its role.</p>
 <h3>The accept conditions (the single yes)</h3>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Executive</th>
-<th>Says yes only if the presentation shows</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Helena, CEO</td>
-<td>A visible, customer-facing capability that supports the growth story, with a credible, phased timeline</td>
-</tr>
-<tr>
-<td>Marcus, CISO and CDO</td>
-<td>PII handling, the trust boundary, grounding, and human oversight made explicit and auditable, and AI Act exposure acknowledged</td>
-</tr>
-<tr>
-<td>Priya, CIO</td>
-<td>Run cost at scale, latency, operability, who runs this at 2 a.m., and lock-in addressed, with complexity matched to value</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Executive | Says yes only if the presentation shows |
+|---|---|
+| Helena, CEO | A visible, customer-facing capability that supports the growth story, with a credible, phased timeline |
+| Marcus, CISO and CDO | PII handling, the trust boundary, grounding, and human oversight made explicit and auditable, and AI Act exposure acknowledged |
+| Priya, CIO | Run cost at scale, latency, operability, who runs this at 2 a.m., and lock-in addressed, with complexity matched to value |</p>
 <p>A design that wins its own executive but would clearly fail the other two has not met the mandate. Say so kindly when it happens. Keep one eye on the two-distractor cap so a strong team does not get buried.</p>
 <p>The full judge cards, with every distractor and its read-aloud, are in Appendix B. The five distractors map one to one onto the five kit gaps, which is the engine of the close.</p>
 <hr />
@@ -1581,98 +1474,27 @@ runs out.</p><div class="gallery"><figure class="plate reveal"><div class="head"
 <p>You say yes only if: run cost at scale, latency, operability, and lock-in are addressed, with complexity matched to value.</p>
 <h2>Appendix C · CxO acceptance rubric</h2>
 <p>Judges the presentations and voices the board. Also given to groups as the pitch checklist.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Persona</th>
-<th>Says yes only if the presentation shows</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Helena, CEO</td>
-<td>A visible, customer-facing capability that supports the growth story, with a credible, phased timeline</td>
-</tr>
-<tr>
-<td>Marcus, CISO and CDO</td>
-<td>PII handling, the trust boundary, grounding, and human oversight made explicit and auditable, and AI Act exposure acknowledged</td>
-</tr>
-<tr>
-<td>Priya, CIO</td>
-<td>Run cost at scale, latency, operability (who runs this at 2 a.m.), and lock-in addressed, with complexity matched to value</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Persona | Says yes only if the presentation shows |
+|---|---|
+| Helena, CEO | A visible, customer-facing capability that supports the growth story, with a credible, phased timeline |
+| Marcus, CISO and CDO | PII handling, the trust boundary, grounding, and human oversight made explicit and auditable, and AI Act exposure acknowledged |
+| Priya, CIO | Run cost at scale, latency, operability (who runs this at 2 a.m.), and lock-in addressed, with complexity matched to value |</p>
 <p>A design must move all three to meet the mandate. Winning one and ignoring two is a fail. Since the goal is learning rather than competition, "who wins" across different domains is not apples to apples. If you want a competitive element, score against this rubric on two things only: did the notation make the risk visible, and did they parry the live distractor with notation rather than hand-waving.</p>
 <h2>Appendix D · Facilitator design map</h2>
 <p>The kit gaps, the distractors, and the defending cards line up on purpose.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Kit gap (named on the handout)</th>
-<th>Distractor that exploits it</th>
-<th>Card that pre-empts it if drawn</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Confidence, act vs defer</td>
-<td>D3 Confident Wrong Answer</td>
-<td>Grounded RAG, defends safety</td>
-</tr>
-<tr>
-<td>Human oversight, who approves</td>
-<td>D2 AI Act Knock, the wildcard</td>
-<td>Agent-Assist, defends oversight</td>
-</tr>
-<tr>
-<td>Data sensitivity, which arrows carry PII</td>
-<td>D1 Data Breach</td>
-<td>(no defend card, must be drawn from scratch)</td>
-</tr>
-<tr>
-<td>Cost and latency</td>
-<td>D4 Bill and the Lag</td>
-<td>Observability and Evaluation, defends operability</td>
-</tr>
-<tr>
-<td>Failure and fallback paths</td>
-<td>D5 Vendor Moves</td>
-<td>Model Gateway, defends vendor change</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Kit gap (named on the handout) | Distractor that exploits it | Card that pre-empts it if drawn |
+|---|---|---|
+| Confidence, act vs defer | D3 Confident Wrong Answer | Grounded RAG, defends safety |
+| Human oversight, who approves | D2 AI Act Knock, the wildcard | Agent-Assist, defends oversight |
+| Data sensitivity, which arrows carry PII | D1 Data Breach | (no defend card, must be drawn from scratch) |
+| Cost and latency | D4 Bill and the Lag | Observability and Evaluation, defends operability |
+| Failure and fallback paths | D5 Vendor Moves | Model Gateway, defends vendor change |</p>
 <p>Domains, executives, and distractors line up so the union of three reviews covers all five gaps:</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Team</th>
-<th>Domain</th>
-<th>Presents to</th>
-<th>Distractors most likely thrown</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td>Customer self-service</td>
-<td>Priya</td>
-<td>D4, then the D2 wildcard</td>
-</tr>
-<tr>
-<td>B</td>
-<td>Sales, financing, trade-in</td>
-<td>Marcus</td>
-<td>D1 and D5, then the D2 wildcard</td>
-</tr>
-<tr>
-<td>C</td>
-<td>Service and recall</td>
-<td>Helena, with Marcus on D3</td>
-<td>D3, then the D2 wildcard</td>
-</tr>
-</tbody>
-</table></div>
+<p>| Team | Domain | Presents to | Distractors most likely thrown |
+|---|---|---|---|
+| A | Customer self-service | Priya | D4, then the D2 wildcard |
+| B | Sales, financing, trade-in | Marcus | D1 and D5, then the D2 wildcard |
+| C | Service and recall | Helena, with Marcus on D3 | D3, then the D2 wildcard |</p>
 <p>D2 is the shared wildcard on purpose: oversight should be askable of everyone, and it guarantees the human-control gap surfaces no matter which way a team built. Data sensitivity has no defend card on purpose, so at least one team has to invent PII notation live.</p>
 <p>The traps live in the deck and are never labelled: A2A needs a real counterparty MMG lacks, AI-Assisted Delivery and AI Co-Worker live off the customer runtime, and Custom Fine-Tuning needs a data-science function MMG cannot staff. A team that spends points on these made a category or feasibility error the planes primitive and the honest catch should have caught. Surface it in the close.</p>
 <p>Two failure modes to provoke and then name: over-engineering, made costly by the 12-point cap and punished live by D4, and under-ambition, made visible by the mandate and by Helena's simplify-or-scale squeeze.</p>

@@ -27,6 +27,12 @@ Two facts shape what is possible. The customer experience today is fragmented an
 
 ---
 
+## The Constraints
+
+None of this will be easy, and the constraints are exactly the kind that surface in an architecture review. Operating in eight countries means eight regulatory and language contexts: GDPR applies everywhere, but consent for marketing and for telematics data was captured differently in each market during the CRM consolidation, and the works councils in Germany and Austria must approve any tool that could be read as monitoring advisor performance. The EU AI Act is on every legal agenda, and any AI that gives safety-relevant guidance, such as recall advice, is expected to attract its higher-risk obligations. The manufacturer contracts add a second layer: each brand has its own rules on how its vehicle, telematics, and customer data may be used, several insist that the customer relationship is theirs, and at least one is piloting an agency model in which MMG legally sells on the manufacturer's behalf. The location network is a mix of fully owned dealerships and franchise partners, running three different dealer management systems on various versions, so no integration can assume one system of record at the retail edge. Data quality reflects the consolidation's age: duplicate customers across markets and stale vehicle ownership records still exist in the regions that migrated last. Demand is spiky, a single safety recall across one brand's model range can triple inbound contact volume within days and floods exactly the routine-question channels AI is meant to relieve. And while the Salesforce platform team is strong, it already carries the release calendar for eight markets, so anything new must fit an established governance cadence, a finite change budget, and a board that expects something visible within three quarters.
+
+---
+
 ## The System Landscape
 
 Salesforce Automotive Cloud sits at the centre. Eight systems surround it and will be retained. Your worksheet shows them already.
